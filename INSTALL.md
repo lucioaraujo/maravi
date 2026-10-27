@@ -11,7 +11,7 @@ interface. Nothing is sent over the network.
 - Linux x86_64 with glibc 2.35 or newer: Ubuntu 22.04 or newer, Linux Mint
   21 or newer, Debian 12 or newer, Fedora, Arch, openSUSE Tumbleweed.
 - A web browser (Firefox, Chromium, Chrome).
-- About 1 GB free on disk (the unpacked package takes ~350 MB).
+- About 1 GB free on disk (the unpacked package takes ~400 MB).
 - **FFmpeg** (required: Maravi uses it to read audio files).
 - Only to read printed scores (PDF or image), optionally: **Audiveris**,
   **MuseScore**, **Poppler** and **ImageMagick**.
@@ -89,7 +89,7 @@ interface. Nada é enviado pela rede.
 
 **Requisitos:** Linux x86_64 com glibc 2.35 ou mais nova (Ubuntu 22.04+,
 Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE Tumbleweed); um
-navegador; cerca de 1 GB livre em disco (o pacote aberto ocupa ~350 MB); o
+navegador; cerca de 1 GB livre em disco (o pacote aberto ocupa ~400 MB); o
 **FFmpeg** (obrigatório, para ler os arquivos de áudio). Só para ler
 partituras impressas, opcionais: **Audiveris**, **MuseScore**, **Poppler** e
 **ImageMagick**. Windows e macOS não têm suporte nesta versão.
@@ -139,7 +139,7 @@ navigateur comme interface. Rien n'est envoyé sur le réseau.
 **Configuration requise :** Linux x86_64 avec glibc 2.35 ou plus récente
 (Ubuntu 22.04+, Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE
 Tumbleweed) ; un navigateur ; environ 1 Go libre (le paquet décompressé
-occupe ~350 Mo) ; **FFmpeg** (obligatoire, pour lire les fichiers audio).
+occupe ~400 Mo) ; **FFmpeg** (obligatoire, pour lire les fichiers audio).
 Seulement pour lire des partitions imprimées, facultatifs : **Audiveris**,
 **MuseScore**, **Poppler** et **ImageMagick**. Windows et macOS ne sont pas
 pris en charge dans cette version.
@@ -191,7 +191,7 @@ interfaz. Nada se envía por la red.
 **Requisitos:** Linux x86_64 con glibc 2.35 o más reciente (Ubuntu 22.04+,
 Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE Tumbleweed); un
 navegador; cerca de 1 GB libre en disco (el paquete descomprimido ocupa
-~350 MB); **FFmpeg** (obligatorio, para leer los archivos de audio). Solo
+~400 MB); **FFmpeg** (obligatorio, para leer los archivos de audio). Solo
 para leer partituras impresas, opcionales: **Audiveris**, **MuseScore**,
 **Poppler** e **ImageMagick**. Windows y macOS no tienen soporte en esta
 versión.
