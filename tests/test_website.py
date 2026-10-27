@@ -61,6 +61,11 @@ class WebsiteTests(unittest.TestCase):
                 self.assertIn("https://rasgoinstruments.arquiviagem.net/", raw)
                 # contact without mailto: the address is assembled by the script
                 self.assertNotIn("mailto:", raw)
+                # no stray regex backreference, every list closed (a "\\1" once
+                # replaced a </ul> on the published pages, 2026-10-27)
+                self.assertNotRegex(raw, r"\\[0-9]")
+                for tag in ("ul", "ol", "section", "article", "div"):
+                    self.assertEqual(raw.count("<%s" % tag), raw.count("</%s>" % tag), (filename, tag))
                 self.assertIn("assets/contact.js", page.links)
                 self.check_links(filename, raw, page)
 
