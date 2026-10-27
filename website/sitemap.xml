@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/en.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/es.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/instalacao.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/instalacao.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/instalacao-en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/instalacao-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/instalacao-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/instalacao.html"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/instalacao-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/instalacao.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/instalacao-en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/instalacao-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/instalacao-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/instalacao.html"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/instalacao-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/instalacao.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/instalacao-en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/instalacao-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/instalacao-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/instalacao.html"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/instalacao-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/instalacao.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/instalacao-en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/instalacao-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/instalacao-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/instalacao.html"/>
+  </url>
+</urlset>

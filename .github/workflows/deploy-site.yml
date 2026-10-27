@@ -1,0 +1,45 @@
+name: Deploy public site
+
+# The Maravi page on GitHub Pages (https://lucioaraujo.github.io/maravi/).
+# Copied from the Aquorbium workflow (lucioaraujo/aquorbium,
+# .github/workflows/deploy-site.yml, same author and licence; lineage Trioio
+# 383c009, Antitotem 6c88ab4) on 2026-10-27, unchanged but for this header.
+# Public repository: GitHub Pages and Actions cost nothing. Runs only when
+# the site changes; the install pages are generated locally
+# (website/gerar_instalacao.py, which also applies website/seo.py).
+on:
+  push:
+    branches: [main]
+    paths:
+      - website/**
+      - .github/workflows/deploy-site.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: website
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

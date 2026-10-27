@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cómo instalar Maravi 0.1.0 en Linux: requisitos, FFmpeg, el paquete, las herramientas opcionales para leer partituras impresas y dónde quedan sus archivos.">
+  <title>Instalar Maravi — Linux</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- SEO:INICIO — gerado por seo.py; editar lá, não aqui -->
+  <link rel="canonical" href="https://lucioaraujo.github.io/maravi/instalacao-es.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/instalacao.html">
+  <link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/instalacao-en.html">
+  <link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/instalacao-fr.html">
+  <link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/instalacao-es.html">
+  <link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/instalacao.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maravi">
+  <meta property="og:title" content="Instalar Maravi — Linux">
+  <meta property="og:description" content="Cómo instalar Maravi 0.1.0 en Linux: requisitos, FFmpeg, el paquete, las herramientas opcionales para leer partituras impresas y dónde quedan sus archivos.">
+  <meta property="og:url" content="https://lucioaraujo.github.io/maravi/instalacao-es.html">
+  <meta property="og:image" content="https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Maravi — la página de la aplicación en el navegador, con el formulario que convierte una melodía grabada en partitura.">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Maravi",
+    "description": "Cómo instalar Maravi 0.1.0 en Linux: requisitos, FFmpeg, el paquete, las herramientas opcionales para leer partituras impresas y dónde quedan sus archivos.",
+    "url": "https://lucioaraujo.github.io/maravi/",
+    "inLanguage": "es",
+    "image": "https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg",
+    "applicationCategory": "MultimediaApplication",
+    "applicationSubCategory": "Music transcription: audio and printed scores to MusicXML and MIDI",
+    "operatingSystem": "Linux",
+    "downloadUrl": "https://github.com/lucioaraujo/maravi/releases",
+    "softwareVersion": "0.1.0",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+    "isAccessibleForFree": true,
+    "author": {
+      "@type": "Person",
+      "name": "Lúcio de Araújo"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "RASGO",
+      "url": "https://rasgoinstruments.arquiviagem.net/"
+    },
+    "sameAs": [
+      "https://github.com/lucioaraujo/maravi"
+    ]
+  }
+  </script>
+  <!-- SEO:FIM -->
+</head>
+<body>
+<div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/es.html">RASGO — familia de instrumentos e investigación sonora</a></div>
+<a class="skip-link" href="es.html#contenido">Ir al contenido</a>
+<header class="site-header"><a class="brand" href="https://rasgoinstruments.arquiviagem.net/es.html">RASGO<span> / Maravi</span></a><nav aria-label="Navegación"><a href="es.html#idea">Idea</a><a href="es.html#uso">Cómo usar</a><a href="es.html#investigacion">Investigación</a><a href="es.html#acerca">Acerca de</a><a href="instalacao-es.html">Instalación</a><a href="es.html#contacto">Contacto</a></nav><nav class="languages" aria-label="Idioma"><a href="instalacao.html" lang="pt-BR">PT</a><a href="instalacao-en.html" lang="en">EN</a><a href="instalacao-fr.html" lang="fr">FR</a><a href="instalacao-es.html" lang="es" aria-current="page">ES</a></nav></header>
+<main id="conteudo" class="doc">
+<h1>Instalar Maravi</h1>
+<p>Maravi 0.1.0 se distribuye como paquete para <strong>Linux x86_64</strong>. Funciona en su computadora: un pequeño servidor local en <code>127.0.0.1</code> y el navegador como interfaz. Nada se envía por la red.</p>
+<p><strong>Requisitos:</strong> Linux x86_64 con glibc 2.35 o más reciente (Ubuntu 22.04+, Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE Tumbleweed); un navegador; cerca de 1 GB libre en disco (el paquete descomprimido ocupa ~400 MB); <strong>FFmpeg</strong> (obligatorio, para leer los archivos de audio). Solo para leer partituras impresas, opcionales: <strong>Audiveris</strong>, <strong>MuseScore</strong>, <strong>Poppler</strong> e <strong>ImageMagick</strong>. Windows y macOS no tienen soporte en esta versión.</p>
+<p><strong>Paso a paso:</strong></p>
+<ol><li>Instale FFmpeg: Ubuntu, Mint, Debian: <code>sudo apt install ffmpeg</code>; Fedora: active RPM Fusion y <code>sudo dnf install ffmpeg</code>; Arch: <code>sudo pacman -S ffmpeg</code>.</li><li>Descargue <code>maravi-0.1.0-linux-x86_64.tar.gz</code> en <a href="https://github.com/lucioaraujo/maravi/releases/latest">Releases</a>. Para verificar: <code>sha256sum -c maravi-0.1.0-linux-x86_64.tar.gz.sha256</code></li><li>Descomprima, por ejemplo en su carpeta personal: <code>tar -xzf maravi-0.1.0-linux-x86_64.tar.gz</code></li><li>Abra: <code>./maravi-0.1.0-linux-x86_64/maravi</code>. El navegador se abre en <code>http://127.0.0.1:5001/</code>; si no, escriba esa dirección.</li><li>Para cerrarlo, Ctrl+C en la terminal (o cierre la terminal).</li></ol>
+<p>Si el puerto 5001 está ocupado: <code>MARAVI_PORT=5052 ./maravi-0.1.0-linux-x86_64/maravi</code></p>
+<p><strong>Partituras impresas (opcional).</strong> La página «PDF / imagen» necesita cuatro programas más; sin ellos, el audio funciona y la página indica lo que falta. Ubuntu, Mint, Debian: <code>sudo apt install poppler-utils imagemagick musescore3</code> (o MuseScore 4 de <a href="https://musescore.org/">musescore.org</a>). Audiveris se descarga en las <a href="https://github.com/Audiveris/audiveris/releases">releases de Audiveris</a> (el <code>.deb</code> en Ubuntu); Maravi encuentra <code>/opt/audiveris/bin/Audiveris</code> solo, y para otra ubicación use <code>MARAVI_AUDIVERIS_BIN=/ruta/a/Audiveris</code>. Para MuseScore fuera del <code>PATH</code>, <code>MARAVI_MUSESCORE_BIN</code>.</p>
+<p><strong>Sus archivos.</strong> Cada trabajo queda en una carpeta temporal (<code>/tmp/maravi_webapp_jobs/</code>), indicada en la página del resultado, que el sistema puede vaciar al reiniciar. <strong>Guarde o descargue el MusicXML y el MIDI antes de cerrar.</strong> El archivo que usted eligió nunca se modifica.</p>
+<p><strong>Desinstalar:</strong> borre la carpeta <code>maravi-0.1.0-linux-x86_64</code>. <strong>Desde el código fuente</strong> (desarrolladores, Python 3.12): vea <a href="instalacao-en.html#from-source">From source</a>.</p>
+</main><footer><a href="https://rasgoinstruments.arquiviagem.net/es.html">Portal RASGO</a><span>Maravi · investigación en escritura musical · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licencia AGPLv3</a></span></footer>
+<dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-title">
+  <button class="dialog-close" type="button" data-contact-close aria-label="Cerrar ventana de contacto">×</button>
+  <h2 id="contact-title">CONTACTO</h2>
+  <p>Copie la dirección de correo:</p>
+  <code data-contact-address></code>
+  <button class="button button-primary" type="button" data-contact-copy>Copiar correo</button>
+  <p class="contact-feedback" data-contact-feedback data-copied="Correo copiado." data-fallback="Seleccione y copie la dirección de arriba." aria-live="polite"></p>
+</dialog>
+<script src="assets/contact.js" defer></script>
+</body>
+</html>

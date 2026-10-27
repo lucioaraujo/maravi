@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Como instalar o Maravi 0.1.0 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos.">
+  <title>Instalar o Maravi — Linux</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- SEO:INICIO — gerado por seo.py; editar lá, não aqui -->
+  <link rel="canonical" href="https://lucioaraujo.github.io/maravi/instalacao.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/instalacao.html">
+  <link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/instalacao-en.html">
+  <link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/instalacao-fr.html">
+  <link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/instalacao-es.html">
+  <link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/instalacao.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maravi">
+  <meta property="og:title" content="Instalar o Maravi — Linux">
+  <meta property="og:description" content="Como instalar o Maravi 0.1.0 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos.">
+  <meta property="og:url" content="https://lucioaraujo.github.io/maravi/instalacao.html">
+  <meta property="og:image" content="https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Maravi — a página do aplicativo no navegador, com o formulário para transformar a gravação de uma melodia em partitura.">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Maravi",
+    "description": "Como instalar o Maravi 0.1.0 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos.",
+    "url": "https://lucioaraujo.github.io/maravi/",
+    "inLanguage": "pt-BR",
+    "image": "https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg",
+    "applicationCategory": "MultimediaApplication",
+    "applicationSubCategory": "Music transcription: audio and printed scores to MusicXML and MIDI",
+    "operatingSystem": "Linux",
+    "downloadUrl": "https://github.com/lucioaraujo/maravi/releases",
+    "softwareVersion": "0.1.0",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+    "isAccessibleForFree": true,
+    "author": {
+      "@type": "Person",
+      "name": "Lúcio de Araújo"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "RASGO",
+      "url": "https://rasgoinstruments.arquiviagem.net/"
+    },
+    "sameAs": [
+      "https://github.com/lucioaraujo/maravi"
+    ]
+  }
+  </script>
+  <!-- SEO:FIM -->
+</head>
+<body>
+  <div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <a class="brand" href="https://rasgoinstruments.arquiviagem.net/">RASGO<span> / Maravi</span></a>
+    <nav aria-label="Navegação">
+      <a href="index.html#ideia">Ideia</a><a href="index.html#uso">Como usar</a><a href="index.html#pesquisa">Pesquisa</a><a href="index.html#sobre">Sobre</a><a href="instalacao.html">Instalação</a><a href="index.html#contato">Contato</a>
+    </nav>
+    <nav class="languages" aria-label="Idioma"><a href="instalacao.html" lang="pt-BR" aria-current="page">PT</a><a href="instalacao-en.html" lang="en">EN</a><a href="instalacao-fr.html" lang="fr">FR</a><a href="instalacao-es.html" lang="es">ES</a></nav>
+  </header>
+  <main id="conteudo" class="doc">
+<h1>Instalar o Maravi</h1>
+<p>O Maravi 0.1.0 sai como pacote para <strong>Linux x86_64</strong>. Roda no seu computador: um pequeno servidor local em <code>127.0.0.1</code> e o navegador como interface. Nada é enviado pela rede.</p>
+<p><strong>Requisitos:</strong> Linux x86_64 com glibc 2.35 ou mais nova (Ubuntu 22.04+, Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE Tumbleweed); um navegador; cerca de 1 GB livre em disco (o pacote aberto ocupa ~400 MB); o <strong>FFmpeg</strong> (obrigatório, para ler os arquivos de áudio). Só para ler partituras impressas, opcionais: <strong>Audiveris</strong>, <strong>MuseScore</strong>, <strong>Poppler</strong> e <strong>ImageMagick</strong>. Windows e macOS não têm suporte nesta versão.</p>
+<p><strong>Passo a passo:</strong></p>
+<ol><li>Instale o FFmpeg: Ubuntu, Mint, Debian: <code>sudo apt install ffmpeg</code>; Fedora: ative o RPM Fusion e <code>sudo dnf install ffmpeg</code>; Arch: <code>sudo pacman -S ffmpeg</code>.</li><li>Baixe <code>maravi-0.1.0-linux-x86_64.tar.gz</code> em <a href="https://github.com/lucioaraujo/maravi/releases/latest">Releases</a>. Para conferir o download: <code>sha256sum -c maravi-0.1.0-linux-x86_64.tar.gz.sha256</code></li><li>Descompacte onde guarda seus programas, por exemplo na pasta pessoal: <code>tar -xzf maravi-0.1.0-linux-x86_64.tar.gz</code></li><li>Abra: <code>./maravi-0.1.0-linux-x86_64/maravi</code>. O navegador abre em <code>http://127.0.0.1:5001/</code>; se não abrir, digite esse endereço.</li><li>Para fechar, Ctrl+C no terminal (ou feche o terminal).</li></ol>
+<p>Se a porta 5001 estiver ocupada: <code>MARAVI_PORT=5052 ./maravi-0.1.0-linux-x86_64/maravi</code></p>
+<p><strong>Partituras impressas (opcional).</strong> A página "PDF / imagem" precisa de mais quatro programas; sem eles, o áudio funciona e a página diz o que falta. Ubuntu, Mint, Debian: <code>sudo apt install poppler-utils imagemagick musescore3</code> (ou o MuseScore 4 de <a href="https://musescore.org/">musescore.org</a>). O Audiveris vem das <a href="https://github.com/Audiveris/audiveris/releases">releases do Audiveris</a> (no Ubuntu, o <code>.deb</code>); o Maravi acha <code>/opt/audiveris/bin/Audiveris</code> sozinho, e para outro lugar use <code>MARAVI_AUDIVERIS_BIN=/caminho/do/Audiveris</code>. Para o MuseScore fora do <code>PATH</code>, <code>MARAVI_MUSESCORE_BIN</code>.</p>
+<p><strong>Seus arquivos.</strong> Cada trabalho fica numa pasta temporária (<code>/tmp/maravi_webapp_jobs/</code>), mostrada na página do resultado, que o sistema pode limpar ao reiniciar. <strong>Guarde ou baixe o MusicXML e o MIDI antes de fechar.</strong> O arquivo que você escolheu nunca é alterado.</p>
+<p><strong>Desinstalar:</strong> apague a pasta <code>maravi-0.1.0-linux-x86_64</code>. <strong>A partir do código</strong> (desenvolvedores, Python 3.12): veja <a href="instalacao-en.html#from-source">From source</a>.</p>
+</main>
+  <footer><a href="https://rasgoinstruments.arquiviagem.net/">Portal RASGO</a><span>Maravi · pesquisa em escrita musical · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licença AGPLv3</a></span></footer>
+<dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-title">
+  <button class="dialog-close" type="button" data-contact-close aria-label="Fechar janela de contato">×</button>
+  <h2 id="contact-title">CONTATO</h2>
+  <p>Copie o endereço de e-mail:</p>
+  <code data-contact-address></code>
+  <button class="button button-primary" type="button" data-contact-copy>Copiar e-mail</button>
+  <p class="contact-feedback" data-contact-feedback data-copied="E-mail copiado." data-fallback="Selecione e copie o endereço acima." aria-live="polite"></p>
+</dialog>
+<script src="assets/contact.js" defer></script>
+</body>
+</html>

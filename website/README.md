@@ -1,4 +1,38 @@
-# Página editorial do Maravi — pré-publicação
+# Site do Maravi
+
+**Estado (2026-10-27):** publicado com a v0.1.0 em
+<https://lucioaraujo.github.io/maravi/> (GitHub Pages do repositório próprio;
+`.github/workflows/deploy-site.yml`, que só roda quando o site muda).
+
+## Páginas e como gerar
+
+- `index.html` (português, canônica), `en.html`, `fr.html`, `es.html`: a
+  página Sobre, **editada à mão** (a fonte; o texto editorial confirmado
+  pelo autor em 22–23 out. 2026, com as mudanças da publicação).
+- `instalacao*.html`: **derivadas** do `INSTALL.md` do repositório por
+  `python3 gerar_instalacao.py`, que lê o cabeçalho e o rodapé das páginas
+  Sobre e aplica o `seo.py`. Editar o `INSTALL.md`, nunca essas páginas.
+- `seo.py`: os metadados (canonical, hreflang, Open Graph, JSON-LD) e o
+  `sitemap.xml`; o código comum da família RASGO, copiado do Aquorbium; só a
+  configuração do topo é do Maravi. A imagem de compartilhamento
+  `assets/og-maravi.jpg` (1200×630) é uma captura do app.
+
+Depois de editar uma página Sobre: `python3 gerar_instalacao.py` (refaz as
+de instalação e os metadados). Os testes estão em `tests/test_website.py`.
+
+## Regras da família
+
+- A faixa fixa `rasgo-strip` aponta para o portal; o cabeçalho próprio vem
+  logo abaixo.
+- Fontes livres e embutidas, as mesmas do app (Fraunces, Work Sans,
+  JetBrains Mono, SIL OFL 1.1, `assets/fonts/OFL.txt`); nenhuma fonte de
+  sistema nomeada.
+- O contato não usa `mailto`: o botão abre um diálogo, e
+  `assets/contact.js` (cópia do Aquorbium, `b82d2d1`) monta o endereço.
+- O download aponta para a release mais recente no GitHub.
+
+## Histórico
+
 
 Fonte local das quatro páginas: `index.html` (português), `en.html`,
 `fr.html`, `es.html` e `styles.css`. Não são o aplicativo Flask nem um pacote

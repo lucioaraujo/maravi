@@ -1,13 +1,18 @@
-"""Checks for the static editorial draft (not the local Flask application)."""
+"""Checks for the public website (not the local Flask application), 2026-10-27."""
 
 from html.parser import HTMLParser
 from pathlib import Path
+import subprocess
+import sys
 import unittest
 from urllib.parse import urlsplit
 
 
 SITE = Path(__file__).resolve().parents[1] / "website"
 PAGES = {"index.html": "pt-BR", "en.html": "en", "fr.html": "fr", "es.html": "es"}
+INSTALL_PAGES = {"instalacao.html": "pt-BR", "instalacao-en.html": "en",
+                 "instalacao-fr.html": "fr", "instalacao-es.html": "es"}
+RELEASES = "https://github.com/lucioaraujo/maravi/releases/latest"
 ABOUT_IDS = {"index.html": "sobre", "en.html": "about", "fr.html": "apropos", "es.html": "acerca"}
 CONTACT_IDS = {"index.html": "contato", "en.html": "contact", "fr.html": "contact", "es.html": "contacto"}
 
@@ -34,35 +39,65 @@ class Page(HTMLParser):
 
 
 class WebsiteTests(unittest.TestCase):
+    def check_links(self, filename, raw, page):
+        for link in page.links:
+            url = urlsplit(link)
+            if url.scheme or url.netloc:
+                continue
+            target = filename if not url.path else url.path
+            self.assertTrue((SITE / target).is_file(), (filename, link))
+            if url.fragment and target == filename:
+                self.assertIn(url.fragment, page.ids, (filename, link))
+
     def test_four_languages_and_local_links(self):
-        for filename, language in PAGES.items():
+        for filename, language in {**PAGES, **INSTALL_PAGES}.items():
             with self.subTest(filename=filename):
                 raw = (SITE / filename).read_text(encoding="utf-8")
                 page = Page()
                 page.feed(raw)
                 self.assertEqual(page.language, language)
+                # the RASGO family strip, above the page's own header
+                self.assertIn('class="rasgo-strip"', raw)
+                self.assertIn("https://rasgoinstruments.arquiviagem.net/", raw)
+                # contact without mailto: the address is assembled by the script
+                self.assertNotIn("mailto:", raw)
+                self.assertIn("assets/contact.js", page.links)
+                self.check_links(filename, raw, page)
+
+    def test_about_pages(self):
+        for filename, language in PAGES.items():
+            with self.subTest(filename=filename):
+                raw = (SITE / filename).read_text(encoding="utf-8")
+                page = Page()
+                page.feed(raw)
                 self.assertEqual(page.current_languages, 1)
                 self.assertIn(ABOUT_IDS[filename], page.ids)
                 self.assertIn(CONTACT_IDS[filename], page.ids)
-                self.assertIn("mailto:rasgo.instruments@gmail.com", page.links)
+                self.assertIn("data-contact-trigger", raw)
+                self.assertIn(RELEASES, page.links)
                 for credit in ("Basic Pitch", "librosa", "Audiveris", "MuseScore Studio", "FFmpeg"):
                     self.assertIn(credit, raw)
-                for link in page.links:
-                    url = urlsplit(link)
-                    if url.scheme or url.netloc:
-                        continue
-                    target = filename if not url.path else url.path
-                    self.assertTrue((SITE / target).is_file(), (filename, link))
-                    if url.fragment:
-                        if target == filename:
-                            self.assertIn(url.fragment, page.ids, (filename, link))
+                self.assertNotIn("127.0.0.1", raw)
 
-    def test_no_premature_download_claim(self):
-        for filename in PAGES:
+    def test_install_pages_follow_install_md(self):
+        for filename in INSTALL_PAGES:
             with self.subTest(filename=filename):
                 raw = (SITE / filename).read_text(encoding="utf-8")
-                self.assertNotIn("github.com/lucioaraujo/maravi", raw)
-                self.assertNotIn("127.0.0.1", raw)
+                self.assertIn("maravi-0.1.0-linux-x86_64.tar.gz", raw)
+                self.assertIn("ffmpeg", raw)
+        result = subprocess.run([sys.executable, "-B", str(SITE / "gerar_instalacao.py")],
+                                capture_output=True, text=True, timeout=30, cwd=SITE)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        seo = subprocess.run([sys.executable, "-B", str(SITE / "seo.py"), "--verificar"],
+                             capture_output=True, text=True, timeout=30, cwd=SITE)
+        self.assertEqual(seo.returncode, 0, seo.stdout + seo.stderr)
+
+    def test_free_embedded_fonts_only(self):
+        css = (SITE / "styles.css").read_text(encoding="utf-8")
+        for named in ("system-ui", "Georgia", "Segoe", "Helvetica", "Arial"):
+            self.assertNotIn(named, css)
+        for font in ("Fraunces.woff2", "WorkSans.woff2", "JetBrainsMono.woff2", "OFL.txt"):
+            self.assertTrue((SITE / "assets" / "fonts" / font).is_file(), font)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to install Maravi 0.1.0 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go.">
+  <title>Install Maravi — Linux</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- SEO:INICIO — gerado por seo.py; editar lá, não aqui -->
+  <link rel="canonical" href="https://lucioaraujo.github.io/maravi/instalacao-en.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/instalacao.html">
+  <link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/instalacao-en.html">
+  <link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/instalacao-fr.html">
+  <link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/instalacao-es.html">
+  <link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/instalacao.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maravi">
+  <meta property="og:title" content="Install Maravi — Linux">
+  <meta property="og:description" content="How to install Maravi 0.1.0 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go.">
+  <meta property="og:url" content="https://lucioaraujo.github.io/maravi/instalacao-en.html">
+  <meta property="og:image" content="https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Maravi — the app&#x27;s page in the browser, with the form that turns a recorded melody into a score.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Maravi",
+    "description": "How to install Maravi 0.1.0 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go.",
+    "url": "https://lucioaraujo.github.io/maravi/",
+    "inLanguage": "en",
+    "image": "https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg",
+    "applicationCategory": "MultimediaApplication",
+    "applicationSubCategory": "Music transcription: audio and printed scores to MusicXML and MIDI",
+    "operatingSystem": "Linux",
+    "downloadUrl": "https://github.com/lucioaraujo/maravi/releases",
+    "softwareVersion": "0.1.0",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+    "isAccessibleForFree": true,
+    "author": {
+      "@type": "Person",
+      "name": "Lúcio de Araújo"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "RASGO",
+      "url": "https://rasgoinstruments.arquiviagem.net/"
+    },
+    "sameAs": [
+      "https://github.com/lucioaraujo/maravi"
+    ]
+  }
+  </script>
+  <!-- SEO:FIM -->
+</head>
+<body>
+<div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/en.html">RASGO — a family of instruments and sound research</a></div>
+<a class="skip-link" href="en.html#content">Skip to content</a>
+<header class="site-header"><a class="brand" href="https://rasgoinstruments.arquiviagem.net/en.html">RASGO<span> / Maravi</span></a><nav aria-label="Navigation"><a href="en.html#idea">Idea</a><a href="en.html#use">How to use</a><a href="en.html#research">Research</a><a href="en.html#about">About</a><a href="instalacao-en.html">Install</a><a href="en.html#contact">Contact</a></nav><nav class="languages" aria-label="Language"><a href="instalacao.html" lang="pt-BR">PT</a><a href="instalacao-en.html" lang="en" aria-current="page">EN</a><a href="instalacao-fr.html" lang="fr">FR</a><a href="instalacao-es.html" lang="es">ES</a></nav></header>
+<main id="conteudo" class="doc">
+<h1>Installing Maravi</h1>
+<p>Maravi 0.1.0 ships as a package for <strong>Linux x86_64</strong>. It runs on your computer: a small local server on <code>127.0.0.1</code> and your browser as the interface. Nothing is sent over the network.</p>
+<h2 id="requirements">Requirements</h2>
+<ul><li>Linux x86_64 with glibc 2.35 or newer: Ubuntu 22.04 or newer, Linux Mint</li></ul>
+<p>21 or newer, Debian 12 or newer, Fedora, Arch, openSUSE Tumbleweed.</p>
+<ul><li>A web browser (Firefox, Chromium, Chrome).</li><li>About 1 GB free on disk (the unpacked package takes ~400 MB).</li><li><strong>FFmpeg</strong> (required: Maravi uses it to read audio files).</li><li>Only to read printed scores (PDF or image), optionally: <strong>Audiveris</strong>,</li></ul>
+<p><strong>MuseScore</strong>, <strong>Poppler</strong> and <strong>ImageMagick</strong>.</p>
+<p>Windows and macOS are not supported in this version.</p>
+<h2 id="step-by-step">Step by step</h2>
+<ol><li>Install FFmpeg:<ul><li>Ubuntu, Mint, Debian: <code>sudo apt install ffmpeg</code></li><li>Fedora: enable RPM Fusion, then <code>sudo dnf install ffmpeg</code></li><li>Arch: <code>sudo pacman -S ffmpeg</code></li></ul></li><li>Download <code>maravi-0.1.0-linux-x86_64.tar.gz</code> from <a href="https://github.com/lucioaraujo/maravi/releases/latest">Releases</a>. To check the download, compare it with the <code>.sha256</code> file: <code>sha256sum -c maravi-0.1.0-linux-x86_64.tar.gz.sha256</code></li><li>Unpack it where you keep your programs, for example your home folder: <code>tar -xzf maravi-0.1.0-linux-x86_64.tar.gz</code></li><li>Start it: <code>./maravi-0.1.0-linux-x86_64/maravi</code> The browser opens at <code>http://127.0.0.1:5001/</code>. If it does not, open that address yourself.</li><li>To stop Maravi, press Ctrl+C in the terminal (or close it).</li></ol>
+<p>If port 5001 is busy, choose another one: <code>MARAVI_PORT=5052 ./maravi-0.1.0-linux-x86_64/maravi</code></p>
+<h3 id="reading-printed-scores-optional">Reading printed scores (optional)</h3>
+<p>The "PDF / image" page needs four more programs. Without them Maravi still works for audio, and the page says what is missing.</p>
+<ul><li>Ubuntu, Mint, Debian: <code>sudo apt install poppler-utils imagemagick musescore3</code></li></ul>
+<p>(or MuseScore 4 from <a href="https://musescore.org/">musescore.org</a>)</p>
+<ul><li>Audiveris: download the package for your system from</li></ul>
+<p><a href="https://github.com/Audiveris/audiveris/releases">Audiveris releases</a> (for Ubuntu, the <code>.deb</code>). Maravi finds <code>/opt/audiveris/bin/Audiveris</code> by itself; for another place, start Maravi with <code>MARAVI_AUDIVERIS_BIN=/path/to/Audiveris</code>.</p>
+<ul><li>If MuseScore is not on your <code>PATH</code>, use <code>MARAVI_MUSESCORE_BIN</code>.</li></ul>
+<h3 id="your-files">Your files</h3>
+<p>Each job lives in a temporary folder (<code>/tmp/maravi_webapp_jobs/</code>), shown on the result page. The system may clear it on restart. <strong>Save or download your MusicXML and MIDI before closing.</strong> Maravi never changes the file you chose.</p>
+<h3 id="uninstall">Uninstall</h3>
+<p>Delete the <code>maravi-0.1.0-linux-x86_64</code> folder. Maravi writes nothing else outside the temporary folder.</p>
+<h2 id="from-source">From source</h2>
+<p>For developers, on any system with Python 3.12 (tested only on Linux):</p>
+<pre><code>git clone https://github.com/lucioaraujo/maravi.git &amp;&amp; cd maravi
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements-local-linux-py312.txt
+.venv/bin/python -m pip install --no-deps basic-pitch==0.4.0
+.venv/bin/python -m unittest discover -s tests -p &#x27;test_*.py&#x27;
+.venv/bin/python run_maravi.py</code></pre>
+<p>Technical notes (dependencies, the package recipe, smoke tests): [<code>INSTALL_LOCAL.md</code>](INSTALL_LOCAL.md), in Portuguese.</p>
+</main><footer><a href="https://rasgoinstruments.arquiviagem.net/en.html">RASGO portal</a><span>Maravi · research in musical notation · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">AGPLv3 license</a></span></footer>
+<dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-title">
+  <button class="dialog-close" type="button" data-contact-close aria-label="Close contact window">×</button>
+  <h2 id="contact-title">CONTACT</h2>
+  <p>Copy the email address:</p>
+  <code data-contact-address></code>
+  <button class="button button-primary" type="button" data-contact-copy>Copy email</button>
+  <p class="contact-feedback" data-contact-feedback data-copied="Email copied." data-fallback="Select and copy the address above." aria-live="polite"></p>
+</dialog>
+<script src="assets/contact.js" defer></script>
+</body>
+</html>
