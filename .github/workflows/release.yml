@@ -1,0 +1,132 @@
+# Maravi - build, test and package for Linux x86_64 (2026-10-27).
+#
+# The release gate of the RASGO family: the package is built here, on
+# Ubuntu 22.04 (glibc 2.35, so it also runs on Debian 12 and newer systems),
+# never on the author's machine (glibc 2.39). The frozen binary transcribes a
+# synthetic voice end to end, then starts in clean containers of five
+# distributions. A `v*` tag publishes the release; the manual button only
+# builds and tests. The repository is public: the CI costs nothing, and it
+# never runs on ordinary pushes (routine validation is local).
+name: Maravi — build, test & package
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+env:
+  MARAVI_NO_BROWSER: '1'
+
+jobs:
+  package:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: System tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ffmpeg binutils
+
+      - name: Python dependencies (the pinned Linux set)
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-local-linux-py312.txt
+          python -m pip install --no-deps basic-pitch==0.4.0
+          python -m pip install pyinstaller==6.22.3 pyinstaller-hooks-contrib==2026.9
+          python -c 'from basic_pitch import ONNX_PRESENT, ICASSP_2022_MODEL_PATH; assert ONNX_PRESENT and ICASSP_2022_MODEL_PATH.is_file()'
+
+      - name: Tests
+        run: |
+          python -B -m unittest discover -s tests -p 'test_*.py'
+          for t in tests/*.cjs; do node "$t"; done
+
+      - name: Package
+        run: python -B packaging/build_linux.py --archive pkgs
+
+      - name: The frozen binary transcribes end to end
+        run: |
+          app=$(find .local-build -maxdepth 3 -type d -name 'Maravi-*-linux-x86_64' -path '*/dist/*' | head -1)
+          timeout 600 python -B tools/smoke_frozen_server.py "$app/$(basename "$app")"
+          cp "$app/THIRD_PARTY_NOTICES/ABI_REPORT.json" pkgs/
+          echo "glibc required: $(python -c 'import json;print(json.load(open("pkgs/ABI_REPORT.json"))["highest_glibc_symbol"])')"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: maravi-linux
+          path: pkgs/
+          retention-days: 14
+
+  # the package must start on a clean system of each family (no Python, no
+  # FFmpeg): the local page answers and the score page reports what is missing
+  launch:
+    needs: package
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ['debian:12', 'ubuntu:22.04', 'ubuntu:24.04', 'fedora:latest', 'archlinux:latest']
+    container: ${{ matrix.image }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: maravi-linux
+          path: pkgs
+
+      - name: Tools of the test (curl, tar)
+        run: |
+          if command -v apt-get >/dev/null; then apt-get update && apt-get install -y --no-install-recommends curl ca-certificates tar gzip
+          elif command -v dnf >/dev/null; then dnf install -y curl tar gzip
+          elif command -v pacman >/dev/null; then pacman -Sy --noconfirm curl tar gzip
+          fi
+
+      - name: Unpack, start, answer
+        run: |
+          cd pkgs && sha256sum -c *.tar.gz.sha256 && tar -xzf *.tar.gz
+          dir=$(find . -maxdepth 1 -type d -name 'maravi-*-linux-x86_64' | head -1)
+          "$dir/maravi" --version
+          MARAVI_PORT=5077 "$dir/maravi" > server.log 2>&1 & pid=$!
+          for i in $(seq 1 60); do curl -fsS http://127.0.0.1:5077/ > /dev/null && break; sleep 1; done
+          curl -fsS http://127.0.0.1:5077/ | grep -q Maravi
+          curl -fsS http://127.0.0.1:5077/partitura > /dev/null
+          kill "$pid" || true
+          cat server.log
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [package, launch]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: maravi-linux
+          path: pkgs
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          glibc=$(python3 -c 'import json;print(json.load(open("pkgs/ABI_REPORT.json"))["highest_glibc_symbol"])')
+          gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" \
+            --title "Maravi ${GITHUB_REF_NAME#v}" \
+            --notes "Recorded melodies into readable scores, on your own computer. **Linux x86_64** (glibc ${glibc} or newer: Ubuntu 22.04+, Mint 21+, Debian 12+, Fedora, Arch). Requires FFmpeg; Audiveris, MuseScore, Poppler and ImageMagick only to read printed scores.
+
+          **Install:** step by step in four languages in [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md). Unpack, run \`./maravi\`, the browser opens at http://127.0.0.1:5001/.
+
+          **Stated limitations:** no separation of instruments in a mix; every result needs human review in a score editor; Windows and macOS untested. Launch-tested in clean Debian 12, Ubuntu 22.04 and 24.04, Fedora and Arch containers.
+
+          ---
+
+          Gravações de melodias em partituras legíveis, no seu computador. **Linux x86_64**; requer FFmpeg. Passo a passo em português no [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md#português)." \
+            pkgs/*.tar.gz pkgs/*.tar.gz.sha256

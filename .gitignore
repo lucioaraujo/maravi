@@ -1,0 +1,28 @@
+# Maravi - repositório público (lucioaraujo/maravi), desde 2026-10-27.
+# Nunca publicar: os diários de pesquisa (ficam no monorepo privado do
+# autor), o material de teste com gravações, ambientes, builds e jobs.
+/privado/
+/testes/
+/.venv/
+/.local-build/
+/dist/
+/build/
+__pycache__/
+*.pyc
+*.spec
+:memory:*
+# áudio e partituras de trabalho nunca entram (as do teste são autorais e
+# ficam em tests/fixtures/)
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.aif
+*.aiff
+*.mid
+*.midi
+*.mxl
+*.mscz
+*.omr
+*.pdf

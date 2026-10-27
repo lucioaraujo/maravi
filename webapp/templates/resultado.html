@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="{{ 'pt-BR' if lang == 'pt' else lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t('page_result') }}</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="score-workspace">
+<header class="site-header"><div class="site-header-inner">
+  <a class="wordmark" href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" aria-label="Maravi — {{ t('nav_home') }}">RASGO <span>/ MARAVI</span></a>
+  <nav class="header-actions" aria-label="{{ t('language') }}"><span class="local-badge"><span class="status-dot"></span> {{ t('local_tool') }}</span><a href="/ajuda{% if lang != 'pt' %}?lang={{ lang }}{% endif %}">{{ t('nav_help') }} <span aria-hidden="true">↗</span></a></nav>
+</div></header>
+<main class="content-shell score-result">
+  <p class="eyebrow">{{ t('result_kicker') }}</p>
+  <h1>{{ stats.work_title or stats.original_filename }}</h1>
+  <p class="subtitle">
+    {% if stats.composer %}{{ stats.composer }}{% endif %}{% if stats.composer and stats.year %} &middot; {% endif %}{% if stats.year %}{{ stats.year }}{% endif %}
+    {% if stats.genre %} &middot; {{ stats.genre }}{% endif %}
+  </p>
+
+  <section class="score-stage" aria-labelledby="score-stage-title">
+    <div class="score-stage-heading">
+      <div><p class="section-index">{{ t('result_preview_kicker') }}</p><h2 id="score-stage-title">{{ t('result_piano_heading' if stats.score_instrument == 'piano_grand' else 'result_melody_heading') }}</h2></div>
+      <span class="draft-badge">{{ t('result_draft_badge') }}</span>
+    </div>
+    {% if preview_available %}
+    <div class="score-viewport" tabindex="0" role="region" aria-label="{{ t('result_preview_region') }}">
+      <img src="/preview/{{ job_id }}.svg" alt="{{ t('result_preview_alt') }}">
+    </div>
+    <p class="score-caption">{{ t('result_preview_caption') }}</p>
+    {% elif stats.score_instrument == 'piano_grand' %}
+    <p class="score-unavailable">{{ t('result_no_piano_preview') }}</p>
+    {% else %}
+    <p class="score-unavailable">{{ t('result_no_preview') }}</p>
+    {% endif %}
+  </section>
+
+  <section class="output-card" aria-labelledby="output-title">
+    <h2 id="output-title">{{ t('result_files_title') }}</h2>
+    <p>{{ t('result_files_piano' if stats.score_instrument == 'piano_grand' else 'result_files_melody') }}</p>
+    <div class="downloads">
+      <a href="/download/{{ job_id }}/musicxml">&#8681; MusicXML</a>
+      <a href="/download/{{ job_id }}/mid">&#8681; MIDI</a>
+    </div>
+    {% include '_export_form.html' %}
+    <p>{{ t('result_files_path') }} <code>{{ stats.local_job_path }}/</code> (<code>resultado.musicxml</code> e <code>resultado.mid</code>). {{ t('result_files_input') }}</p>
+  </section>
+
+  <div class="result-next-action">
+    <a href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" class="new-transcription">{{ t('result_new') }} <span aria-hidden="true">→</span></a>
+  </div>
+
+  <div class="stats-grid" aria-label="{{ t('result_stats_title') }}">
+    <div class="stat"><span class="stat-value">{{ stats.simplified_note_count }}</span><span class="stat-label">{{ t('result_stats_notes') }}</span></div>
+    <div class="stat"><span class="stat-value">{{ stats.time_signature }}</span><span class="stat-label">{{ t('result_stats_meter') }}</span></div>
+    <div class="stat"><span class="stat-value">{{ stats.display_bpm }}</span><span class="stat-label">{{ t('result_stats_bpm', source=result_label(stats.bpm_source)) }}</span></div>
+    {% if stats.key_name %}
+    <div class="stat"><span class="stat-value">{{ display_key(stats.key_name) }}</span><span class="stat-label">{{ t('result_stats_key', source=result_label(stats.key_source)) }}</span></div>
+    {% endif %}
+    <div class="stat"><span class="stat-value">{{ stats.beat_count }}</span><span class="stat-label">{{ t('result_stats_beats') }}</span></div>
+  </div>
+
+  {% if stats.score_census %}
+  <section class="result-note" aria-labelledby="census-title">
+    <h2 id="census-title">{{ t('census_title') }}</h2>
+    <p>{{ t('census_summary', count=stats.score_census.note_count,
+      low=stats.score_census.range[0] if stats.score_census.range else '—',
+      high=stats.score_census.range[1] if stats.score_census.range else '—',
+      short=stats.score_census.short_percent,
+      very_short=stats.score_census.very_short_percent) }}</p>
+    {% if stats.score_census.written_symbol_count is not none %}
+    <p>{{ t('census_written_summary', count=stats.score_census.written_symbol_count,
+      short=stats.score_census.short_symbol_percent,
+      very_short=stats.score_census.very_short_symbol_percent,
+      grace=stats.score_census.grace_symbol_count) }}</p>
+    {% endif %}
+    {% if stats.score_census.warnings %}
+    <ul>
+      {% for warning in stats.score_census.warnings %}
+      <li>{{ t(warning.key, count=warning.count|default(0),
+        percent=warning.percent|default(0), low=warning.low|default('—'),
+        high=warning.high|default('—')) }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}<p>{{ t('census_no_alerts') }}</p>{% endif %}
+    <p>{{ t('census_caveat') }}</p>
+  </section>
+  {% endif %}
+
+  <section class="review-steps" aria-labelledby="review-title">
+    <h2 id="review-title">{{ t('result_review_title') }}</h2>
+    <ol class="review-grid">
+      <li><span>01 / {{ t('result_review_notation') }}</span><p>{{ t('result_review_notation_body') }}</p></li>
+      <li><span>02 / {{ t('result_review_interpretation') }}</span><p>{{ t('result_review_interpretation_body') }}</p></li>
+      <li><span>03 / {{ t('result_review_composition') }}</span><p>{{ t('result_review_composition_body') }}</p></li>
+    </ol>
+  </section>
+
+  <section class="result-note" aria-labelledby="result-notes-title">
+    <h2 id="result-notes-title">{{ t('result_notes_title') }}</h2>
+    {% if stats.solo_onsets_applied %}<p>{{ t('result_solo_filter', count=stats.onset_filtered) }}</p>{% endif %}
+    <p>{{ t('result_open_xml') }}</p>
+    <p>{{ t('result_instrument', name=result_label(stats.part_name)) }}</p>
+    {% if stats.audio_channel != 'mix' %}<p>{{ t('result_channel_left' if stats.audio_channel == 'left' else 'result_channel_right') }}</p>{% endif %}
+    <p>{{ t('result_isolated' if stats.source_isolated else ('result_not_isolated_poly' if stats.score_instrument == 'piano_grand' else 'result_not_isolated_melody')) }}</p>
+    {% if stats.score_instrument == 'flute' %}<p>{{ t('result_flute_one') if stats.excluded_low_notes == 1 else t('result_flute_many', count=stats.excluded_low_notes) }}</p>{% endif %}
+    {% if stats.score_instrument == 'voice' %}<p>{{ t('result_voice_register', register=t('voice_register_' ~ (stats.voice_register|default('medium'))), count=stats.excluded_low_notes) }}</p>{% endif %}
+    {% if stats.score_instrument == 'piano' %}<p>{{ t('result_piano_one') }}</p>{% endif %}
+    {% if stats.score_instrument == 'piano_grand' %}<p>{{ t('result_piano_grand') }}</p>{% endif %}
+    {% if stats.score_instrument == 'piano_grand' and stats.piano_lower_count == 0 %}<p>{{ t('result_piano_lower_empty') }}</p>{% endif %}
+    {% if stats.score_instrument == 'piano_grand' and stats.piano_upper_count == 0 %}<p>{{ t('result_piano_upper_empty') }}</p>{% endif %}
+    {% if stats.piano_ignored_options %}<p>{{ t('result_piano_ignored', options=result_options(stats.piano_ignored_options)) }}</p>{% endif %}
+    {% if stats.score_instrument != 'piano_grand' %}<p>{{ t('result_readable') }}</p>{% endif %}
+    <p>{{ t('result_rubato') }}</p>
+    {% if stats.join_equal_pitch %}<p>{{ t('result_join', count=stats.joined_equal_pitch_count) }}</p>{% endif %}
+    {% if stats.phrase_downbeats %}<p>{{ t('result_phrase') }}</p>{% endif %}
+    {% if stats.suppress_harmonic_spikes %}<p>{{ t('result_harmonic', count=stats.harmonic_spikes_corrected) }}</p>{% endif %}
+    {% if stats.anacrusis_notes %}<p>{{ t('result_pickup', count=stats.anacrusis_notes) }}</p>{% endif %}
+    {% if stats.key_confidence is not none %}<p>{{ t('result_key_confidence', confidence=stats.key_confidence, runner=display_key(stats.key_runner_up)) }}</p>{% endif %}
+  </section>
+
+</main>
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>{{ t('footer') }}</span></footer>
+</body>
+</html>

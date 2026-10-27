@@ -1,0 +1,9 @@
+<form action="/exportar/{{ job_id }}{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" method="post" class="local-export-form">
+  <input type="hidden" name="export_token" value="{{ export_token }}">
+  <label for="export-directory">{{ t('export_label') }}</label>
+  <div class="local-export-row">
+    <input id="export-directory" name="destination" type="text" maxlength="4096" required autocomplete="off" value="{{ entered_directory if entered_directory is defined else suggested_export_directory }}" placeholder="{{ t('export_placeholder') }}">
+    <button type="submit">{{ t('export_button') }}</button>
+  </div>
+  <p>{{ t('export_hint', folder='Maravi-' ~ job_id) }}</p>
+</form>

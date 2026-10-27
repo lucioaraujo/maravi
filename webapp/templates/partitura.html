@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="{{ 'pt-BR' if lang == 'pt' else lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t('page_score') }}</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="score-workspace">
+<header class="site-header"><div class="site-header-inner">
+  <a class="wordmark" href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" aria-label="Maravi — {{ t('nav_home') }}">RASGO <span>/ MARAVI</span></a>
+  <nav class="header-actions" aria-label="{{ t('language') }}"><span class="local-badge"><span class="status-dot"></span> {{ t('local_tool') }}</span><a href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}">{{ t('nav_audio') }} <span aria-hidden="true">↗</span></a><a href="/ajuda{% if lang != 'pt' %}?lang={{ lang }}{% endif %}">{{ t('nav_help') }} <span aria-hidden="true">↗</span></a></nav>
+</div></header>
+<main class="content-shell help-article">
+  <nav class="help-languages" aria-label="{{ t('language') }}">
+    {% for code in languages %}<a href="/partitura?lang={{ code }}" lang="{{ code }}" {% if code == lang %}aria-current="page"{% endif %}>{{ code | upper }}</a>{% endfor %}
+  </nav>
+  <p class="eyebrow">{{ t('score_kicker') }}</p>
+  <h1>{{ t('score_title') }}</h1>
+  <p class="subtitle">{{ t('score_intro') }}</p>
+  {% if lang != 'pt' %}<p class="hint" lang="{{ lang }}">{{ t('score_result_still_pt') }}</p>{% endif %}
+
+  {% if not audiveris_available or not musescore_available %}
+  <div class="error-box" role="status">
+    {% if not audiveris_available %}<p>{{ t('score_missing_audiveris') }}</p>{% endif %}
+    {% if not musescore_available %}<p>{{ t('score_missing_musescore') }}</p>{% endif %}
+  </div>
+  {% endif %}
+
+  <form action="/reconhecer-partitura{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" method="post" enctype="multipart/form-data" class="score-upload-form">
+    <div class="field">
+      <label for="score-input">{{ t('score_file_label') }}</label>
+      <label for="score-input" class="dropzone score-dropzone" id="score-dropzone" tabindex="0"
+        data-prompt="{{ t('score_drop_prompt') }}"
+        data-selected="{{ t('score_drop_selected') }}"
+        data-invalid="{{ t('score_drop_invalid') }}"
+        data-too-large="{{ t('score_drop_too_large') }}"
+        data-failed="{{ t('score_drop_failed') }}">
+        <span class="dropzone-icon" aria-hidden="true">↥</span>
+        <p id="score-dropzone-text" aria-live="polite">{{ t('score_drop_prompt') }}</p>
+        <p class="filename" id="score-filename" hidden></p>
+        <input type="file" id="score-input" name="score" accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff,.webp,.bmp,.gif,.heic,.heif,.avif" required>
+      </label>
+      <p class="hint" id="score-file-feedback" role="status"></p>
+    </div>
+    <div class="field">
+      <label for="pdf-page">{{ t('score_pdf_page') }}</label>
+      <input type="number" id="pdf-page" name="pdf_page" min="1" step="1" placeholder="{{ t('score_pdf_page_placeholder') }}">
+      <p>{{ t('score_pdf_page_hint') }}</p>
+    </div>
+    <div class="field">
+      <label for="score-author">{{ t('score_author') }}</label>
+      <input type="text" id="score-author" name="score_author" maxlength="500" placeholder="{{ t('score_author_placeholder') }}">
+    </div>
+    <div class="field">
+      <label for="source-reference">{{ t('score_source') }}</label>
+      <input type="text" id="source-reference" name="source_reference" maxlength="500" placeholder="{{ t('score_source_placeholder') }}">
+    </div>
+    <div class="field">
+      <label for="rights-note">{{ t('score_rights') }}</label>
+      <input type="text" id="rights-note" name="rights_note" maxlength="500" placeholder="{{ t('score_rights_placeholder') }}">
+    </div>
+    <p>{{ t('score_limits') }}</p>
+    <button type="submit" {% if not audiveris_available or not musescore_available %}disabled{% endif %}>{{ t('score_submit') }}</button>
+  </form>
+
+  <h2>{{ t('score_review_title') }}</h2>
+  <p>{{ t('score_review_body') }}</p>
+  <h2>{{ t('score_credits_title') }}</h2>
+  <p>{{ t('score_credits_a') }} <a href="https://github.com/Audiveris/audiveris">Audiveris</a> {{ t('score_credits_b') }} <a href="https://github.com/Audiveris/audiveris/blob/master/LICENSE">GNU AGPLv3</a>) {{ t('score_credits_c') }} <a href="https://github.com/musescore/MuseScore">MuseScore Studio</a> {{ t('score_credits_d') }} <a href="https://github.com/musescore/MuseScore/blob/main/LICENSE.txt">GNU GPLv3</a>) {{ t('score_credits_end') }}</p>
+  <a href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" class="back-link">&larr; {{ t('score_back_audio') }}</a>
+</main>
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>{{ t('footer') }}</span></footer>
+<script src="/static/score_upload.js" defer></script>
+</body>
+</html>

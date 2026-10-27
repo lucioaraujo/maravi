@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{ 'pt-BR' if lang == 'pt' else lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t('page_exported') }}</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="score-workspace">
+<header class="site-header"><div class="site-header-inner">
+  <a class="wordmark" href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" aria-label="Maravi — {{ t('nav_home') }}">RASGO <span>/ MARAVI</span></a>
+  <nav class="header-actions" aria-label="{{ t('language') }}"><span class="local-badge"><span class="status-dot"></span> {{ t('local_tool') }}</span><a href="/ajuda{% if lang != 'pt' %}?lang={{ lang }}{% endif %}">{{ t('nav_help') }}</a></nav>
+</div></header>
+<main class="content-shell score-result">
+  <p class="eyebrow">{{ t('export_kicker') }}</p>
+  {% if saved_dir %}
+  <h1>{{ t('export_saved_title') }}</h1>
+  <p>{{ t('export_saved_body', folder=saved_dir) }}</p>
+  {% else %}
+  <h1>{{ t('export_failed_title') }}</h1>
+  <div class="error-box" role="alert"><p lang="{{ lang }}">{{ t('export_error_generic') }}</p>
+    {% if diagnostic|default(None) %}<details class="technical-detail"><summary>{{ t('error_diagnostic_details') }}</summary><p lang="und">{{ diagnostic }}</p></details>{% endif %}
+  </div>
+  {% if lang != 'pt' %}<p lang="{{ lang }}">{{ t('export_error_language_notice') }}</p>{% endif %}
+  <p>{{ t('export_failed_body') }}</p>
+  <section class="output-card">{% include '_export_form.html' %}</section>
+  {% endif %}
+  {% if job_id %}<p>{{ t('export_download_fallback') }} <a href="/download/{{ job_id }}/musicxml">MusicXML</a> · <a href="/download/{{ job_id }}/mid">MIDI</a>.</p>{% endif %}
+  <a href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" class="back-link">&larr; {{ t('export_back') }}</a>
+</main>
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>{{ t('footer') }}</span></footer>
+</body>
+</html>

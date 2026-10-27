@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="{{ 'pt-BR' if lang == 'pt' else lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t('page_home') }}</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="score-workspace">
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="wordmark" href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" aria-label="Maravi — {{ t('nav_home') }}">RASGO <span>/ MARAVI</span></a>
+    <nav class="header-actions" aria-label="{{ t('language') }}">
+      <span class="local-badge"><span class="status-dot"></span> {{ t('local_tool') }}</span>
+      <a href="/partitura{% if lang != 'pt' %}?lang={{ lang }}{% endif %}">{{ t('nav_score') }} <span aria-hidden="true">↗</span></a>
+      <a href="/ajuda{% if lang != 'pt' %}?lang={{ lang }}{% endif %}">{{ t('nav_help') }} <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header>
+
+<main class="workspace-layout">
+  <aside class="intro-panel">
+    <p class="eyebrow">{{ t('hero_kicker') }}</p>
+    <h1>{{ t('hero_first') }}<br><em>{{ t('hero_second') }}</em></h1>
+    <p class="intro-copy">{{ t('hero_copy') }}</p>
+    <figure class="notation-example">
+      <svg viewBox="0 0 720 210" role="img" aria-labelledby="notation-title notation-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="notation-title">{{ t('score_example_title') }}</title>
+        <desc id="notation-desc">{{ t('score_example_desc') }}</desc>
+        <g class="staff-lines"><path d="M20 60H700 M20 75H700 M20 90H700 M20 105H700 M20 120H700"/></g>
+        <g class="bar-lines"><path d="M448 60V120 M686 60V120 M694 60V120"/></g>
+        <path class="clef-mark" d="M71 151C53 156 40 142 42 126C44 110 63 100 77 108C88 116 82 131 69 131C56 130 50 115 58 100C65 87 89 69 96 48C103 27 88 15 78 28C68 40 75 58 88 76C105 100 108 123 98 145C92 158 81 165 71 164"/>
+        <g class="time-mark"><text x="118" y="89">4</text><text x="118" y="117">4</text></g>
+        <g class="ledger-lines"><path d="M157 135H190 M616 135H648"/></g>
+        <g class="note-stems"><path d="M181 135V92 M254 128V85 M319 120V73 M354 113V66 M413 105V64 M513 120V79 M574 128V85 M639 135V92"/></g>
+        <path class="note-beam" d="M318 72L354 65L354 72L318 79Z"/>
+        <g class="note-heads"><ellipse cx="172" cy="135" rx="12" ry="8" transform="rotate(-19 172 135)"/><ellipse cx="245" cy="128" rx="12" ry="8" transform="rotate(-19 245 128)"/><ellipse cx="310" cy="120" rx="12" ry="8" transform="rotate(-19 310 120)"/><ellipse cx="345" cy="113" rx="12" ry="8" transform="rotate(-19 345 113)"/><ellipse cx="404" cy="105" rx="12" ry="8" transform="rotate(-19 404 105)"/><ellipse class="half-note" cx="504" cy="120" rx="12" ry="8" transform="rotate(-19 504 120)"/><ellipse cx="565" cy="128" rx="12" ry="8" transform="rotate(-19 565 128)"/><ellipse cx="630" cy="135" rx="12" ry="8" transform="rotate(-19 630 135)"/></g>
+        <path class="phrase-slur" d="M168 151C230 170 355 169 411 129"/>
+        <circle class="articulation-dot" cx="404" cy="89" r="3"/>
+        <path class="accent-mark" d="M552 109L577 115L552 121"/>
+        <path class="crescendo-mark" d="M486 173L625 159 M486 173L625 187"/>
+        <text class="dynamic-mark" x="169" y="190">p</text>
+      </svg>
+      <figcaption>{{ t('score_example_caption') }}</figcaption>
+      <div class="notation-legend" aria-label="{{ t('score_legend') }}">
+        <span><strong>4/4</strong> {{ t('legend_meter') }}</span>
+        <span><strong>{{ t('legend_slur') }}</strong> {{ t('legend_slur_desc') }}</span>
+        <span><strong>p</strong> {{ t('legend_soft') }}</span>
+        <span><strong>&lt;</strong> {{ t('legend_crescendo') }}</span>
+      </div>
+    </figure>
+  </aside>
+
+  <section class="form-surface" aria-labelledby="form-title">
+    <nav class="help-languages" aria-label="{{ t('language') }}">
+      {% for code in languages %}<a href="/?lang={{ code }}" lang="{{ code }}" {% if code == lang %}aria-current="page"{% endif %}>{{ code | upper }}</a>{% endfor %}
+    </nav>
+    <div class="form-heading">
+      <span class="section-index">{{ t('new_index') }}</span>
+      <h2 id="form-title">{{ t('new_title') }}</h2>
+      <p>{{ t('new_intro') }}</p>
+      {% if lang != 'pt' %}<p class="hint" lang="{{ lang }}">{{ t('partial_language_notice') }}</p>{% endif %}
+    </div>
+  <form action="/transcrever?lang={{ lang }}" method="post" enctype="multipart/form-data" id="form">
+
+    <fieldset class="form-card audio-card">
+      <legend><span class="legend-number">01</span> {{ t('step_audio') }}</legend>
+      <label for="audio-input" class="dropzone" id="dropzone" tabindex="0">
+        <span class="dropzone-icon" aria-hidden="true">↥</span>
+        <p id="dropzone-text">{{ t('upload_prompt') }}</p>
+        <p class="filename" id="filename" hidden></p>
+        <input type="file" id="audio-input" name="audio" accept="{{ valid_extensions | join(',') }}" required>
+      </label>
+      <p class="hint" style="margin-top:0.6rem;">{{ t('upload_formats') }}: {{ valid_extensions | join(', ') }}</p>
+
+      <div class="field full">
+        <label for="audio_channel">{{ t('channel_label') }}</label>
+        <select id="audio_channel" name="audio_channel">
+          <option value="mix" selected>{{ t('channel_mix') }}</option>
+          <option value="left">{{ t('channel_left') }}</option>
+          <option value="right">{{ t('channel_right') }}</option>
+        </select>
+        <span class="hint">{{ t('channel_hint') }}</span>
+      </div>
+
+      <div class="field full">
+        <label for="score_instrument">{{ t('instrument_label') }}</label>
+        <select id="score_instrument" name="score_instrument">
+          <option value="melody" selected>{{ t('instrument_melody') }}</option>
+          <option value="piano">{{ t('instrument_piano') }}</option>
+          <option value="piano_grand">{{ t('instrument_piano_grand') }}</option>
+          <option value="flute">{{ t('instrument_flute') }}</option>
+          <option value="violin">{{ t('instrument_violin') }}</option>
+          <option value="voice">{{ t('instrument_voice') }}</option>
+        </select>
+        <span class="hint">{{ t('instrument_hint') }}</span>
+      </div>
+      <div class="field full" id="voice-register-field" hidden>
+        <label for="voice_register">{{ t('voice_register_label') }}</label>
+        <select id="voice_register" name="voice_register" disabled>
+          <option value="low">{{ t('voice_register_low') }}</option>
+          <option value="medium" selected>{{ t('voice_register_medium') }}</option>
+          <option value="high">{{ t('voice_register_high') }}</option>
+        </select>
+        <span class="hint">{{ t('voice_register_hint') }}</span>
+      </div>
+      <div class="field full">
+        <label class="checkbox-row" for="source_isolated">
+          <input type="checkbox" id="source_isolated" name="source_isolated">
+          <span>{{ t('isolated_label') }}
+            <span class="hint">{{ t('isolated_hint') }}</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="field full audio-analysis-panel">
+        <button type="button" id="analyze-audio" class="secondary">{{ t('analyze_label') }}</button>
+        <span class="hint">{{ t('analyze_hint') }}</span>
+        <div id="audio-analysis-result" hidden aria-live="polite">
+          <p id="audio-analysis-report"></p>
+          <button type="button" id="use-analysis-bpm" class="secondary" hidden>{{ t('use_suggested_bpm') }}</button>
+          <button type="button" id="use-analysis-key" class="secondary" hidden>{{ t('use_suggested_key') }}</button>
+        </div>
+      </div>
+
+      <div class="mic-divider"><span>{{ t('or') }}</span></div>
+
+      <div class="mic-recorder">
+        <select id="mic-device-select" class="mic-device-select" hidden></select>
+        <button type="button" id="mic-btn" class="mic-btn">{{ t('mic_record') }}</button>
+        <span class="mic-status" id="mic-status"></span>
+      </div>
+      <div class="mic-meter" id="mic-meter" hidden>
+        <div class="mic-meter-fill" id="mic-meter-fill"></div>
+      </div>
+      <div class="audio-preview" id="audio-preview-area" hidden>
+        <label for="mic-preview">{{ t('preview_audio') }}</label>
+        <audio id="mic-preview" controls></audio>
+      </div>
+
+      <input type="hidden" id="source-field" name="source" value="">
+    </fieldset>
+
+    <fieldset class="form-card music-card">
+      <legend><span class="legend-number">02</span> {{ t('step_music') }}</legend>
+      <p class="fieldset-intro">{{ t('music_intro') }}</p>
+      <div class="field-grid">
+        <div class="field full tempo-field">
+          <label for="bpm">{{ t('bpm_suggested') }} <span class="hint">({{ t('bpm_hint') }})</span></label>
+          <div class="bpm-row">
+            <input type="number" id="bpm" name="bpm" step="0.1" placeholder="{{ t('estimate') }}">
+            <button type="button" id="tapBpm" class="secondary" title="{{ t('tap_title') }}">{{ t('tap_rhythm') }}</button>
+          </div>
+          <span class="hint" id="tapBpmHint"></span>
+        </div>
+        <div class="field full">
+          <section class="metro-panel" aria-labelledby="metro-title">
+            <h3 id="metro-title">{{ t('metro_title') }}</h3>
+            <p>{{ t('metro_intro') }}</p>
+            <div class="metro-controls">
+              <div class="metro-tempo">
+                <label for="metro-bpm">{{ t('base_bpm') }}</label>
+                <div class="metro-stepper">
+                  <button type="button" id="metro-minus" class="secondary" aria-label="{{ t('decrease_bpm') }}">−</button>
+                  <input type="number" id="metro-bpm" min="30" max="240" step="1" value="100" inputmode="numeric">
+                  <button type="button" id="metro-plus" class="secondary" aria-label="{{ t('increase_bpm') }}">+</button>
+                </div>
+              </div>
+              <div>
+                <label for="metro-pulse">{{ t('heard_pulse') }}</label>
+                <select id="metro-pulse">
+                  <option value="0.5">{{ t('half') }}</option>
+                  <option value="1" selected>{{ t('normal') }}</option>
+                  <option value="2">{{ t('double') }}</option>
+                </select>
+              </div>
+              <div>
+                <label for="metro-meter">{{ t('accent_every') }}</label>
+                <select id="metro-meter">
+                  {% for n in (2, 3, 4, 5, 6) %}<option value="{{ n }}" {% if n == 4 %}selected{% endif %}>{{ t('pulses', n=n) }}</option>{% endfor %}
+                </select>
+              </div>
+              <div class="metro-volume">
+                <label for="metro-volume">{{ t('click_volume') }}</label>
+                <input type="range" id="metro-volume" min="0" max="0.2" step="0.01" value="0.08">
+              </div>
+            </div>
+            <div class="metro-actions">
+              <button type="button" id="metro-start" class="secondary" aria-pressed="false">{{ t('listen_pulses') }}</button>
+              <button type="button" id="metro-use" class="secondary">{{ t('use_heard') }}</button>
+              <output id="metro-status" aria-live="polite">{{ t('metro_waiting') }}</output>
+            </div>
+          </section>
+        </div>
+        <div class="field">
+          <label for="tap_count">{{ t('count_recorded') }} <span class="hint">({{ t('count_hint') }})</span></label>
+          <input type="number" id="tap_count" name="tap_count" min="2" max="16" placeholder="{{ t('no_count') }}">
+        </div>
+        <div class="field">
+          <label for="time_signature">{{ t('time_signature') }}</label>
+          <input type="text" id="time_signature" name="time_signature" value="4/4" placeholder="ex.: 2/4">
+        </div>
+        <div class="field">
+          <label for="key">{{ t('key') }} <span class="hint">({{ t('key_hint') }})</span></label>
+          <input type="text" id="key" name="key" placeholder="{{ t('key_placeholder') }}">
+        </div>
+        <div class="field">
+          <label for="anacrusis_notes">{{ t('pickup') }} <span class="hint">({{ t('pickup_hint') }})</span></label>
+          <input type="number" id="anacrusis_notes" name="anacrusis_notes" min="0" value="0">
+        </div>
+        <div class="field">
+          <label for="score_style">{{ t('score_style') }}</label>
+          <select id="score_style" name="score_style">
+            <option value="lead_sheet">{{ t('lead_sheet') }}</option>
+            <option value="detalhado" disabled>{{ t('detailed_soon') }}</option>
+          </select>
+        </div>
+        <div class="field full notation-tools-heading">
+          <h3>{{ t('melody_options') }}</h3>
+          <p>{{ t('melody_options_intro') }}</p>
+        </div>
+        <div class="field full notation-option">
+          <label class="checkbox-row" for="join_equal_pitch">
+            <input type="checkbox" id="join_equal_pitch" name="join_equal_pitch">
+            <span>{{ t('join_pitch') }}
+              <span class="hint">{{ t('join_pitch_hint') }}</span>
+            </span>
+          </label>
+        </div>
+        <div class="field full notation-option">
+          <label class="checkbox-row" for="phrase_downbeats">
+            <input type="checkbox" id="phrase_downbeats" name="phrase_downbeats">
+            <span>{{ t('phrase_option') }}
+              <span class="hint">{{ t('phrase_option_hint') }}</span>
+            </span>
+          </label>
+        </div>
+        <div class="field full notation-option">
+          <label class="checkbox-row" for="suppress_harmonic_spikes">
+            <input type="checkbox" id="suppress_harmonic_spikes" name="suppress_harmonic_spikes">
+            <span>{{ t('harmonics_option') }}
+              <span class="hint">{{ t('harmonics_option_hint') }}</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="form-card metadata-card">
+      <legend><span class="legend-number">03</span> {{ t('step_meta') }}</legend>
+      <p class="fieldset-intro">{{ t('meta_intro') }}</p>
+      <div class="field-grid">
+        <div class="field full">
+          <label for="work_title">{{ t('work_title') }}</label>
+          <input type="text" id="work_title" name="work_title" placeholder="{{ t('title_example') }}">
+        </div>
+        <div class="field">
+          <label for="composer">{{ t('composer') }}</label>
+          <input type="text" id="composer" name="composer" placeholder="{{ t('composer_example') }}">
+        </div>
+        <div class="field">
+          <label for="year">{{ t('year') }} <span class="hint">({{ t('optional') }})</span></label>
+          <input type="number" id="year" name="year" placeholder="2026" min="1600" max="2100">
+        </div>
+        <div class="field">
+          <label for="genre">{{ t('genre') }}</label>
+          <input type="text" id="genre" name="genre" list="genre-list" placeholder="{{ t('genre_example') }}">
+          <datalist id="genre-list">
+            {% for g in genre_suggestions.keys() %}<option value="{{ g }}">{% endfor %}
+          </datalist>
+        </div>
+        <div class="field full">
+          <label for="genre_prompt">{{ t('keywords') }} <span class="hint">({{ t('keywords_hint') }})</span></label>
+          <textarea id="genre_prompt" name="genre_prompt" placeholder="{{ t('optional') }}"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="submit-row">
+      <p>{{ t('submit_note_local') }}</p>
+      <button type="submit" id="submit-btn">{{ t('submit') }} <span aria-hidden="true">↗</span></button>
+    </div>
+  </form>
+  </section>
+  <section class="process-panel" aria-label="{{ t('process_title') }}">
+    <ol class="process-list">
+      <li><span>01</span><p>{{ t('process_listening') }}</p></li>
+      <li><span>02</span><p>{{ t('process_notation') }}</p></li>
+      <li><span>03</span><p>{{ t('process_interpretation') }}</p></li>
+      <li><span>04</span><p>{{ t('process_composition') }}</p></li>
+    </ol>
+    <p class="intro-footnote">{{ t('scope_note') }}</p>
+  </section>
+</main>
+
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>{{ t('footer') }}</span></footer>
+
+<script id="genre-suggestions-data" type="application/json">{{ genre_suggestions | tojson }}</script>
+<script id="ui-strings-data" type="application/json">{{ frontend_text | tojson }}</script>
+<script src="/static/app.js"></script>
+<script src="/static/metronome.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="{{ 'pt-BR' if lang == 'pt' else lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t('page_help') }}</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="score-workspace">
+<header class="site-header"><div class="site-header-inner">
+  <a class="wordmark" href="/?lang={{ lang }}" aria-label="Maravi — {{ t('nav_home') }}">RASGO <span>/ MARAVI</span></a>
+  <nav class="header-actions" aria-label="{{ t('help_title') }}"><span class="local-badge"><span class="status-dot"></span> {{ t('local_tool') }}</span><a href="/?lang={{ lang }}">{{ t('help_audio_link') }} <span aria-hidden="true">↗</span></a><a href="/partitura?lang={{ lang }}">{{ t('help_score_link') }} <span aria-hidden="true">↗</span></a></nav>
+</div></header>
+<main class="content-shell help-article">
+  <nav class="help-languages" aria-label="{{ t('language') }}">
+    {% for code in languages %}<a href="{{ url_for('ajuda', lang=code) }}" lang="{{ code }}" {% if code == lang %}aria-current="page"{% endif %}>{{ code | upper }}</a>{% endfor %}
+  </nav>
+  {% if lang != 'pt' %}
+  <p class="eyebrow">RASGO / MARAVI</p>
+  <h1>{{ t('help_title') }}</h1>
+  <p class="subtitle">{{ t('help_intro') }}</p>
+  <nav class="help-steps" aria-label="{{ t('help_title') }}">
+    <a href="/?lang={{ lang }}">{{ t('help_audio_link') }}</a>
+    <a href="/partitura?lang={{ lang }}">{{ t('help_score_link') }}</a>
+  </nav>
+  {% for section in help_sections %}
+  <h2 id="{{ section }}">{{ t('help_' ~ section ~ '_title') }}</h2>
+  <p>{{ t('help_' ~ section ~ '_body') }}</p>
+  {% endfor %}
+  {% else %}
+  <p class="eyebrow">GUIA / USO LOCAL</p>
+  <h1>Da gravação à partitura</h1>
+  <p class="subtitle">O Maravi faz um rascunho de melodia. A última palavra é do músico: escute, confira e edite a partitura antes de usá-la como transcrição fiel.</p>
+  <nav class="help-steps" aria-label="Etapas deste guia">
+    <a href="#gravacao"><span>01</span> Gravação</a>
+    <a href="#pistas"><span>02</span> Pistas musicais</a>
+    <a href="#processamento"><span>03</span> Transcrição</a>
+    <a href="#revisao"><span>04</span> Revisão</a>
+  </nav>
+
+  <h2 id="gravacao">1. Escolha uma gravação</h2>
+  <p>Use uma voz ou um instrumento melódico tocando uma linha de cada vez. Arraste o áudio para o formulário ou grave pelo microfone. Confira o dispositivo de entrada, observe o medidor e escute a prévia. Uma mistura com vários instrumentos pode produzir notas erradas ou omitir a melodia. Se um instrumento estiver mais claro num dos lados de um arquivo estéreo de até 3 minutos, escolha o canal esquerdo ou direito; o Maravi preserva o original e transcreve uma cópia mono desse lado, sem separar os instrumentos que ainda estão nele.</p>
+  <p>“Instrumento para escrever” é uma escolha sua, não reconhecimento automático do áudio. “Piano — uma linha” mantém a transcrição melódica anterior. “Piano — duas pautas” preserva notas simultâneas detectadas, distribui por registro em claves de sol e fá e cria duas pistas MIDI; é experimental, não identifica as mãos e pode deixar uma pauta vazia se o detector não encontrar notas naquele registro. Abra o MusicXML num editor: a prévia do site ainda não mostra duas pautas. Nesse modo, “Solo ligado”, “Escrita por frases”, “Picos de oitava” e anacruse não são aplicados; a página de resultado avisa quando uma dessas opções foi pedida. Ao escolher Flauta, o Maravi escreve somente notas em si3 (MIDI 59) ou acima. Em áudio misto, descarta candidatas mais graves antes de escolher uma linha, para que o acompanhamento grave não corte uma candidata simultânea nem seja elevado artificialmente. Em fonte declarada isolada, tenta antes corrigir erros de oitava; o si3 continua válido. O limite não separa a flauta de uma orquestra: se a detecção não encontrar a flauta, pode surgir uma pausa no lugar da nota real. Para canto solo, escolha “Voz” e marque “Este áudio já contém somente o instrumento escolhido” apenas se a gravação realmente tiver uma voz sem acompanhamento. Nesse caso, um filtro experimental de ataques tenta reduzir notas fragmentadas; ele pode omitir notas reais. A pauta usa clave de fá se o registro mediano for grave, sem transpor as alturas. Nos demais casos, a escolha “Voz” apenas identifica a pauta e o timbre de escuta.</p>
+
+  <h2 id="pistas">2. Dê as pistas que você conhece</h2>
+  <p>Se você deixar BPM ou tom em branco, o primeiro clique em “Transcrever” faz uma pré-análise dos 20 segundos iniciais e mostra hipóteses antes de escrever a partitura. Confira-as de ouvido, use os botões para copiar uma sugestão se ela servir, corrija os campos e clique em “Transcrever” novamente. Um tom marcado como ambíguo não recebe botão de cópia; deixe o campo vazio para a análise completa ou indique você mesmo a tonalidade. O pulso pode ser percebido na metade ou no dobro do BPM mostrado, mesmo quando a amostra parece regular. Também pode iniciar a pré-análise pelo botão “Analisar antes de escrever”. Não há reconhecimento de instrumento nem de fórmula de compasso: a opção “Melodia” permanece neutra e o 4/4 é apenas valor inicial. A pré-análise aceita arquivos de até 50 MB; se falhar, você pode prosseguir sem ela. Sua cópia temporária é descartada ao terminar; o job da transcrição completa é mantido separadamente.</p>
+  <p>Título e autor identificam a partitura; gênero pode sugerir uma fórmula de compasso, mas não escolhe notas. Prompt/palavras-chave fica registrado e ainda não altera a transcrição. Se a música tem pulso estável e você conhece o andamento, informe o BPM ou toque “bater ritmo” pelo menos quatro vezes. Um BPM informado cria uma grade constante: numa execução com rubato, pode ser melhor deixar o campo vazio para estimar batidas locais, mas confira o resultado. Se a gravação começa com uma contagem, informe quantas batidas há antes da melodia. A fórmula de compasso começa em 4/4 por hipótese, não por detecção: altere-a se souber a correta. O tom pode ser estimado quando não é informado; notas de anacruse exigem indicação sua.</p>
+  <p>O metrônomo de escuta é separado desse campo. Escolha um BPM base, ouça em pulso normal, metade ou dobro e ajuste o acento e o volume. Você pode dar play na prévia do arquivo carregado e comparar os pulsos de ouvido; não há sincronização automática entre áudio e clique. “Usar pulso ouvido” copia o BPM efetivamente escutado para a transcrição — só faça isso quando quiser uma grade de andamento constante. Se a execução muda de velocidade, deixe o BPM da transcrição vazio. O metrônomo para ao iniciar uma gravação no microfone, para não contaminar a tomada.</p>
+  <p>Para flauta ou voz ligada, se você sabe que não há repetição articulada de uma mesma nota, marque “Solo ligado”. O Maravi reunirá fragmentos contíguos da mesma altura antes de gerar o MIDI e a partitura. Não marque numa peça que repete deliberadamente a mesma altura: o programa ainda não distingue com segurança uma nova articulação de um vibrato que dividiu a detecção.</p>
+  <p>“Escrita por frases” é uma opção editorial: após uma respiração clara, procura uma barra próxima para começar a nova ideia no primeiro tempo. Ajusta a pausa escrita, sem mover a execução do MIDI, e deixa reentradas ambíguas em paz. Uma fermata em nota sustentada antes de pausa longa é hipótese para revisão, não leitura automática da intenção. Para flauta solo, “Revisar picos breves de oitava” corrige apenas saltos agudos muito curtos com vizinhos compatíveis com outra oitava; não altera notas cheias. Embocadura, ruído, harmônicos intencionais e outros efeitos permanecem a cargo do intérprete. As duas opções começam desligadas.</p>
+
+  <h2 id="processamento">3. Transcreva e espere o processamento</h2>
+  <p>Clique em “Transcrever” uma vez. O processamento é local e síncrono: a página pode demorar até o resultado chegar. Não recarregue a página durante a transcrição. Esta versão ainda não mostra progresso real nem permite cancelar um job.</p>
+
+  <h2 id="revisao">4. Baixe e revise</h2>
+  <p>Na página de resultado, a prévia esquemática mostra até quatro compassos lidos do MusicXML gerado; em telas estreitas, deslize a pauta horizontalmente. Ela não substitui a partitura completa. Baixe o MusicXML para abrir e editar no MuseScore ou em outro editor compatível. O MIDI conserva melhor o tempo da execução detectada; a partitura usa uma grade editorial mais legível por trechos separados por pausas. A página informa a pasta local exata do processamento: <code>/tmp/maravi_webapp_jobs/&lt;id&gt;/</code>. É temporária. Para guardar os dois arquivos, confira ou altere a pasta pessoal já sugerida no campo do resultado e clique em “Guardar os dois”: o Maravi cria uma subpasta exclusiva, sem substituir arquivos. Isso só vale quando o servidor roda nesta máquina; como alternativa, use os links de download e escolha o destino no navegador. Compare alturas, ritmo, compassos, armadura, anacruse e começo/fim de cada frase com a gravação. Se uma pista estava errada, volte ao formulário e transcreva novamente.</p>
+
+  <h2>Escrita, interpretação e composição</h2>
+  <p>A escrita organiza o que foi ouvido em notas, durações e compassos. Na revisão, confira também o que a notação não resolve sozinha: onde começa e termina uma frase, quais notas pedem acento, se há legato, staccato ou mudança de dinâmica. Uma partitura pode preservar a melodia sem registrar toda a interpretação da gravação.</p>
+  <p>Se a melodia for sua, a partitura revisada pode servir de ponto de partida para compor variações, contrapontos ou outra forma. Essas decisões são suas e são feitas no editor musical; o Maravi ainda não compõe nem oferece edição de partitura nesta interface. A pauta da página inicial é apenas ilustrativa.</p>
+
+  <h2>Partitura impressa em PDF ou imagem</h2>
+  <p>É um caminho separado do áudio. Na página <a href="/partitura">PDF / imagem</a>, envie uma partitura impressa em PDF, PNG, JPG/JPEG, TIFF, WebP, BMP, GIF estático, HEIC/HEIF ou AVIF. Para um PDF longo, informe a posição de uma página específica no arquivo, começando em 1; em branco, o Maravi lê até 8 páginas juntas. O arquivo original é preservado e só uma cópia da página escolhida vai ao reconhecimento. Formatos modernos de imagem exigem que o ImageMagick local consiga decodificá-los. O Audiveris reconhece os símbolos e o MuseScore gera MusicXML e MIDI a partir desse rascunho. Ambos devem estar instalados localmente; sem Audiveris, a página informa que o recurso ainda não pode ser executado nesta máquina. O resultado também oferece “Guardar os dois” para MusicXML e MIDI; MXL e projeto OMR continuam com downloads separados. Um relatório estrutural aponta numeração e duração suspeitas em compassos simples, mas não confere as notas com a imagem. Revise página por página, em especial alturas, pausas, ligaduras, quiálteras e mudanças de compasso. Manuscritos e notação não convencional não são o alvo desta primeira etapa.</p>
+  <h2>Limites e privacidade nesta versão</h2>
+  <p>O caminho principal de áudio continua a ser a transcrição monofônica em estilo lead sheet. O modo opcional de piano em duas pautas preserva alguns eventos simultâneos, mas ainda não identifica as duas mãos nem separa piano de outros instrumentos; harmonização e isolamento instrumental também não estão resolvidos. O caminho de PDF/imagem usa reconhecimento externo; o teste técnico com uma partitura autoral simples não substitui validação com repertório variado. Não há serviço público online: o servidor deve rodar apenas em <code>127.0.0.1</code>, na porta indicada pelo terminal do seu computador.</p>
+  <p>O Maravi mantém os arquivos de entrada e resultado em <code>/tmp/maravi_webapp_jobs/</code> sem expiração automática. O áudio original escolhido no seu computador não é alterado. Se for usar uma máquina compartilhada, considere esses temporários antes de transcrever material privado. A limpeza segura e automática ainda está pendente.</p>
+
+  {% endif %}
+  <a href="/?lang={{ lang }}" class="back-link">&larr; {{ t('nav_home') }}</a>
+</main>
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>Pesquisa em transcrição musical · versão local</span></footer>
+</body>
+</html>

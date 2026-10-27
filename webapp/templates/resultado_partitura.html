@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="{{ 'pt-BR' if lang == 'pt' else lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t('page_score_result') }}</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="score-workspace">
+<header class="site-header"><div class="site-header-inner">
+  <a class="wordmark" href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" aria-label="Maravi — {{ t('nav_home') }}">RASGO <span>/ MARAVI</span></a>
+  <nav class="header-actions" aria-label="{{ t('language') }}"><span class="local-badge"><span class="status-dot"></span> {{ t('local_tool') }}</span><a href="/partitura{% if lang != 'pt' %}?lang={{ lang }}{% endif %}">{{ t('score_another') }} <span aria-hidden="true">↗</span></a><a href="/ajuda{% if lang != 'pt' %}?lang={{ lang }}{% endif %}">{{ t('nav_help') }} <span aria-hidden="true">↗</span></a></nav>
+</div></header>
+<main class="content-shell score-result">
+  <p class="eyebrow">{{ t('score_result_kicker') }}</p>
+  <h1>{{ metadata.original_filename }}</h1>
+  <p class="subtitle">{% if metadata.selected_page %}{{ t('score_selected_page', page=metadata.selected_page, total=metadata.pages) }}{% else %}{{ t('score_processed_pages', count=metadata.processed_pages) }}{% endif %} {{ t('score_result_draft') }}</p>
+  <section class="output-card" aria-labelledby="output-title">
+    <h2 id="output-title">{{ t('score_drafts_title') }}</h2>
+    <p>{{ t('score_drafts_body') }}</p>
+    <div class="downloads">
+      <a href="/download/{{ job_id }}/musicxml">&#8681; MusicXML</a>
+      <a href="/download/{{ job_id }}/mid">&#8681; MIDI</a>
+      <a href="/download/{{ job_id }}/mxl">&#8681; {{ t('score_mxl_label') }}</a>
+      <a href="/download/{{ job_id }}/omr">&#8681; {{ t('score_omr_label') }}</a>
+    </div>
+    {% include '_export_form.html' %}
+    <p>{{ t('score_files_local') }} <code>{{ local_job_path }}/</code>. {{ t('score_files_temporary') }}</p>
+  </section>
+  <div class="result-next-action">
+    <a href="/partitura{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" class="new-transcription">{{ t('score_new') }} <span aria-hidden="true">→</span></a>
+  </div>
+  {% if structure_review %}
+  <section class="output-card" aria-labelledby="review-title">
+    <h2 id="review-title">{{ t('score_structure_title') }}</h2>
+    <p><a href="/download/{{ job_id }}/review">{{ t('score_review_download') }}</a></p>
+    <p>{{ t('score_structure_summary', parts=structure_review.parts, measures=structure_review.measures, notes=structure_review.pitched_notes, rests=structure_review.rests, checked=structure_review.checked_measures, skipped=structure_review.skipped_measures) }}</p>
+    {% if structure_review.warning_count %}
+    <details><summary>{{ t('score_warning_count', count=structure_review.warning_count) }}</summary>
+      {% if lang != 'pt' %}<p lang="{{ lang }}">{{ t('score_warning_language') }}</p>{% endif %}
+      <ul>
+        {% for warning in structure_review.warnings %}
+        <li>{{ t('score_warning_location', part=warning.part, measure=warning.measure) }} <span lang="pt-BR">{{ warning.message }}</span></li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% if structure_review.limited %}<p>{{ t('score_warning_limited') }}</p>{% endif %}
+    {% else %}
+    <p>{{ t('score_no_warnings') }}</p>
+    {% endif %}
+  </section>
+  {% endif %}
+  <p class="result-note">{{ t('score_result_note') }}</p>
+</main>
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>{{ t('footer') }}</span></footer>
+</body>
+</html>

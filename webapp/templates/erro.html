@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{ 'pt-BR' if lang == 'pt' else lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ t('page_error') }}</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="score-workspace">
+<header class="site-header"><div class="site-header-inner">
+  <a class="wordmark" href="/{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" aria-label="Maravi — {{ t('nav_home') }}">RASGO <span>/ MARAVI</span></a>
+  <nav class="header-actions" aria-label="{{ t('language') }}"><span class="local-badge"><span class="status-dot"></span> {{ t('local_tool') }}</span><a href="/ajuda{% if lang != 'pt' %}?lang={{ lang }}{% endif %}">{{ t('nav_help') }} <span aria-hidden="true">↗</span></a></nav>
+</div></header>
+<main class="content-shell">
+  <p class="eyebrow">{{ t('error_kicker') }}</p>
+  <h1>{{ t('error_heading') }}</h1>
+  <p class="subtitle">{{ t('error_score_intact' if mode|default('audio') == 'score' else 'error_audio_intact') }}</p>
+  <div class="error-box">
+    <p style="margin:0;" lang="{{ lang if message_key|default(None) else 'pt-BR' }}">{{ t(message_key) if message_key|default(None) else mensagem }}</p>
+    {% if diagnostic|default(None) %}<details class="technical-detail"><summary>{{ t('error_diagnostic_details') }}</summary><p lang="pt-BR">{{ diagnostic }}</p></details>{% endif %}
+  </div>
+  {% if lang != 'pt' and (diagnostic|default(None) or not message_key|default(None)) %}<p lang="{{ lang }}">{{ t('error_technical_note') }}</p>{% endif %}
+  <a href="{{ '/partitura' if mode|default('audio') == 'score' else '/' }}{% if lang != 'pt' %}?lang={{ lang }}{% endif %}" class="back-link">&larr; {{ t('error_retry') }}</a>
+</main>
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>{{ t('footer') }}</span></footer>
+</body>
+</html>
