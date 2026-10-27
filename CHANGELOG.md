@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.1 — a smaller package, 2026-10-27
+
+- **The download goes from 157 to about 99 MiB.** The native libraries are
+  stripped of their debugging symbols (their code is unchanged: the code
+  section of the largest one, LLVM, is byte for byte the same), and the
+  package is compressed with xz: `maravi-0.1.1-linux-x86_64.tar.xz`, opened
+  with `tar -xf`. Unpacked, it takes about 350 MB instead of 390.
+- Nothing else changes in the transcription.
+
 ## 0.1.0 — first public version, 2026-10-27
 
 The first public version of Maravi: recorded melodies into readable scores,

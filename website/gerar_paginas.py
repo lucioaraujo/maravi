@@ -38,13 +38,13 @@ INSTALACAO = {"pt": "instalacao.html", "en": "instalacao-en.html",
               "fr": "instalacao-fr.html", "es": "instalacao-es.html"}
 # o que só o site diz (o resto vem do app ou do textos.json)
 SITE = {
-    "pt": {"badge": "Versão 0.1.0 · Linux", "dl_index": "Baixar · 01 / 02",
+    "pt": {"badge": "Versão 0.1.1 · Linux", "dl_index": "Baixar · 01 / 02",
            "dl_title": "Baixar e instalar"},
-    "en": {"badge": "Version 0.1.0 · Linux", "dl_index": "Download · 01 / 02",
+    "en": {"badge": "Version 0.1.1 · Linux", "dl_index": "Download · 01 / 02",
            "dl_title": "Download and install"},
-    "fr": {"badge": "Version 0.1.0 · Linux", "dl_index": "Télécharger · 01 / 02",
+    "fr": {"badge": "Version 0.1.1 · Linux", "dl_index": "Télécharger · 01 / 02",
            "dl_title": "Télécharger et installer"},
-    "es": {"badge": "Versión 0.1.0 · Linux", "dl_index": "Descargar · 01 / 02",
+    "es": {"badge": "Versión 0.1.1 · Linux", "dl_index": "Descargar · 01 / 02",
            "dl_title": "Descargar e instalar"},
 }
 

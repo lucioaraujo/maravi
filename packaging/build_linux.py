@@ -1,8 +1,10 @@
 """Cria uma candidata Linux onedir, sempre em diretório local ignorado novo.
 
 Uso (dentro do venv de build): python -B packaging/build_linux.py [--archive PASTA]
-Com --archive, grava também maravi-<versão>-linux-x86_64.tar.gz e o SHA256
-nessa pasta (a CI da release, 2026-10-27). Não publica nada. Requer
+Com --archive, grava também maravi-<versão>-linux-x86_64.tar.xz e o SHA256
+nessa pasta (a CI da release, 2026-10-27). Desde a v0.1.1 as bibliotecas
+nativas saem sem símbolos (strip) e o arquivo é .tar.xz: 157 → ~99 MiB, com a
+seção de código idêntica (medido em 2026-10-27). Não publica nada. Requer
 PyInstaller instalado.
 """
 
@@ -160,13 +162,33 @@ def write_launcher(output: Path, name: str, version: str) -> None:
     (output / "README.txt").write_text(PACKAGE_README.format(version=version), encoding="utf-8")
 
 
+def strip_native(output: Path) -> int:
+    """Tira os símbolos de depuração das bibliotecas nativas (v0.1.1).
+
+    `strip --strip-unneeded` não toca na seção de código: em 2026-10-27 o
+    .text da libllvmlite.so (metade do pacote) ficou idêntico byte a byte, e
+    a transcrição completa pelo binário passou. Devolve os bytes poupados."""
+    strip = shutil.which("strip")
+    if strip is None:
+        raise RuntimeError("strip (binutils) é necessário para o pacote Linux.")
+    saved = 0
+    for path in sorted((output / "_internal").rglob("*")):
+        if path.is_symlink() or not path.is_file() or not re.search(r"\.so(?:\.|$)", path.name):
+            continue
+        before = path.stat().st_size
+        subprocess.run([strip, "--strip-unneeded", str(path)], check=True,
+                       capture_output=True, timeout=120)
+        saved += before - path.stat().st_size
+    return saved
+
+
 def write_archive(output: Path, destination: Path, version: str) -> Path:
-    """O .tar.gz da release, com a pasta inteira, e o seu SHA256."""
+    """O .tar.xz da release, com a pasta inteira, e o seu SHA256."""
     destination.mkdir(parents=True, exist_ok=True)
-    archive = destination / f"maravi-{version}-linux-x86_64.tar.gz"
+    archive = destination / f"maravi-{version}-linux-x86_64.tar.xz"
     if archive.exists():
         raise SystemExit(f"{archive} já existe: não sobrescrever.")
-    with tarfile.open(archive, "w:gz") as tar:
+    with tarfile.open(archive, "w:xz") as tar:
         tar.add(output, arcname=f"maravi-{version}-linux-x86_64")
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     (destination / (archive.name + ".sha256")).write_text(f"{digest}  {archive.name}\n", encoding="utf-8")
@@ -216,6 +238,8 @@ def main() -> None:
     shutil.copy2(ROOT / "LICENSE", output / "LICENSE")
     shutil.copy2(ROOT / "CREDITS.md", output / "CREDITS.md")
     write_launcher(output, name, version)
+    saved = strip_native(output)
+    print(f"strip: {saved / 1048576:.0f} MiB a menos nas bibliotecas nativas", flush=True)
     collect_notices(output / "THIRD_PARTY_NOTICES")
     write_native_inventory(output)
     abi = write_abi_report(output)

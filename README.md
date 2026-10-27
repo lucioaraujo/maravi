@@ -8,7 +8,7 @@ not an instrument that makes sound, but a tool for listening, study and
 notation. It runs on your own computer, in your browser; nothing is sent to
 any server.
 
-**Version:** v0.1.0 · **License:** GNU AGPL-3.0-or-later (see
+**Version:** v0.1.1 · **License:** GNU AGPL-3.0-or-later (see
 [`LICENSE`](LICENSE)) · **Tested on:** Linux x86_64
 
 ## What it does
@@ -42,7 +42,7 @@ any server.
 
 ## Install
 
-Linux x86_64: download `maravi-0.1.0-linux-x86_64.tar.gz` from the
+Linux x86_64: download `maravi-0.1.1-linux-x86_64.tar.xz` from the
 [Releases](https://github.com/lucioaraujo/maravi/releases) page and follow
 [`INSTALL.md`](INSTALL.md). FFmpeg is required; Audiveris, MuseScore,
 Poppler and ImageMagick are only needed to read printed scores.
@@ -74,7 +74,7 @@ Lúcio de Araújo: não é um instrumento que produz som, mas uma ferramenta de
 escuta, estudo e notação. Roda no seu computador, no navegador; nada é
 enviado a servidor algum.
 
-**Versão:** v0.1.0 · **Licença:** GNU AGPL-3.0-or-later · **Testado em:** Linux x86_64
+**Versão:** v0.1.1 · **Licença:** GNU AGPL-3.0-or-later · **Testado em:** Linux x86_64
 
 **O que faz.** De uma gravação de melodia (voz, flauta, violino, uma linha),
 propõe uma partitura MusicXML e um MIDI; você escolhe o instrumento da pauta
@@ -112,7 +112,7 @@ de Lúcio de Araújo : pas un instrument qui produit du son, mais un outil
 d'écoute, d'étude et de notation. Il fonctionne sur votre ordinateur, dans
 le navigateur ; rien n'est envoyé à un serveur.
 
-**Version :** v0.1.0 · **Licence :** GNU AGPL-3.0-or-later · **Testé sous :** Linux x86_64
+**Version :** v0.1.1 · **Licence :** GNU AGPL-3.0-or-later · **Testé sous :** Linux x86_64
 
 **Ce qu'il fait.** À partir de l'enregistrement d'une mélodie (voix, flûte,
 violon, une seule ligne), il propose une partition MusicXML et un MIDI ; vous
@@ -154,7 +154,7 @@ de Lúcio de Araújo: no es un instrumento que produce sonido, sino una
 herramienta de escucha, estudio y notación. Funciona en su computadora, en
 el navegador; nada se envía a ningún servidor.
 
-**Versión:** v0.1.0 · **Licencia:** GNU AGPL-3.0-or-later · **Probado en:** Linux x86_64
+**Versión:** v0.1.1 · **Licencia:** GNU AGPL-3.0-or-later · **Probado en:** Linux x86_64
 
 **Qué hace.** A partir de la grabación de una melodía (voz, flauta, violín,
 una sola línea), propone una partitura MusicXML y un MIDI; usted elige el

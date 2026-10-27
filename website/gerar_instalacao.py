@@ -21,13 +21,13 @@ BLOB = "https://github.com/lucioaraujo/maravi/blob/main/"
 # língua: (página Sobre, página de instalação, título do INSTALL.md, <title>, descrição)
 PAGINAS = {
     "en": ("en.html", "instalacao-en.html", None, "Install Maravi — Linux",
-           "How to install Maravi 0.1.0 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go."),
+           "How to install Maravi 0.1.1 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go."),
     "pt-BR": ("index.html", "instalacao.html", "## Português", "Instalar o Maravi — Linux",
-              "Como instalar o Maravi 0.1.0 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos."),
+              "Como instalar o Maravi 0.1.1 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos."),
     "fr": ("fr.html", "instalacao-fr.html", "## Français", "Installer Maravi — Linux",
-           "Comment installer Maravi 0.1.0 sous Linux : configuration requise, FFmpeg, le paquet, les outils facultatifs pour lire les partitions imprimées et où vont vos fichiers."),
+           "Comment installer Maravi 0.1.1 sous Linux : configuration requise, FFmpeg, le paquet, les outils facultatifs pour lire les partitions imprimées et où vont vos fichiers."),
     "es": ("es.html", "instalacao-es.html", "## Español", "Instalar Maravi — Linux",
-           "Cómo instalar Maravi 0.1.0 en Linux: requisitos, FFmpeg, el paquete, las herramientas opcionales para leer partituras impresas y dónde quedan sus archivos."),
+           "Cómo instalar Maravi 0.1.1 en Linux: requisitos, FFmpeg, el paquete, las herramientas opcionales para leer partituras impresas y dónde quedan sus archivos."),
 }
 TITULO = {"en": "Installing Maravi", "pt-BR": "Instalar o Maravi", "fr": "Installer Maravi", "es": "Instalar Maravi"}
 

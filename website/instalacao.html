@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Como instalar o Maravi 0.1.0 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos.">
+  <meta name="description" content="Como instalar o Maravi 0.1.1 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos.">
   <title>Instalar o Maravi — Linux</title>
   <link rel="stylesheet" href="styles.css">
   <!-- SEO:INICIO — gerado por seo.py; editar lá, não aqui -->
@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Maravi">
   <meta property="og:title" content="Instalar o Maravi — Linux">
-  <meta property="og:description" content="Como instalar o Maravi 0.1.0 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos.">
+  <meta property="og:description" content="Como instalar o Maravi 0.1.1 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos.">
   <meta property="og:url" content="https://lucioaraujo.github.io/maravi/instalacao.html">
   <meta property="og:image" content="https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg">
   <meta property="og:image:width" content="1200">
@@ -32,7 +32,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Maravi",
-    "description": "Como instalar o Maravi 0.1.0 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos.",
+    "description": "Como instalar o Maravi 0.1.1 no Linux: requisitos, FFmpeg, o pacote, as ferramentas opcionais para ler partituras impressas e onde ficam os seus arquivos.",
     "url": "https://lucioaraujo.github.io/maravi/",
     "inLanguage": "pt-BR",
     "image": "https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg",
@@ -40,7 +40,7 @@
     "applicationSubCategory": "Music transcription: audio and printed scores to MusicXML and MIDI",
     "operatingSystem": "Linux",
     "downloadUrl": "https://github.com/lucioaraujo/maravi/releases",
-    "softwareVersion": "0.1.0",
+    "softwareVersion": "0.1.1",
     "license": "https://www.gnu.org/licenses/agpl-3.0.html",
     "isAccessibleForFree": true,
     "author": {
@@ -66,7 +66,7 @@
   <div class="site-header-inner">
     <a class="wordmark" href="index.html#ideia" aria-label="Maravi">RASGO <span>/ MARAVI</span></a>
     <nav class="header-actions" aria-label="Maravi">
-      <span class="local-badge"><span class="status-dot"></span> Versão 0.1.0 · Linux</span>
+      <span class="local-badge"><span class="status-dot"></span> Versão 0.1.1 · Linux</span>
       <a href="index.html#uso">Como usar</a>
       <a href="index.html#pesquisa">Pesquisa</a>
       <a href="index.html#sobre">Sobre</a>
@@ -79,14 +79,14 @@
 
 <main id="conteudo" class="doc">
 <h1>Instalar o Maravi</h1>
-<p>O Maravi 0.1.0 sai como pacote para <strong>Linux x86_64</strong>. Roda no seu computador: um pequeno servidor local em <code>127.0.0.1</code> e o navegador como interface. Nada é enviado pela rede.</p>
-<p><strong>Requisitos:</strong> Linux x86_64 com glibc 2.35 ou mais nova (Ubuntu 22.04+, Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE Tumbleweed); um navegador; cerca de 1 GB livre em disco (o pacote aberto ocupa ~400 MB); o <strong>FFmpeg</strong> (obrigatório, para ler os arquivos de áudio). Só para ler partituras impressas, opcionais: <strong>Audiveris</strong>, <strong>MuseScore</strong>, <strong>Poppler</strong> e <strong>ImageMagick</strong>. Windows e macOS não têm suporte nesta versão.</p>
+<p>O Maravi 0.1.1 sai como pacote para <strong>Linux x86_64</strong>. Roda no seu computador: um pequeno servidor local em <code>127.0.0.1</code> e o navegador como interface. Nada é enviado pela rede.</p>
+<p><strong>Requisitos:</strong> Linux x86_64 com glibc 2.35 ou mais nova (Ubuntu 22.04+, Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE Tumbleweed); um navegador; cerca de 1 GB livre em disco (o pacote aberto ocupa ~350 MB); o <strong>FFmpeg</strong> (obrigatório, para ler os arquivos de áudio). Só para ler partituras impressas, opcionais: <strong>Audiveris</strong>, <strong>MuseScore</strong>, <strong>Poppler</strong> e <strong>ImageMagick</strong>. Windows e macOS não têm suporte nesta versão.</p>
 <p><strong>Passo a passo:</strong></p>
-<ol><li>Instale o FFmpeg: Ubuntu, Mint, Debian: <code>sudo apt install ffmpeg</code>; Fedora: ative o RPM Fusion e <code>sudo dnf install ffmpeg</code>; Arch: <code>sudo pacman -S ffmpeg</code>.</li><li>Baixe <code>maravi-0.1.0-linux-x86_64.tar.gz</code> em <a href="https://github.com/lucioaraujo/maravi/releases/latest">Releases</a>. Para conferir o download: <code>sha256sum -c maravi-0.1.0-linux-x86_64.tar.gz.sha256</code></li><li>Descompacte onde guarda seus programas, por exemplo na pasta pessoal: <code>tar -xzf maravi-0.1.0-linux-x86_64.tar.gz</code></li><li>Abra: <code>./maravi-0.1.0-linux-x86_64/maravi</code>. O navegador abre em <code>http://127.0.0.1:5001/</code>; se não abrir, digite esse endereço.</li><li>Para fechar, Ctrl+C no terminal (ou feche o terminal).</li></ol>
-<p>Se a porta 5001 estiver ocupada: <code>MARAVI_PORT=5052 ./maravi-0.1.0-linux-x86_64/maravi</code></p>
+<ol><li>Instale o FFmpeg: Ubuntu, Mint, Debian: <code>sudo apt install ffmpeg</code>; Fedora: ative o RPM Fusion e <code>sudo dnf install ffmpeg</code>; Arch: <code>sudo pacman -S ffmpeg</code>.</li><li>Baixe <code>maravi-0.1.1-linux-x86_64.tar.xz</code> em <a href="https://github.com/lucioaraujo/maravi/releases/latest">Releases</a>. Para conferir o download: <code>sha256sum -c maravi-0.1.1-linux-x86_64.tar.xz.sha256</code></li><li>Descompacte onde guarda seus programas, por exemplo na pasta pessoal: <code>tar -xf maravi-0.1.1-linux-x86_64.tar.xz</code></li><li>Abra: <code>./maravi-0.1.1-linux-x86_64/maravi</code>. O navegador abre em <code>http://127.0.0.1:5001/</code>; se não abrir, digite esse endereço.</li><li>Para fechar, Ctrl+C no terminal (ou feche o terminal).</li></ol>
+<p>Se a porta 5001 estiver ocupada: <code>MARAVI_PORT=5052 ./maravi-0.1.1-linux-x86_64/maravi</code></p>
 <p><strong>Partituras impressas (opcional).</strong> A página "PDF / imagem" precisa de mais quatro programas; sem eles, o áudio funciona e a página diz o que falta. Ubuntu, Mint, Debian: <code>sudo apt install poppler-utils imagemagick musescore3</code> (ou o MuseScore 4 de <a href="https://musescore.org/">musescore.org</a>). O Audiveris vem das <a href="https://github.com/Audiveris/audiveris/releases">releases do Audiveris</a> (no Ubuntu, o <code>.deb</code>); o Maravi acha <code>/opt/audiveris/bin/Audiveris</code> sozinho, e para outro lugar use <code>MARAVI_AUDIVERIS_BIN=/caminho/do/Audiveris</code>. Para o MuseScore fora do <code>PATH</code>, <code>MARAVI_MUSESCORE_BIN</code>.</p>
 <p><strong>Seus arquivos.</strong> Cada trabalho fica numa pasta temporária (<code>/tmp/maravi_webapp_jobs/</code>), mostrada na página do resultado, que o sistema pode limpar ao reiniciar. <strong>Guarde ou baixe o MusicXML e o MIDI antes de fechar.</strong> O arquivo que você escolheu nunca é alterado.</p>
-<p><strong>Desinstalar:</strong> apague a pasta <code>maravi-0.1.0-linux-x86_64</code>. <strong>A partir do código</strong> (desenvolvedores, Python 3.12): veja <a href="instalacao-en.html#from-source">From source</a>.</p>
+<p><strong>Desinstalar:</strong> apague a pasta <code>maravi-0.1.1-linux-x86_64</code>. <strong>A partir do código</strong> (desenvolvedores, Python 3.12): veja <a href="instalacao-en.html#from-source">From source</a>.</p>
 </main>
 
 <footer class="site-footer"><span>RASGO / MARAVI</span><span>Maravi · pesquisa em escrita musical · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licença AGPLv3</a> · <a href="https://rasgoinstruments.arquiviagem.net/">Portal RASGO</a></span></footer>

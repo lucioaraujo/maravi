@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="How to install Maravi 0.1.0 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go.">
+  <meta name="description" content="How to install Maravi 0.1.1 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go.">
   <title>Install Maravi — Linux</title>
   <link rel="stylesheet" href="styles.css">
   <!-- SEO:INICIO — gerado por seo.py; editar lá, não aqui -->
@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Maravi">
   <meta property="og:title" content="Install Maravi — Linux">
-  <meta property="og:description" content="How to install Maravi 0.1.0 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go.">
+  <meta property="og:description" content="How to install Maravi 0.1.1 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go.">
   <meta property="og:url" content="https://lucioaraujo.github.io/maravi/instalacao-en.html">
   <meta property="og:image" content="https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg">
   <meta property="og:image:width" content="1200">
@@ -32,7 +32,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Maravi",
-    "description": "How to install Maravi 0.1.0 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go.",
+    "description": "How to install Maravi 0.1.1 on Linux: requirements, FFmpeg, the package, the optional tools to read printed scores, and where your files go.",
     "url": "https://lucioaraujo.github.io/maravi/",
     "inLanguage": "en",
     "image": "https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg",
@@ -40,7 +40,7 @@
     "applicationSubCategory": "Music transcription: audio and printed scores to MusicXML and MIDI",
     "operatingSystem": "Linux",
     "downloadUrl": "https://github.com/lucioaraujo/maravi/releases",
-    "softwareVersion": "0.1.0",
+    "softwareVersion": "0.1.1",
     "license": "https://www.gnu.org/licenses/agpl-3.0.html",
     "isAccessibleForFree": true,
     "author": {
@@ -66,7 +66,7 @@
   <div class="site-header-inner">
     <a class="wordmark" href="en.html#idea" aria-label="Maravi">RASGO <span>/ MARAVI</span></a>
     <nav class="header-actions" aria-label="Maravi">
-      <span class="local-badge"><span class="status-dot"></span> Version 0.1.0 · Linux</span>
+      <span class="local-badge"><span class="status-dot"></span> Version 0.1.1 · Linux</span>
       <a href="en.html#use">How to use</a>
       <a href="en.html#research">Research</a>
       <a href="en.html#about">About</a>
@@ -79,16 +79,16 @@
 
 <main id="conteudo" class="doc">
 <h1>Installing Maravi</h1>
-<p>Maravi 0.1.0 ships as a package for <strong>Linux x86_64</strong>. It runs on your computer: a small local server on <code>127.0.0.1</code> and your browser as the interface. Nothing is sent over the network.</p>
+<p>Maravi 0.1.1 ships as a package for <strong>Linux x86_64</strong>. It runs on your computer: a small local server on <code>127.0.0.1</code> and your browser as the interface. Nothing is sent over the network.</p>
 <h2 id="requirements">Requirements</h2>
 <ul><li>Linux x86_64 with glibc 2.35 or newer: Ubuntu 22.04 or newer, Linux Mint</li></ul>
 <p>21 or newer, Debian 12 or newer, Fedora, Arch, openSUSE Tumbleweed.</p>
-<ul><li>A web browser (Firefox, Chromium, Chrome).</li><li>About 1 GB free on disk (the unpacked package takes ~400 MB).</li><li><strong>FFmpeg</strong> (required: Maravi uses it to read audio files).</li><li>Only to read printed scores (PDF or image), optionally: <strong>Audiveris</strong>,</li></ul>
+<ul><li>A web browser (Firefox, Chromium, Chrome).</li><li>About 1 GB free on disk (the unpacked package takes ~350 MB).</li><li><strong>FFmpeg</strong> (required: Maravi uses it to read audio files).</li><li>Only to read printed scores (PDF or image), optionally: <strong>Audiveris</strong>,</li></ul>
 <p><strong>MuseScore</strong>, <strong>Poppler</strong> and <strong>ImageMagick</strong>.</p>
 <p>Windows and macOS are not supported in this version.</p>
 <h2 id="step-by-step">Step by step</h2>
-<ol><li>Install FFmpeg:<ul><li>Ubuntu, Mint, Debian: <code>sudo apt install ffmpeg</code></li><li>Fedora: enable RPM Fusion, then <code>sudo dnf install ffmpeg</code></li><li>Arch: <code>sudo pacman -S ffmpeg</code></li></ul></li><li>Download <code>maravi-0.1.0-linux-x86_64.tar.gz</code> from <a href="https://github.com/lucioaraujo/maravi/releases/latest">Releases</a>. To check the download, compare it with the <code>.sha256</code> file: <code>sha256sum -c maravi-0.1.0-linux-x86_64.tar.gz.sha256</code></li><li>Unpack it where you keep your programs, for example your home folder: <code>tar -xzf maravi-0.1.0-linux-x86_64.tar.gz</code></li><li>Start it: <code>./maravi-0.1.0-linux-x86_64/maravi</code> The browser opens at <code>http://127.0.0.1:5001/</code>. If it does not, open that address yourself.</li><li>To stop Maravi, press Ctrl+C in the terminal (or close it).</li></ol>
-<p>If port 5001 is busy, choose another one: <code>MARAVI_PORT=5052 ./maravi-0.1.0-linux-x86_64/maravi</code></p>
+<ol><li>Install FFmpeg:<ul><li>Ubuntu, Mint, Debian: <code>sudo apt install ffmpeg</code></li><li>Fedora: enable RPM Fusion, then <code>sudo dnf install ffmpeg</code></li><li>Arch: <code>sudo pacman -S ffmpeg</code></li></ul></li><li>Download <code>maravi-0.1.1-linux-x86_64.tar.xz</code> from <a href="https://github.com/lucioaraujo/maravi/releases/latest">Releases</a>. To check the download, compare it with the <code>.sha256</code> file: <code>sha256sum -c maravi-0.1.1-linux-x86_64.tar.xz.sha256</code></li><li>Unpack it where you keep your programs, for example your home folder: <code>tar -xf maravi-0.1.1-linux-x86_64.tar.xz</code></li><li>Start it: <code>./maravi-0.1.1-linux-x86_64/maravi</code> The browser opens at <code>http://127.0.0.1:5001/</code>. If it does not, open that address yourself.</li><li>To stop Maravi, press Ctrl+C in the terminal (or close it).</li></ol>
+<p>If port 5001 is busy, choose another one: <code>MARAVI_PORT=5052 ./maravi-0.1.1-linux-x86_64/maravi</code></p>
 <h3 id="reading-printed-scores-optional">Reading printed scores (optional)</h3>
 <p>The "PDF / image" page needs four more programs. Without them Maravi still works for audio, and the page says what is missing.</p>
 <ul><li>Ubuntu, Mint, Debian: <code>sudo apt install poppler-utils imagemagick musescore3</code></li></ul>
@@ -99,7 +99,7 @@
 <h3 id="your-files">Your files</h3>
 <p>Each job lives in a temporary folder (<code>/tmp/maravi_webapp_jobs/</code>), shown on the result page. The system may clear it on restart. <strong>Save or download your MusicXML and MIDI before closing.</strong> Maravi never changes the file you chose.</p>
 <h3 id="uninstall">Uninstall</h3>
-<p>Delete the <code>maravi-0.1.0-linux-x86_64</code> folder. Maravi writes nothing else outside the temporary folder.</p>
+<p>Delete the <code>maravi-0.1.1-linux-x86_64</code> folder. Maravi writes nothing else outside the temporary folder.</p>
 <h2 id="from-source">From source</h2>
 <p>For developers, on any system with Python 3.12 (tested only on Linux):</p>
 <pre><code>git clone https://github.com/lucioaraujo/maravi.git &amp;&amp; cd maravi

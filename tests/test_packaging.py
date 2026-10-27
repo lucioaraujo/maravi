@@ -49,13 +49,13 @@ class PackagingTests(unittest.TestCase):
             self.assertIn('"$here/Maravi-9.9.9-linux-x86_64"', launcher.read_text())
             self.assertIn("v9.9.9/INSTALL.md", (output / "README.txt").read_text())
             archive = build_linux.write_archive(output, Path(folder) / "out", "9.9.9")
-            self.assertEqual(archive.name, "maravi-9.9.9-linux-x86_64.tar.gz")
+            self.assertEqual(archive.name, "maravi-9.9.9-linux-x86_64.tar.xz")
             import tarfile
             with tarfile.open(archive) as tar:
                 names = tar.getnames()
             self.assertIn("maravi-9.9.9-linux-x86_64/maravi", names)
             digest = (archive.parent / (archive.name + ".sha256")).read_text()
-            self.assertTrue(digest.endswith("  maravi-9.9.9-linux-x86_64.tar.gz\n"))
+            self.assertTrue(digest.endswith("  maravi-9.9.9-linux-x86_64.tar.xz\n"))
             with self.assertRaises(SystemExit):
                 build_linux.write_archive(output, Path(folder) / "out", "9.9.9")
 

@@ -82,16 +82,16 @@ jobs:
           name: maravi-linux
           path: pkgs
 
-      - name: Tools of the test (curl, tar)
+      - name: Tools of the test (curl, tar, xz)
         run: |
-          if command -v apt-get >/dev/null; then apt-get update && apt-get install -y --no-install-recommends curl ca-certificates tar gzip
-          elif command -v dnf >/dev/null; then dnf install -y curl tar gzip
-          elif command -v pacman >/dev/null; then pacman -Sy --noconfirm curl tar gzip
+          if command -v apt-get >/dev/null; then apt-get update && apt-get install -y --no-install-recommends curl ca-certificates tar xz-utils
+          elif command -v dnf >/dev/null; then dnf install -y curl tar xz
+          elif command -v pacman >/dev/null; then pacman -Sy --noconfirm curl tar xz
           fi
 
       - name: Unpack, start, answer
         run: |
-          cd pkgs && sha256sum -c *.tar.gz.sha256 && tar -xzf *.tar.gz
+          cd pkgs && sha256sum -c *.tar.xz.sha256 && tar -xf *.tar.xz
           dir=$(find . -maxdepth 1 -type d -name 'maravi-*-linux-x86_64' | head -1)
           "$dir/maravi" --version
           MARAVI_PORT=5077 "$dir/maravi" > server.log 2>&1 & pid=$!
@@ -129,4 +129,4 @@ jobs:
           ---
 
           Gravações de melodias em partituras legíveis, no seu computador. **Linux x86_64**; requer FFmpeg. Passo a passo em português no [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md#português)." \
-            pkgs/*.tar.gz pkgs/*.tar.gz.sha256
+            pkgs/*.tar.xz pkgs/*.tar.xz.sha256

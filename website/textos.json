@@ -45,7 +45,7 @@
   ],
   "h1": "Da escuta<br>à <em>escrita.</em>",
   "lead": "Maravi propõe uma partitura para que o músico possa ouvir de novo, corrigir e continuar a ideia musical. A escrita deve ser legível; a interpretação não cabe inteira em notas.",
-  "status": "Versão 0.1.0 para Linux, gratuita e de código aberto. Roda no seu computador; nada é enviado à internet.",
+  "status": "Versão 0.1.1 para Linux, gratuita e de código aberto. Roda no seu computador; nada é enviado à internet.",
   "buttons": [
    "Baixar para Linux",
    "Como instalar",
@@ -169,7 +169,7 @@
   ],
   "h1": "From listening<br>to <em>notation.</em>",
   "lead": "Maravi proposes a score you can listen back to, correct, and use to continue a musical idea. Notation should be readable; a performance cannot be reduced to notes alone.",
-  "status": "Version 0.1.0 for Linux, free and open source. It runs on your computer; nothing is sent to the internet.",
+  "status": "Version 0.1.1 for Linux, free and open source. It runs on your computer; nothing is sent to the internet.",
   "buttons": [
    "Download for Linux",
    "How to install",
@@ -293,7 +293,7 @@
   ],
   "h1": "De l'écoute<br>à <em>l'écriture.</em>",
   "lead": "Maravi propose une partition que le musicien peut réécouter, corriger et prolonger. L'écriture doit rester lisible ; l'interprétation ne tient pas tout entière dans les notes.",
-  "status": "Version 0.1.0 pour Linux, gratuite et libre. Elle fonctionne sur votre ordinateur ; rien n&#x27;est envoyé sur Internet.",
+  "status": "Version 0.1.1 pour Linux, gratuite et libre. Elle fonctionne sur votre ordinateur ; rien n&#x27;est envoyé sur Internet.",
   "buttons": [
    "Télécharger pour Linux",
    "Comment installer",
@@ -417,7 +417,7 @@
   ],
   "h1": "De la escucha<br>a la <em>escritura.</em>",
   "lead": "Maravi propone una partitura para que el músico vuelva a escuchar, corrija y continúe la idea musical. La escritura debe ser legible; la interpretación no cabe entera en las notas.",
-  "status": "Versión 0.1.0 para Linux, gratuita y de código abierto. Funciona en su computadora; nada se envía a internet.",
+  "status": "Versión 0.1.1 para Linux, gratuita y de código abierto. Funciona en su computadora; nada se envía a internet.",
   "buttons": [
    "Descargar para Linux",
    "Cómo instalar",

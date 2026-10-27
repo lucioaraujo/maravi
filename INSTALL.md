@@ -2,7 +2,7 @@
 
 **English** · [Português](#português) · [Français](#français) · [Español](#español)
 
-Maravi 0.1.0 ships as a package for **Linux x86_64**. It runs on your
+Maravi 0.1.1 ships as a package for **Linux x86_64**. It runs on your
 computer: a small local server on `127.0.0.1` and your browser as the
 interface. Nothing is sent over the network.
 
@@ -11,7 +11,7 @@ interface. Nothing is sent over the network.
 - Linux x86_64 with glibc 2.35 or newer: Ubuntu 22.04 or newer, Linux Mint
   21 or newer, Debian 12 or newer, Fedora, Arch, openSUSE Tumbleweed.
 - A web browser (Firefox, Chromium, Chrome).
-- About 1 GB free on disk (the unpacked package takes ~400 MB).
+- About 1 GB free on disk (the unpacked package takes ~350 MB).
 - **FFmpeg** (required: Maravi uses it to read audio files).
 - Only to read printed scores (PDF or image), optionally: **Audiveris**,
   **MuseScore**, **Poppler** and **ImageMagick**.
@@ -24,19 +24,19 @@ Windows and macOS are not supported in this version.
    - Ubuntu, Mint, Debian: `sudo apt install ffmpeg`
    - Fedora: enable RPM Fusion, then `sudo dnf install ffmpeg`
    - Arch: `sudo pacman -S ffmpeg`
-2. Download `maravi-0.1.0-linux-x86_64.tar.gz` from
+2. Download `maravi-0.1.1-linux-x86_64.tar.xz` from
    [Releases](https://github.com/lucioaraujo/maravi/releases/latest). To
    check the download, compare it with the `.sha256` file:
-   `sha256sum -c maravi-0.1.0-linux-x86_64.tar.gz.sha256`
+   `sha256sum -c maravi-0.1.1-linux-x86_64.tar.xz.sha256`
 3. Unpack it where you keep your programs, for example your home folder:
-   `tar -xzf maravi-0.1.0-linux-x86_64.tar.gz`
-4. Start it: `./maravi-0.1.0-linux-x86_64/maravi`
+   `tar -xf maravi-0.1.1-linux-x86_64.tar.xz`
+4. Start it: `./maravi-0.1.1-linux-x86_64/maravi`
    The browser opens at `http://127.0.0.1:5001/`. If it does not, open that
    address yourself.
 5. To stop Maravi, press Ctrl+C in the terminal (or close it).
 
 If port 5001 is busy, choose another one:
-`MARAVI_PORT=5052 ./maravi-0.1.0-linux-x86_64/maravi`
+`MARAVI_PORT=5052 ./maravi-0.1.1-linux-x86_64/maravi`
 
 ### Reading printed scores (optional)
 
@@ -60,7 +60,7 @@ MusicXML and MIDI before closing.** Maravi never changes the file you chose.
 
 ### Uninstall
 
-Delete the `maravi-0.1.0-linux-x86_64` folder. Maravi writes nothing else
+Delete the `maravi-0.1.1-linux-x86_64` folder. Maravi writes nothing else
 outside the temporary folder.
 
 ## From source
@@ -83,13 +83,13 @@ Technical notes (dependencies, the package recipe, smoke tests):
 
 ## Português
 
-O Maravi 0.1.0 sai como pacote para **Linux x86_64**. Roda no seu
+O Maravi 0.1.1 sai como pacote para **Linux x86_64**. Roda no seu
 computador: um pequeno servidor local em `127.0.0.1` e o navegador como
 interface. Nada é enviado pela rede.
 
 **Requisitos:** Linux x86_64 com glibc 2.35 ou mais nova (Ubuntu 22.04+,
 Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE Tumbleweed); um
-navegador; cerca de 1 GB livre em disco (o pacote aberto ocupa ~400 MB); o
+navegador; cerca de 1 GB livre em disco (o pacote aberto ocupa ~350 MB); o
 **FFmpeg** (obrigatório, para ler os arquivos de áudio). Só para ler
 partituras impressas, opcionais: **Audiveris**, **MuseScore**, **Poppler** e
 **ImageMagick**. Windows e macOS não têm suporte nesta versão.
@@ -99,17 +99,17 @@ partituras impressas, opcionais: **Audiveris**, **MuseScore**, **Poppler** e
 1. Instale o FFmpeg: Ubuntu, Mint, Debian: `sudo apt install ffmpeg`;
    Fedora: ative o RPM Fusion e `sudo dnf install ffmpeg`; Arch:
    `sudo pacman -S ffmpeg`.
-2. Baixe `maravi-0.1.0-linux-x86_64.tar.gz` em
+2. Baixe `maravi-0.1.1-linux-x86_64.tar.xz` em
    [Releases](https://github.com/lucioaraujo/maravi/releases/latest). Para
-   conferir o download: `sha256sum -c maravi-0.1.0-linux-x86_64.tar.gz.sha256`
+   conferir o download: `sha256sum -c maravi-0.1.1-linux-x86_64.tar.xz.sha256`
 3. Descompacte onde guarda seus programas, por exemplo na pasta pessoal:
-   `tar -xzf maravi-0.1.0-linux-x86_64.tar.gz`
-4. Abra: `./maravi-0.1.0-linux-x86_64/maravi`. O navegador abre em
+   `tar -xf maravi-0.1.1-linux-x86_64.tar.xz`
+4. Abra: `./maravi-0.1.1-linux-x86_64/maravi`. O navegador abre em
    `http://127.0.0.1:5001/`; se não abrir, digite esse endereço.
 5. Para fechar, Ctrl+C no terminal (ou feche o terminal).
 
 Se a porta 5001 estiver ocupada:
-`MARAVI_PORT=5052 ./maravi-0.1.0-linux-x86_64/maravi`
+`MARAVI_PORT=5052 ./maravi-0.1.1-linux-x86_64/maravi`
 
 **Partituras impressas (opcional).** A página "PDF / imagem" precisa de mais
 quatro programas; sem eles, o áudio funciona e a página diz o que falta.
@@ -125,21 +125,21 @@ MuseScore fora do `PATH`, `MARAVI_MUSESCORE_BIN`.
 pode limpar ao reiniciar. **Guarde ou baixe o MusicXML e o MIDI antes de
 fechar.** O arquivo que você escolheu nunca é alterado.
 
-**Desinstalar:** apague a pasta `maravi-0.1.0-linux-x86_64`. **A partir do
+**Desinstalar:** apague a pasta `maravi-0.1.1-linux-x86_64`. **A partir do
 código** (desenvolvedores, Python 3.12): veja [From source](#from-source).
 
 ---
 
 ## Français
 
-Maravi 0.1.0 est distribué en paquet pour **Linux x86_64**. Il fonctionne
+Maravi 0.1.1 est distribué en paquet pour **Linux x86_64**. Il fonctionne
 sur votre ordinateur : un petit serveur local sur `127.0.0.1` et le
 navigateur comme interface. Rien n'est envoyé sur le réseau.
 
 **Configuration requise :** Linux x86_64 avec glibc 2.35 ou plus récente
 (Ubuntu 22.04+, Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE
 Tumbleweed) ; un navigateur ; environ 1 Go libre (le paquet décompressé
-occupe ~400 Mo) ; **FFmpeg** (obligatoire, pour lire les fichiers audio).
+occupe ~350 Mo) ; **FFmpeg** (obligatoire, pour lire les fichiers audio).
 Seulement pour lire des partitions imprimées, facultatifs : **Audiveris**,
 **MuseScore**, **Poppler** et **ImageMagick**. Windows et macOS ne sont pas
 pris en charge dans cette version.
@@ -149,17 +149,17 @@ pris en charge dans cette version.
 1. Installez FFmpeg : Ubuntu, Mint, Debian : `sudo apt install ffmpeg` ;
    Fedora : activez RPM Fusion puis `sudo dnf install ffmpeg` ; Arch :
    `sudo pacman -S ffmpeg`.
-2. Téléchargez `maravi-0.1.0-linux-x86_64.tar.gz` dans
+2. Téléchargez `maravi-0.1.1-linux-x86_64.tar.xz` dans
    [Releases](https://github.com/lucioaraujo/maravi/releases/latest). Pour
-   vérifier : `sha256sum -c maravi-0.1.0-linux-x86_64.tar.gz.sha256`
+   vérifier : `sha256sum -c maravi-0.1.1-linux-x86_64.tar.xz.sha256`
 3. Décompressez-le, par exemple dans votre dossier personnel :
-   `tar -xzf maravi-0.1.0-linux-x86_64.tar.gz`
-4. Lancez : `./maravi-0.1.0-linux-x86_64/maravi`. Le navigateur s'ouvre sur
+   `tar -xf maravi-0.1.1-linux-x86_64.tar.xz`
+4. Lancez : `./maravi-0.1.1-linux-x86_64/maravi`. Le navigateur s'ouvre sur
    `http://127.0.0.1:5001/` ; sinon, saisissez cette adresse.
 5. Pour l'arrêter, Ctrl+C dans le terminal (ou fermez-le).
 
 Si le port 5001 est occupé :
-`MARAVI_PORT=5052 ./maravi-0.1.0-linux-x86_64/maravi`
+`MARAVI_PORT=5052 ./maravi-0.1.1-linux-x86_64/maravi`
 
 **Partitions imprimées (facultatif).** La page « PDF / image » demande
 quatre programmes de plus ; sans eux, l'audio fonctionne et la page indique
@@ -176,7 +176,7 @@ hors du `PATH`, `MARAVI_MUSESCORE_BIN`.
 peut vider au redémarrage. **Enregistrez ou téléchargez le MusicXML et le
 MIDI avant de fermer.** Le fichier choisi n'est jamais modifié.
 
-**Désinstaller :** supprimez le dossier `maravi-0.1.0-linux-x86_64`. **Depuis
+**Désinstaller :** supprimez le dossier `maravi-0.1.1-linux-x86_64`. **Depuis
 le code source** (développeurs, Python 3.12) : voir
 [From source](#from-source).
 
@@ -184,14 +184,14 @@ le code source** (développeurs, Python 3.12) : voir
 
 ## Español
 
-Maravi 0.1.0 se distribuye como paquete para **Linux x86_64**. Funciona en
+Maravi 0.1.1 se distribuye como paquete para **Linux x86_64**. Funciona en
 su computadora: un pequeño servidor local en `127.0.0.1` y el navegador como
 interfaz. Nada se envía por la red.
 
 **Requisitos:** Linux x86_64 con glibc 2.35 o más reciente (Ubuntu 22.04+,
 Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE Tumbleweed); un
 navegador; cerca de 1 GB libre en disco (el paquete descomprimido ocupa
-~400 MB); **FFmpeg** (obligatorio, para leer los archivos de audio). Solo
+~350 MB); **FFmpeg** (obligatorio, para leer los archivos de audio). Solo
 para leer partituras impresas, opcionales: **Audiveris**, **MuseScore**,
 **Poppler** e **ImageMagick**. Windows y macOS no tienen soporte en esta
 versión.
@@ -201,17 +201,17 @@ versión.
 1. Instale FFmpeg: Ubuntu, Mint, Debian: `sudo apt install ffmpeg`; Fedora:
    active RPM Fusion y `sudo dnf install ffmpeg`; Arch:
    `sudo pacman -S ffmpeg`.
-2. Descargue `maravi-0.1.0-linux-x86_64.tar.gz` en
+2. Descargue `maravi-0.1.1-linux-x86_64.tar.xz` en
    [Releases](https://github.com/lucioaraujo/maravi/releases/latest). Para
-   verificar: `sha256sum -c maravi-0.1.0-linux-x86_64.tar.gz.sha256`
+   verificar: `sha256sum -c maravi-0.1.1-linux-x86_64.tar.xz.sha256`
 3. Descomprima, por ejemplo en su carpeta personal:
-   `tar -xzf maravi-0.1.0-linux-x86_64.tar.gz`
-4. Abra: `./maravi-0.1.0-linux-x86_64/maravi`. El navegador se abre en
+   `tar -xf maravi-0.1.1-linux-x86_64.tar.xz`
+4. Abra: `./maravi-0.1.1-linux-x86_64/maravi`. El navegador se abre en
    `http://127.0.0.1:5001/`; si no, escriba esa dirección.
 5. Para cerrarlo, Ctrl+C en la terminal (o cierre la terminal).
 
 Si el puerto 5001 está ocupado:
-`MARAVI_PORT=5052 ./maravi-0.1.0-linux-x86_64/maravi`
+`MARAVI_PORT=5052 ./maravi-0.1.1-linux-x86_64/maravi`
 
 **Partituras impresas (opcional).** La página «PDF / imagen» necesita cuatro
 programas más; sin ellos, el audio funciona y la página indica lo que falta.
@@ -227,6 +227,6 @@ MuseScore fuera del `PATH`, `MARAVI_MUSESCORE_BIN`.
 sistema puede vaciar al reiniciar. **Guarde o descargue el MusicXML y el
 MIDI antes de cerrar.** El archivo que usted eligió nunca se modifica.
 
-**Desinstalar:** borre la carpeta `maravi-0.1.0-linux-x86_64`. **Desde el
+**Desinstalar:** borre la carpeta `maravi-0.1.1-linux-x86_64`. **Desde el
 código fuente** (desarrolladores, Python 3.12): vea
 [From source](#from-source).

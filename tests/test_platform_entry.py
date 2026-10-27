@@ -14,7 +14,7 @@ class PlatformEntryTests(unittest.TestCase):
         with patch.object(run_maravi.sys, "argv", ["maravi", "--version"]), \
                 patch("builtins.print") as printed:
             run_maravi.main()
-        printed.assert_called_once_with("Maravi 0.1.0")
+        printed.assert_called_once_with("Maravi 0.1.1")
         source = Path("example.wav")
         with patch.object(sys, "frozen", True, create=True):
             self.assertEqual(preview_process_command(source, "left"),
