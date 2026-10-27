@@ -2,7 +2,7 @@
 
 ## 0.1.1 — a smaller package, 2026-10-27
 
-- **The download goes from 157 to about 103 MiB.** The package is now
+- **The download goes from 157 to 112 MiB.** The package is now
   compressed with xz: `maravi-0.1.1-linux-x86_64.tar.xz`, opened with
   `tar -xf`. The program inside is exactly the same.
 - Nothing else changes in the transcription.

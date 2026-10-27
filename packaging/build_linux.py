@@ -3,7 +3,7 @@
 Uso (dentro do venv de build): python -B packaging/build_linux.py [--archive PASTA]
 Com --archive, grava também maravi-<versão>-linux-x86_64.tar.xz e o SHA256
 nessa pasta (a CI da release, 2026-10-27). Desde a v0.1.1 o arquivo é
-.tar.xz: 157 → ~103 MiB. Os binários não são tocados: tirar os símbolos com
+.tar.xz: 157 → 112 MiB na CI (103 MiB no build local). Os binários não são tocados: tirar os símbolos com
 `strip` pouparia só mais ~4 MiB e, com o binutils 2.38 do Ubuntu 22.04 da
 CI, quebrou a pré-análise do binário (2026-10-27); por isso não se usa. Não publica nada. Requer
 PyInstaller instalado.
