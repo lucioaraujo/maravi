@@ -59,10 +59,24 @@
   </script>
   <!-- SEO:FIM -->
 </head>
-<body>
+<body class="score-workspace">
 <div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/en.html">RASGO — a family of instruments and sound research</a></div>
-<a class="skip-link" href="en.html#content">Skip to content</a>
-<header class="site-header"><a class="brand" href="https://rasgoinstruments.arquiviagem.net/en.html">RASGO<span> / Maravi</span></a><nav aria-label="Navigation"><a href="en.html#idea">Idea</a><a href="en.html#use">How to use</a><a href="en.html#research">Research</a><a href="en.html#about">About</a><a href="instalacao-en.html">Install</a><a href="en.html#contact">Contact</a></nav><nav class="languages" aria-label="Language"><a href="instalacao.html" lang="pt-BR">PT</a><a href="instalacao-en.html" lang="en" aria-current="page">EN</a><a href="instalacao-fr.html" lang="fr">FR</a><a href="instalacao-es.html" lang="es">ES</a></nav></header>
+<a class="skip-link" href="#conteudo">Skip to content</a>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="wordmark" href="en.html#idea" aria-label="Maravi">RASGO <span>/ MARAVI</span></a>
+    <nav class="header-actions" aria-label="Maravi">
+      <span class="local-badge"><span class="status-dot"></span> Version 0.1.0 · Linux</span>
+      <a href="en.html#use">How to use</a>
+      <a href="en.html#research">Research</a>
+      <a href="en.html#about">About</a>
+      <a href="instalacao-en.html">Install</a>
+      <a href="en.html#contact">Contact</a>
+    </nav>
+    <nav class="help-languages" aria-label="Language"><a href="instalacao.html" lang="pt-BR">PT</a><a href="instalacao-en.html" lang="en" aria-current="page">EN</a><a href="instalacao-fr.html" lang="fr">FR</a><a href="instalacao-es.html" lang="es">ES</a></nav>
+  </div>
+</header>
+
 <main id="conteudo" class="doc">
 <h1>Installing Maravi</h1>
 <p>Maravi 0.1.0 ships as a package for <strong>Linux x86_64</strong>. It runs on your computer: a small local server on <code>127.0.0.1</code> and your browser as the interface. Nothing is sent over the network.</p>
@@ -95,7 +109,9 @@ python3.12 -m venv .venv
 .venv/bin/python -m unittest discover -s tests -p &#x27;test_*.py&#x27;
 .venv/bin/python run_maravi.py</code></pre>
 <p>Technical notes (dependencies, the package recipe, smoke tests): [<code>INSTALL_LOCAL.md</code>](INSTALL_LOCAL.md), in Portuguese.</p>
-</main><footer><a href="https://rasgoinstruments.arquiviagem.net/en.html">RASGO portal</a><span>Maravi · research in musical notation · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">AGPLv3 license</a></span></footer>
+</main>
+
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>Maravi · research in musical notation · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">AGPLv3 license</a> · <a href="https://rasgoinstruments.arquiviagem.net/en.html">RASGO portal</a></span></footer>
 <dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-title">
   <button class="dialog-close" type="button" data-contact-close aria-label="Close contact window">×</button>
   <h2 id="contact-title">CONTACT</h2>

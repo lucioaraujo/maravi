@@ -59,10 +59,24 @@
   </script>
   <!-- SEO:FIM -->
 </head>
-<body>
+<body class="score-workspace">
 <div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/es.html">RASGO — familia de instrumentos e investigación sonora</a></div>
-<a class="skip-link" href="es.html#contenido">Ir al contenido</a>
-<header class="site-header"><a class="brand" href="https://rasgoinstruments.arquiviagem.net/es.html">RASGO<span> / Maravi</span></a><nav aria-label="Navegación"><a href="es.html#idea">Idea</a><a href="es.html#uso">Cómo usar</a><a href="es.html#investigacion">Investigación</a><a href="es.html#acerca">Acerca de</a><a href="instalacao-es.html">Instalación</a><a href="es.html#contacto">Contacto</a></nav><nav class="languages" aria-label="Idioma"><a href="instalacao.html" lang="pt-BR">PT</a><a href="instalacao-en.html" lang="en">EN</a><a href="instalacao-fr.html" lang="fr">FR</a><a href="instalacao-es.html" lang="es" aria-current="page">ES</a></nav></header>
+<a class="skip-link" href="#conteudo">Ir al contenido</a>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="wordmark" href="es.html#idea" aria-label="Maravi">RASGO <span>/ MARAVI</span></a>
+    <nav class="header-actions" aria-label="Maravi">
+      <span class="local-badge"><span class="status-dot"></span> Versión 0.1.0 · Linux</span>
+      <a href="es.html#uso">Cómo usar</a>
+      <a href="es.html#investigacion">Investigación</a>
+      <a href="es.html#acerca">Acerca de</a>
+      <a href="instalacao-es.html">Instalación</a>
+      <a href="es.html#contacto">Contacto</a>
+    </nav>
+    <nav class="help-languages" aria-label="Idioma"><a href="instalacao.html" lang="pt-BR">PT</a><a href="instalacao-en.html" lang="en">EN</a><a href="instalacao-fr.html" lang="fr">FR</a><a href="instalacao-es.html" lang="es" aria-current="page">ES</a></nav>
+  </div>
+</header>
+
 <main id="conteudo" class="doc">
 <h1>Instalar Maravi</h1>
 <p>Maravi 0.1.0 se distribuye como paquete para <strong>Linux x86_64</strong>. Funciona en su computadora: un pequeño servidor local en <code>127.0.0.1</code> y el navegador como interfaz. Nada se envía por la red.</p>
@@ -73,7 +87,9 @@
 <p><strong>Partituras impresas (opcional).</strong> La página «PDF / imagen» necesita cuatro programas más; sin ellos, el audio funciona y la página indica lo que falta. Ubuntu, Mint, Debian: <code>sudo apt install poppler-utils imagemagick musescore3</code> (o MuseScore 4 de <a href="https://musescore.org/">musescore.org</a>). Audiveris se descarga en las <a href="https://github.com/Audiveris/audiveris/releases">releases de Audiveris</a> (el <code>.deb</code> en Ubuntu); Maravi encuentra <code>/opt/audiveris/bin/Audiveris</code> solo, y para otra ubicación use <code>MARAVI_AUDIVERIS_BIN=/ruta/a/Audiveris</code>. Para MuseScore fuera del <code>PATH</code>, <code>MARAVI_MUSESCORE_BIN</code>.</p>
 <p><strong>Sus archivos.</strong> Cada trabajo queda en una carpeta temporal (<code>/tmp/maravi_webapp_jobs/</code>), indicada en la página del resultado, que el sistema puede vaciar al reiniciar. <strong>Guarde o descargue el MusicXML y el MIDI antes de cerrar.</strong> El archivo que usted eligió nunca se modifica.</p>
 <p><strong>Desinstalar:</strong> borre la carpeta <code>maravi-0.1.0-linux-x86_64</code>. <strong>Desde el código fuente</strong> (desarrolladores, Python 3.12): vea <a href="instalacao-en.html#from-source">From source</a>.</p>
-</main><footer><a href="https://rasgoinstruments.arquiviagem.net/es.html">Portal RASGO</a><span>Maravi · investigación en escritura musical · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licencia AGPLv3</a></span></footer>
+</main>
+
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>Maravi · investigación en escritura musical · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licencia AGPLv3</a> · <a href="https://rasgoinstruments.arquiviagem.net/es.html">Portal RASGO</a></span></footer>
 <dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-title">
   <button class="dialog-close" type="button" data-contact-close aria-label="Cerrar ventana de contacto">×</button>
   <h2 id="contact-title">CONTACTO</h2>

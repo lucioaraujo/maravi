@@ -59,17 +59,25 @@
   </script>
   <!-- SEO:FIM -->
 </head>
-<body>
-  <div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div>
+<body class="score-workspace">
+<div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/">RASGO — família de instrumentos e pesquisa sonora</a></div>
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-  <header class="site-header">
-    <a class="brand" href="https://rasgoinstruments.arquiviagem.net/">RASGO<span> / Maravi</span></a>
-    <nav aria-label="Navegação">
-      <a href="index.html#ideia">Ideia</a><a href="index.html#uso">Como usar</a><a href="index.html#pesquisa">Pesquisa</a><a href="index.html#sobre">Sobre</a><a href="instalacao.html">Instalação</a><a href="index.html#contato">Contato</a>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="wordmark" href="index.html#ideia" aria-label="Maravi">RASGO <span>/ MARAVI</span></a>
+    <nav class="header-actions" aria-label="Maravi">
+      <span class="local-badge"><span class="status-dot"></span> Versão 0.1.0 · Linux</span>
+      <a href="index.html#uso">Como usar</a>
+      <a href="index.html#pesquisa">Pesquisa</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="instalacao.html">Instalação</a>
+      <a href="index.html#contato">Contato</a>
     </nav>
-    <nav class="languages" aria-label="Idioma"><a href="instalacao.html" lang="pt-BR" aria-current="page">PT</a><a href="instalacao-en.html" lang="en">EN</a><a href="instalacao-fr.html" lang="fr">FR</a><a href="instalacao-es.html" lang="es">ES</a></nav>
-  </header>
-  <main id="conteudo" class="doc">
+    <nav class="help-languages" aria-label="Idioma"><a href="instalacao.html" lang="pt-BR" aria-current="page">PT</a><a href="instalacao-en.html" lang="en">EN</a><a href="instalacao-fr.html" lang="fr">FR</a><a href="instalacao-es.html" lang="es">ES</a></nav>
+  </div>
+</header>
+
+<main id="conteudo" class="doc">
 <h1>Instalar o Maravi</h1>
 <p>O Maravi 0.1.0 sai como pacote para <strong>Linux x86_64</strong>. Roda no seu computador: um pequeno servidor local em <code>127.0.0.1</code> e o navegador como interface. Nada é enviado pela rede.</p>
 <p><strong>Requisitos:</strong> Linux x86_64 com glibc 2.35 ou mais nova (Ubuntu 22.04+, Linux Mint 21+, Debian 12+, Fedora, Arch, openSUSE Tumbleweed); um navegador; cerca de 1 GB livre em disco (o pacote aberto ocupa ~400 MB); o <strong>FFmpeg</strong> (obrigatório, para ler os arquivos de áudio). Só para ler partituras impressas, opcionais: <strong>Audiveris</strong>, <strong>MuseScore</strong>, <strong>Poppler</strong> e <strong>ImageMagick</strong>. Windows e macOS não têm suporte nesta versão.</p>
@@ -80,7 +88,8 @@
 <p><strong>Seus arquivos.</strong> Cada trabalho fica numa pasta temporária (<code>/tmp/maravi_webapp_jobs/</code>), mostrada na página do resultado, que o sistema pode limpar ao reiniciar. <strong>Guarde ou baixe o MusicXML e o MIDI antes de fechar.</strong> O arquivo que você escolheu nunca é alterado.</p>
 <p><strong>Desinstalar:</strong> apague a pasta <code>maravi-0.1.0-linux-x86_64</code>. <strong>A partir do código</strong> (desenvolvedores, Python 3.12): veja <a href="instalacao-en.html#from-source">From source</a>.</p>
 </main>
-  <footer><a href="https://rasgoinstruments.arquiviagem.net/">Portal RASGO</a><span>Maravi · pesquisa em escrita musical · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licença AGPLv3</a></span></footer>
+
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>Maravi · pesquisa em escrita musical · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licença AGPLv3</a> · <a href="https://rasgoinstruments.arquiviagem.net/">Portal RASGO</a></span></footer>
 <dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-title">
   <button class="dialog-close" type="button" data-contact-close aria-label="Fechar janela de contato">×</button>
   <h2 id="contact-title">CONTATO</h2>

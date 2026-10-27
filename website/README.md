@@ -6,19 +6,28 @@
 
 ## Páginas e como gerar
 
-- `index.html` (português, canônica), `en.html`, `fr.html`, `es.html`: a
-  página Sobre, **editada à mão** (a fonte; o texto editorial confirmado
-  pelo autor em 22–23 out. 2026, com as mudanças da publicação).
-- `instalacao*.html`: **derivadas** do `INSTALL.md` do repositório por
-  `python3 gerar_instalacao.py`, que lê o cabeçalho e o rodapé das páginas
-  Sobre e aplica o `seo.py`. Editar o `INSTALL.md`, nunca essas páginas.
+**Layout do aplicativo** (o autor, 2026-10-27: "cria o site com o mesmo
+layout do aplicativo"): papel pautado, cabeçalho verde com a linha
+dourada, o painel de introdução com a pauta em SVG e o painel de cartões
+numerados, copiados da tela inicial do app (`webapp/templates/index.html`,
+camada `score-workspace` de `webapp/static/style.css`).
+
+- `index.html` (português, canônica), `en.html`, `fr.html`, `es.html`:
+  **derivadas**, por `python3 gerar_paginas.py`. Os textos do app (título,
+  pauta, legenda, o caminho em quatro passos) vêm de `webapp/i18n.py`; os do
+  site (como usar, pesquisa, sobre, créditos, contato) de `textos.json`, o
+  texto editorial confirmado pelo autor em 22–23 out. 2026 com as mudanças
+  da publicação. Editar ali, nunca nos .html.
+- `instalacao*.html`: **derivadas** do `INSTALL.md` por
+  `python3 gerar_instalacao.py`, que reaproveita o cabeçalho e o rodapé das
+  páginas Sobre e aplica o `seo.py`.
 - `seo.py`: os metadados (canonical, hreflang, Open Graph, JSON-LD) e o
   `sitemap.xml`; o código comum da família RASGO, copiado do Aquorbium; só a
-  configuração do topo é do Maravi. A imagem de compartilhamento
-  `assets/og-maravi.jpg` (1200×630) é uma captura do app.
+  configuração do topo é do Maravi. `assets/og-maravi.jpg` (1200×630) e
+  `assets/maravi-interface-1920x1006.png` são capturas do app.
 
-Depois de editar uma página Sobre: `python3 gerar_instalacao.py` (refaz as
-de instalação e os metadados). Os testes estão em `tests/test_website.py`.
+Para refazer tudo: `python3 gerar_paginas.py && python3 gerar_instalacao.py`.
+Os testes estão em `tests/test_website.py`.
 
 ## Regras da família
 

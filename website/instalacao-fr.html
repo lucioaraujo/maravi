@@ -59,10 +59,24 @@
   </script>
   <!-- SEO:FIM -->
 </head>
-<body>
+<body class="score-workspace">
 <div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/fr.html">RASGO — famille d&#x27;instruments et de recherche sonore</a></div>
-<a class="skip-link" href="fr.html#contenu">Aller au contenu</a>
-<header class="site-header"><a class="brand" href="https://rasgoinstruments.arquiviagem.net/fr.html">RASGO<span> / Maravi</span></a><nav aria-label="Navigation"><a href="fr.html#idee">Idée</a><a href="fr.html#usage">Mode d'emploi</a><a href="fr.html#recherche">Recherche</a><a href="fr.html#apropos">À propos</a><a href="instalacao-fr.html">Installation</a><a href="fr.html#contact">Contact</a></nav><nav class="languages" aria-label="Langue"><a href="instalacao.html" lang="pt-BR">PT</a><a href="instalacao-en.html" lang="en">EN</a><a href="instalacao-fr.html" lang="fr" aria-current="page">FR</a><a href="instalacao-es.html" lang="es">ES</a></nav></header>
+<a class="skip-link" href="#conteudo">Aller au contenu</a>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="wordmark" href="fr.html#idee" aria-label="Maravi">RASGO <span>/ MARAVI</span></a>
+    <nav class="header-actions" aria-label="Maravi">
+      <span class="local-badge"><span class="status-dot"></span> Version 0.1.0 · Linux</span>
+      <a href="fr.html#usage">Mode d'emploi</a>
+      <a href="fr.html#recherche">Recherche</a>
+      <a href="fr.html#apropos">À propos</a>
+      <a href="instalacao-fr.html">Installation</a>
+      <a href="fr.html#contact">Contact</a>
+    </nav>
+    <nav class="help-languages" aria-label="Langue"><a href="instalacao.html" lang="pt-BR">PT</a><a href="instalacao-en.html" lang="en">EN</a><a href="instalacao-fr.html" lang="fr" aria-current="page">FR</a><a href="instalacao-es.html" lang="es">ES</a></nav>
+  </div>
+</header>
+
 <main id="conteudo" class="doc">
 <h1>Installer Maravi</h1>
 <p>Maravi 0.1.0 est distribué en paquet pour <strong>Linux x86_64</strong>. Il fonctionne sur votre ordinateur : un petit serveur local sur <code>127.0.0.1</code> et le navigateur comme interface. Rien n'est envoyé sur le réseau.</p>
@@ -73,7 +87,9 @@
 <p><strong>Partitions imprimées (facultatif).</strong> La page « PDF / image » demande quatre programmes de plus ; sans eux, l'audio fonctionne et la page indique ce qui manque. Ubuntu, Mint, Debian : <code>sudo apt install poppler-utils imagemagick musescore3</code> (ou MuseScore 4 sur <a href="https://musescore.org/">musescore.org</a>). Audiveris se télécharge dans les <a href="https://github.com/Audiveris/audiveris/releases">releases d'Audiveris</a> (le <code>.deb</code> sous Ubuntu) ; Maravi trouve <code>/opt/audiveris/bin/Audiveris</code> tout seul, sinon utilisez <code>MARAVI_AUDIVERIS_BIN=/chemin/vers/Audiveris</code>. Pour MuseScore hors du <code>PATH</code>, <code>MARAVI_MUSESCORE_BIN</code>.</p>
 <p><strong>Vos fichiers.</strong> Chaque travail vit dans un dossier temporaire (<code>/tmp/maravi_webapp_jobs/</code>), indiqué sur la page du résultat, que le système peut vider au redémarrage. <strong>Enregistrez ou téléchargez le MusicXML et le MIDI avant de fermer.</strong> Le fichier choisi n'est jamais modifié.</p>
 <p><strong>Désinstaller :</strong> supprimez le dossier <code>maravi-0.1.0-linux-x86_64</code>. <strong>Depuis le code source</strong> (développeurs, Python 3.12) : voir <a href="instalacao-en.html#from-source">From source</a>.</p>
-</main><footer><a href="https://rasgoinstruments.arquiviagem.net/fr.html">Portail RASGO</a><span>Maravi · recherche en écriture musicale · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licence AGPLv3</a></span></footer>
+</main>
+
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>Maravi · recherche en écriture musicale · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licence AGPLv3</a> · <a href="https://rasgoinstruments.arquiviagem.net/fr.html">Portail RASGO</a></span></footer>
 <dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-title">
   <button class="dialog-close" type="button" data-contact-close aria-label="Fermer la fenêtre de contact">×</button>
   <h2 id="contact-title">CONTACT</h2>

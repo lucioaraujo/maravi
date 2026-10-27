@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Maravi, projet RASGO d'écoute et d'écriture musicale : audio ou partition imprimée vers MusicXML et MIDI modifiables.">
+  <meta name="description" content="Maravi, projet RASGO d&#x27;écoute et d&#x27;écriture musicale : audio ou partition imprimée vers MusicXML et MIDI modifiables.">
   <title>Maravi — de l'écoute à l'écriture</title>
   <link rel="stylesheet" href="styles.css">
   <!-- SEO:INICIO — gerado por seo.py; editar lá, não aqui -->
@@ -59,17 +59,127 @@
   </script>
   <!-- SEO:FIM -->
 </head>
-<body>
+<body class="score-workspace">
 <div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/fr.html">RASGO — famille d&#x27;instruments et de recherche sonore</a></div>
-<a class="skip-link" href="#contenu">Aller au contenu</a>
-<header class="site-header"><a class="brand" href="https://rasgoinstruments.arquiviagem.net/fr.html">RASGO<span> / Maravi</span></a><nav aria-label="Navigation"><a href="#idee">Idée</a><a href="#usage">Mode d'emploi</a><a href="#recherche">Recherche</a><a href="#apropos">À propos</a><a href="instalacao-fr.html">Installation</a><a href="#contact">Contact</a></nav><nav class="languages" aria-label="Langue"><a href="index.html" lang="pt-BR">PT</a><a href="en.html" lang="en">EN</a><a href="fr.html" lang="fr" aria-current="page">FR</a><a href="es.html" lang="es">ES</a></nav></header>
-<main id="contenu">
-<section class="hero" id="idee"><div><p class="eyebrow">ÉCOUTE · ÉCRITURE · RÉVISION</p><h1>De l'écoute<br>à <em>l'écriture.</em></h1><p class="lead">Maravi propose une partition que le musicien peut réécouter, corriger et prolonger. L'écriture doit rester lisible ; l'interprétation ne tient pas tout entière dans les notes.</p><p class="status">Version 0.1.0 pour Linux, gratuite et libre. Elle fonctionne sur votre ordinateur ; rien n&#x27;est envoyé sur Internet.</p><div class="actions"><a class="button button-primary" href="https://github.com/lucioaraujo/maravi/releases/latest">Télécharger pour Linux</a><a class="button" href="instalacao-fr.html">Comment installer</a></div></div><div class="score-art" role="img" aria-label="Portée illustrative avec des notes formant une phrase, et non une sortie de Maravi"><span class="score-label">une phrase, pas une mesure automatique</span><div class="staff"><span class="note n1"></span><span class="note n2"></span><span class="note n3"></span><span class="note n4"></span><span class="bar"></span><span class="note n5"></span><span class="note n6"></span></div><span class="score-note">Exemple graphique, pas une transcription produite par l'application.</span></div></section>
-<section class="section" id="usage"><p class="eyebrow">MODE D'EMPLOI</p><h2>Partir d'une idée musicale.</h2><div class="cards"><article><span class="index">01 / AUDIO</span><h3>Enregistrement → mélodie</h3><p>Une voix ou un instrument mélodique peut produire un brouillon MusicXML et MIDI. Le musicien peut indiquer le tempo, la tonalité et l'instrument de la portée ; ces choix n'isolent pas un instrument dans un mixage.</p></article><article><span class="index">02 / PARTITION</span><h3>PDF ou image → écriture modifiable</h3><p>Les partitions imprimées peuvent passer par la reconnaissance optique. Une page du PDF peut être sélectionnée. Il reste à vérifier notes, rythmes, liaisons et continuité entre les pages.</p></article></div><div class="guides"><article><h3>Si vous avez un enregistrement</h3><ol><li>Choisissez un audio avec une mélodie claire. Une voix ou un instrument solo marche mieux qu'un orchestre entier.</li><li>Choisissez vous-même l'instrument de la portée, si vous le souhaitez. Si vous ignorez le tempo ou la tonalité, l'analyse peut suggérer des valeurs à vérifier ; elle n'identifie pas les instruments.</li><li>Lancez la transcription et attendez. Téléchargez le MusicXML pour corriger la partition et le MIDI pour écouter les notes détectées.</li><li>Comparez la première note, le rythme et chaque phrase avec l'audio. Corrigez la partition dans votre éditeur musical avant de l'utiliser.</li></ol></article><article><h3>Si vous avez une partition imprimée</h3><ol><li>Choisissez un PDF ou une image lisible. Vous pouvez sélectionner une page précise du PDF.</li><li>La reconnaissance lit les symboles et crée un brouillon modifiable. Audiveris et MuseScore doivent être installés sur votre ordinateur.</li><li>Ouvrez le MusicXML dans MuseScore ou un autre éditeur. Vérifiez hauteurs, silences, altérations, liaisons et changements de mesure à partir de la source.</li></ol></article></div><p class="section-note">MusicXML sert à modifier l'écriture ; MIDI garde les événements de notes pour l'écoute, mais ne remplace pas la partition. Maravi ne modifie pas le fichier d'origine. Le traitement se fait sur votre ordinateur dans une page du navigateur local ; le portail RASGO ne reçoit aucun fichier.</p></section>
-<section class="section section-alt" id="recherche"><p class="eyebrow">RECHERCHE ET AVANCÉES</p><h2>Apprendre à écrire ce qu'on entend.</h2><p>La recherche demande comment transformer un son en partition qu'une personne puisse lire et jouer, sans faire de chaque fluctuation de l'audio une nouvelle note. Des chemins locaux existent déjà de l'audio vers la mélodie et du PDF/de l'image vers MusicXML et MIDI, ainsi que des suggestions de tempo et de tonalité que le musicien peut accepter ou corriger.</p><p>Les limites orientent la suite : l'audio principal écrit une ligne mélodique, sans séparer automatiquement les instruments d'un mixage. Le piano à deux portées et la reconnaissance des partitions imprimées sont expérimentaux. Chaque sortie doit être comparée à l'enregistrement ou à la page d'origine.</p><p>La v0.1.0 est la première version publique : un paquet pour Linux x86_64, construit et testé automatiquement sur cinq distributions, avec les avis de licence de chaque dépendance. Windows et macOS n&#x27;ont pas encore été testés. Un service en ligne qui reçoit des fichiers ne fait pas partie de cette version.</p></section>
-<section class="section" id="apropos"><p class="eyebrow">À PROPOS DE MARAVI</p><h2>Écrire pour écouter autrement.</h2><p>Maravi est un dispositif d'étude, de notation et d'organisation de matériaux musicaux de la famille RASGO, créé par Lúcio de Araújo. Il fait partie d'une recherche sur l'écoute et la transcription musicale : proposer une écriture lisible sans confondre le résultat d'un détecteur avec l'intention du musicien. Son code propre est disponible sous <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPLv3 ou ultérieure</a>.</p><h3>Outils et crédits</h3><ul class="credit-list"><li><a href="https://github.com/spotify/basic-pitch">Spotify Basic Pitch</a> (Apache 2.0) : hypothèses de notes à partir de l'audio.</li><li><a href="https://github.com/librosa/librosa">librosa</a> (ISC) : analyse audio et du tempo.</li><li><a href="https://github.com/Audiveris/audiveris">Audiveris</a> (AGPLv3) : reconnaissance des partitions imprimées, installé séparément.</li><li><a href="https://github.com/musescore/MuseScore">MuseScore Studio</a> (GPLv3) : conversion et révision de la partition, installé séparément.</li><li><a href="https://ffmpeg.org/">FFmpeg</a>, <a href="https://poppler.freedesktop.org/">Poppler</a> et <a href="https://imagemagick.org/">ImageMagick</a> : conversion et préparation locale des fichiers. Versions et licences restent à vérifier avant d'inclure des binaires dans un paquet.</li></ul><p>Maravi n&#x27;a pas créé ces outils. Le paquet Linux inclut les bibliothèques Python (Basic Pitch, librosa et d&#x27;autres) avec leurs avis de licence ; FFmpeg, Audiveris, MuseScore, Poppler et ImageMagick s&#x27;installent à part, sur votre ordinateur. La licence du programme ne change pas les droits des musiques, enregistrements ou partitions d&#x27;origine. Les polices de la page (Fraunces, Work Sans, JetBrains Mono) sont libres, sous la SIL OFL 1.1.</p></section>
-<section class="section" id="contact"><p class="eyebrow">CONTACT</p><h2>Parlons du Maravi.</h2><p>Pour toute question, retour d&#x27;usage ou collaboration de recherche, écrivez à Lúcio de Araújo.</p><div class="actions"><a class="button button-primary" href="#contact" data-contact-trigger>Écrire</a><a class="button" href="https://github.com/lucioaraujo/maravi">Code sur GitHub</a></div></section>
-</main><footer><a href="https://rasgoinstruments.arquiviagem.net/fr.html">Portail RASGO</a><span>Maravi · recherche en écriture musicale · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licence AGPLv3</a></span></footer>
+<a class="skip-link" href="#conteudo">Aller au contenu</a>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="wordmark" href="fr.html#idee" aria-label="Maravi">RASGO <span>/ MARAVI</span></a>
+    <nav class="header-actions" aria-label="Maravi">
+      <span class="local-badge"><span class="status-dot"></span> Version 0.1.0 · Linux</span>
+      <a href="#usage">Mode d'emploi</a>
+      <a href="#recherche">Recherche</a>
+      <a href="#apropos">À propos</a>
+      <a href="instalacao-fr.html">Installation</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <nav class="help-languages" aria-label="Langue"><a href="index.html" lang="pt-BR">PT</a><a href="en.html" lang="en">EN</a><a href="fr.html" lang="fr" aria-current="page">FR</a><a href="es.html" lang="es">ES</a></nav>
+  </div>
+</header>
+
+<main id="conteudo">
+<div class="workspace-layout" id="idee">
+  <aside class="intro-panel">
+    <p class="eyebrow">AUDIO → PARTITION</p>
+    <h1>De l'écoute<br><em>à l'écriture.</em></h1>
+    <p class="intro-copy">Transformez une mélodie en partition modifiable. Maravi propose hauteurs et rythme ; l'écoute, le phrasé et les choix de composition restent les vôtres.</p>
+    <figure class="notation-example">
+      <svg viewBox="0 0 720 210" role="img" aria-labelledby="notation-title notation-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="notation-title">Phrase illustrative en deux mesures à quatre temps</title>
+        <desc id="notation-desc">Portée illustrative avec clé de sol, mesure à 4/4, liaison, articulation, nuance et crescendo.</desc>
+        <g class="staff-lines"><path d="M20 60H700 M20 75H700 M20 90H700 M20 105H700 M20 120H700"/></g>
+        <g class="bar-lines"><path d="M448 60V120 M686 60V120 M694 60V120"/></g>
+        <path class="clef-mark" d="M71 151C53 156 40 142 42 126C44 110 63 100 77 108C88 116 82 131 69 131C56 130 50 115 58 100C65 87 89 69 96 48C103 27 88 15 78 28C68 40 75 58 88 76C105 100 108 123 98 145C92 158 81 165 71 164"/>
+        <g class="time-mark"><text x="118" y="89">4</text><text x="118" y="117">4</text></g>
+        <g class="ledger-lines"><path d="M157 135H190 M616 135H648"/></g>
+        <g class="note-stems"><path d="M181 135V92 M254 128V85 M319 120V73 M354 113V66 M413 105V64 M513 120V79 M574 128V85 M639 135V92"/></g>
+        <path class="note-beam" d="M318 72L354 65L354 72L318 79Z"/>
+        <g class="note-heads"><ellipse cx="172" cy="135" rx="12" ry="8" transform="rotate(-19 172 135)"/><ellipse cx="245" cy="128" rx="12" ry="8" transform="rotate(-19 245 128)"/><ellipse cx="310" cy="120" rx="12" ry="8" transform="rotate(-19 310 120)"/><ellipse cx="345" cy="113" rx="12" ry="8" transform="rotate(-19 345 113)"/><ellipse cx="404" cy="105" rx="12" ry="8" transform="rotate(-19 404 105)"/><ellipse class="half-note" cx="504" cy="120" rx="12" ry="8" transform="rotate(-19 504 120)"/><ellipse cx="565" cy="128" rx="12" ry="8" transform="rotate(-19 565 128)"/><ellipse cx="630" cy="135" rx="12" ry="8" transform="rotate(-19 630 135)"/></g>
+        <path class="phrase-slur" d="M168 151C230 170 355 169 411 129"/>
+        <circle class="articulation-dot" cx="404" cy="89" r="3"/>
+        <path class="accent-mark" d="M552 109L577 115L552 121"/>
+        <path class="crescendo-mark" d="M486 173L625 159 M486 173L625 187"/>
+        <text class="dynamic-mark" x="169" y="190">p</text>
+      </svg>
+      <figcaption>Exemple de notation musicale, et non une transcription produite par Maravi.</figcaption>
+      <div class="notation-legend" aria-label="Éléments de la portée illustrative">
+        <span><strong>4/4</strong> organise le temps</span>
+        <span><strong>Liaison</strong> suggère le phrasé</span>
+        <span><strong>p</strong> indique une nuance douce</span>
+        <span><strong>&lt;</strong> indique un crescendo</span>
+      </div>
+    </figure>
+  </aside>
+
+  <section class="form-surface" id="usage" aria-labelledby="baixar-titulo">
+    <div class="form-heading">
+      <span class="section-index">ÉCOUTE · ÉCRITURE · RÉVISION</span>
+      <h2 id="baixar-titulo">Télécharger et installer</h2>
+      <p>Maravi propose une partition que le musicien peut réécouter, corriger et prolonger. L'écriture doit rester lisible ; l'interprétation ne tient pas tout entière dans les notes.</p>
+      <p class="status">Version 0.1.0 pour Linux, gratuite et libre. Elle fonctionne sur votre ordinateur ; rien n&#x27;est envoyé sur Internet.</p>
+      <div class="actions">
+        <a class="button button-primary" href="https://github.com/lucioaraujo/maravi/releases/latest">Télécharger pour Linux</a>
+        <a class="button" href="instalacao-fr.html">Comment installer</a>
+      </div>
+    </div>
+    <div class="form-cards">
+      <p class="section-index">MODE D'EMPLOI · <span>Partir d'une idée musicale.</span></p>
+      <section class="form-card">
+        <h3 class="legend"><span class="legend-number">01</span> Enregistrement → mélodie</h3>
+        <p class="card-index">AUDIO</p>
+        <p>Une voix ou un instrument mélodique peut produire un brouillon MusicXML et MIDI. Le musicien peut indiquer le tempo, la tonalité et l'instrument de la portée ; ces choix n'isolent pas un instrument dans un mixage.</p>
+        <h4>Si vous avez un enregistrement</h4>
+        <ol><li>Choisissez un audio avec une mélodie claire. Une voix ou un instrument solo marche mieux qu'un orchestre entier.</li><li>Choisissez vous-même l'instrument de la portée, si vous le souhaitez. Si vous ignorez le tempo ou la tonalité, l'analyse peut suggérer des valeurs à vérifier ; elle n'identifie pas les instruments.</li><li>Lancez la transcription et attendez. Téléchargez le MusicXML pour corriger la partition et le MIDI pour écouter les notes détectées.</li><li>Comparez la première note, le rythme et chaque phrase avec l'audio. Corrigez la partition dans votre éditeur musical avant de l'utiliser.</li></ol>
+      </section>
+      <section class="form-card">
+        <h3 class="legend"><span class="legend-number">02</span> PDF ou image → écriture modifiable</h3>
+        <p class="card-index">PARTITION</p>
+        <p>Les partitions imprimées peuvent passer par la reconnaissance optique. Une page du PDF peut être sélectionnée. Il reste à vérifier notes, rythmes, liaisons et continuité entre les pages.</p>
+        <h4>Si vous avez une partition imprimée</h4>
+        <ol><li>Choisissez un PDF ou une image lisible. Vous pouvez sélectionner une page précise du PDF.</li><li>La reconnaissance lit les symboles et crée un brouillon modifiable. Audiveris et MuseScore doivent être installés sur votre ordinateur.</li><li>Ouvrez le MusicXML dans MuseScore ou un autre éditeur. Vérifiez hauteurs, silences, altérations, liaisons et changements de mesure à partir de la source.</li></ol>
+      </section>
+      <p class="hint">MusicXML sert à modifier l'écriture ; MIDI garde les événements de notes pour l'écoute, mais ne remplace pas la partition. Maravi ne modifie pas le fichier d'origine. Le traitement se fait sur votre ordinateur dans une page du navigateur local ; le portail RASGO ne reçoit aucun fichier.</p>
+    </div>
+  </section>
+
+  <section class="process-panel" aria-label="Parcours musical après l&#x27;écoute">
+    <ol class="process-list">
+      <li><span>01</span><p>Écoute : importez ou enregistrez une ligne mélodique.</p></li>
+      <li><span>02</span><p>Écriture : vérifiez hauteur, durée et mesure dans le MusicXML.</p></li>
+      <li><span>03</span><p>Interprétation : affinez phrasé, articulations et nuances dans un éditeur.</p></li>
+      <li><span>04</span><p>Composition : développez l'idée à partir de la partition révisée.</p></li>
+    </ol>
+    <p class="intro-footnote">Le parcours principal produit un brouillon monophonique ; le piano à deux portées est expérimental. La révision musicale reste entre vos mains.</p>
+  </section>
+</div>
+
+<section class="paper-section research" id="recherche">
+  <p class="eyebrow">RECHERCHE ET AVANCÉES</p>
+  <h2>Apprendre à écrire ce qu'on entend.</h2>
+  <p>La recherche demande comment transformer un son en partition qu'une personne puisse lire et jouer, sans faire de chaque fluctuation de l'audio une nouvelle note. Des chemins locaux existent déjà de l'audio vers la mélodie et du PDF/de l'image vers MusicXML et MIDI, ainsi que des suggestions de tempo et de tonalité que le musicien peut accepter ou corriger.</p><p>Les limites orientent la suite : l'audio principal écrit une ligne mélodique, sans séparer automatiquement les instruments d'un mixage. Le piano à deux portées et la reconnaissance des partitions imprimées sont expérimentaux. Chaque sortie doit être comparée à l'enregistrement ou à la page d'origine.</p><p>La v0.1.0 est la première version publique : un paquet pour Linux x86_64, construit et testé automatiquement sur cinq distributions, avec les avis de licence de chaque dépendance. Windows et macOS n&#x27;ont pas encore été testés. Un service en ligne qui reçoit des fichiers ne fait pas partie de cette version.</p>
+</section>
+
+<section class="paper-section" id="apropos">
+  <p class="eyebrow">À PROPOS DE MARAVI</p>
+  <h2>Écrire pour écouter autrement.</h2>
+  <p>Maravi est un dispositif d'étude, de notation et d'organisation de matériaux musicaux de la famille RASGO, créé par Lúcio de Araújo. Il fait partie d'une recherche sur l'écoute et la transcription musicale : proposer une écriture lisible sans confondre le résultat d'un détecteur avec l'intention du musicien. Son code propre est disponible sous <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPLv3 ou ultérieure</a>.</p>
+  <h3>Outils et crédits</h3>
+  <ul class="credit-list"><li><a href="https://github.com/spotify/basic-pitch">Spotify Basic Pitch</a> (Apache 2.0) : hypothèses de notes à partir de l'audio.</li><li><a href="https://github.com/librosa/librosa">librosa</a> (ISC) : analyse audio et du tempo.</li><li><a href="https://github.com/Audiveris/audiveris">Audiveris</a> (AGPLv3) : reconnaissance des partitions imprimées, installé séparément.</li><li><a href="https://github.com/musescore/MuseScore">MuseScore Studio</a> (GPLv3) : conversion et révision de la partition, installé séparément.</li><li><a href="https://ffmpeg.org/">FFmpeg</a>, <a href="https://poppler.freedesktop.org/">Poppler</a> et <a href="https://imagemagick.org/">ImageMagick</a> : conversion et préparation locale des fichiers. Versions et licences restent à vérifier avant d'inclure des binaires dans un paquet.</li></ul>
+  <p class="hint">Maravi n&#x27;a pas créé ces outils. Le paquet Linux inclut les bibliothèques Python (Basic Pitch, librosa et d&#x27;autres) avec leurs avis de licence ; FFmpeg, Audiveris, MuseScore, Poppler et ImageMagick s&#x27;installent à part, sur votre ordinateur. La licence du programme ne change pas les droits des musiques, enregistrements ou partitions d&#x27;origine. Les polices de la page (Fraunces, Work Sans, JetBrains Mono) sont libres, sous la SIL OFL 1.1.</p>
+</section>
+
+<section class="paper-section" id="contact">
+  <p class="eyebrow">CONTACT</p>
+  <h2>Parlons du Maravi.</h2>
+  <p>Pour toute question, retour d&#x27;usage ou collaboration de recherche, écrivez à Lúcio de Araújo.</p>
+  <div class="actions">
+    <a class="button button-primary" href="#contact" data-contact-trigger>Écrire</a>
+    <a class="button" href="https://github.com/lucioaraujo/maravi">Code sur GitHub</a>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>Maravi · recherche en écriture musicale · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licence AGPLv3</a> · <a href="https://rasgoinstruments.arquiviagem.net/fr.html">Portail RASGO</a></span></footer>
 <dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-title">
   <button class="dialog-close" type="button" data-contact-close aria-label="Fermer la fenêtre de contact">×</button>
   <h2 id="contact-title">CONTACT</h2>
@@ -79,4 +189,5 @@
   <p class="contact-feedback" data-contact-feedback data-copied="E-mail copié." data-fallback="Sélectionnez et copiez l&#x27;adresse ci-dessus." aria-live="polite"></p>
 </dialog>
 <script src="assets/contact.js" defer></script>
-</body></html>
+</body>
+</html>

@@ -127,7 +127,8 @@ def markdown(texto, lang):
 def moldura(sobre, instalacao):
     """Cabeçalho e rodapé da página Sobre, com os links apontando para ela."""
     texto = (AQUI / sobre).read_text(encoding="utf-8")
-    cabeca = texto[texto.index("<body>") + len("<body>"):texto.index("<main")]
+    inicio = re.search(r"<body[^>]*>", texto).end()
+    cabeca = texto[inicio:texto.index("<main")]
     cabeca = re.sub(r'href="#(?!conteudo)', 'href="%s#' % sobre, cabeca)
     for _, (s, inst, *_resto) in PAGINAS.items():
         cabeca = cabeca.replace('href="%s"' % s, 'href="%s"' % inst)
@@ -149,7 +150,7 @@ def main():
   <title>%s</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>%s<main id="conteudo" class="doc">
+<body class="score-workspace">%s<main id="conteudo" class="doc">
 <h1>%s</h1>
 %s
 </main>%s</body>
