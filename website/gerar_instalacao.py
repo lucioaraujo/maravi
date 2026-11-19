@@ -148,6 +148,9 @@ def main():
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="%s">
   <title>%s</title>
+  <link rel="icon" href="assets/identity/maravi-favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/identity/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/identity/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="score-workspace">%s<main id="conteudo" class="doc">
