@@ -65,4 +65,36 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/instalacao-es.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/instalacao.html"/>
   </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/aprender.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/aprender.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/aprender-en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/aprender-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/aprender-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/aprender.html"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/aprender-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/aprender.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/aprender-en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/aprender-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/aprender-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/aprender.html"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/aprender-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/aprender.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/aprender-en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/aprender-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/aprender-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/aprender.html"/>
+  </url>
+  <url>
+    <loc>https://lucioaraujo.github.io/maravi/aprender-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/aprender.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/aprender-en.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/aprender-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/aprender-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/aprender.html"/>
+  </url>
 </urlset>

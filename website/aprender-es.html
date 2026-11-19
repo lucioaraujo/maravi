@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cada parte de la pantalla de Maravi y lo que hace: el audio, la notación, las pistas de tempo y tono, el procesamiento, la partitura, la revisión y la privacidad.">
+  <title>Aprender Maravi</title>
+  <link rel="icon" href="assets/identity/maravi-favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/identity/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/identity/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <!-- SEO:INICIO — gerado por seo.py; editar lá, não aqui -->
+  <link rel="canonical" href="https://lucioaraujo.github.io/maravi/aprender-es.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://lucioaraujo.github.io/maravi/aprender.html">
+  <link rel="alternate" hreflang="en" href="https://lucioaraujo.github.io/maravi/aprender-en.html">
+  <link rel="alternate" hreflang="fr" href="https://lucioaraujo.github.io/maravi/aprender-fr.html">
+  <link rel="alternate" hreflang="es" href="https://lucioaraujo.github.io/maravi/aprender-es.html">
+  <link rel="alternate" hreflang="x-default" href="https://lucioaraujo.github.io/maravi/aprender.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Maravi">
+  <meta property="og:title" content="Aprender Maravi">
+  <meta property="og:description" content="Cada parte de la pantalla de Maravi y lo que hace: el audio, la notación, las pistas de tempo y tono, el procesamiento, la partitura, la revisión y la privacidad.">
+  <meta property="og:url" content="https://lucioaraujo.github.io/maravi/aprender-es.html">
+  <meta property="og:image" content="https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Maravi — la página de la aplicación en el navegador, con el formulario que convierte una melodía grabada en partitura.">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Maravi",
+    "description": "Cada parte de la pantalla de Maravi y lo que hace: el audio, la notación, las pistas de tempo y tono, el procesamiento, la partitura, la revisión y la privacidad.",
+    "url": "https://lucioaraujo.github.io/maravi/",
+    "inLanguage": "es",
+    "image": "https://lucioaraujo.github.io/maravi/assets/og-maravi.jpg",
+    "applicationCategory": "MultimediaApplication",
+    "applicationSubCategory": "Music transcription: audio and printed scores to MusicXML and MIDI",
+    "operatingSystem": "Linux",
+    "downloadUrl": "https://github.com/lucioaraujo/maravi/releases",
+    "softwareVersion": "0.1.1",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+    "isAccessibleForFree": true,
+    "author": {
+      "@type": "Person",
+      "name": "Lúcio de Araújo"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "RASGO",
+      "url": "https://rasgoinstruments.arquiviagem.net/"
+    },
+    "sameAs": [
+      "https://github.com/lucioaraujo/maravi"
+    ]
+  }
+  </script>
+  <script>(function(){var K='rasgo-lingua',M={pt:'index.html',en:'en.html',fr:'fr.html',es:'es.html'};function g(){try{return localStorage.getItem(K)}catch(e){return null}}function s(v){try{localStorage.setItem(K,v)}catch(e){}}var l=(document.documentElement.lang||'').slice(0,2).toLowerCase(),p=location.pathname,base=location.origin+p.replace(/[^/]*$/,''),r=document.referrer||'';if(/\/(index\.html)?$/.test(p)&&l==='pt'&&r.indexOf(base)!==0&&!/[?&]lang=pt/.test(location.search)&&!/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)){var c=g();if(!c){var L=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];c='en';for(var i=0;i<L.length;i++){var x=String(L[i]).slice(0,2).toLowerCase();if(M[x]){c=x;break}}}if(c!=='pt'&&M[c]){location.replace(M[c]+location.hash);return}}if(M[l])s(l);})();</script>
+  <!-- SEO:FIM -->
+</head>
+<body class="score-workspace">
+<div class="rasgo-strip"><a href="https://rasgoinstruments.arquiviagem.net/es.html">RASGO — familia de instrumentos e investigación sonora</a></div>
+<a class="skip-link" href="#conteudo">Ir al contenido</a>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="wordmark" href="es.html#idea" aria-label="Maravi">RASGO <span>/ MARAVI</span></a>
+    <nav class="header-actions" aria-label="Maravi">
+      <span class="local-badge"><span class="status-dot"></span> Versión 0.1.1 · Linux</span>
+      <a href="es.html#uso">Cómo usar</a>
+      <a href="aprender-es.html">Aprender</a>
+      <a href="es.html#investigacion">Investigación</a>
+      <a href="es.html#acerca">Acerca de</a>
+      <a href="instalacao-es.html">Instalación</a>
+      <a href="es.html#contacto">Contacto</a>
+    </nav>
+    <nav class="help-languages" aria-label="Idioma"><a href="aprender.html" lang="pt-BR">PT</a><a href="aprender-en.html" lang="en">EN</a><a href="aprender-fr.html" lang="fr">FR</a><a href="aprender-es.html" lang="es" aria-current="page">ES</a></nav>
+  </div>
+</header>
+
+<main id="conteudo" class="doc">
+<h1>Cómo usar Maravi</h1>
+<p>Maravi crea un borrador MusicXML y MIDI en su ordenador. Elija audio o una imagen de partitura; escuche y revise el resultado antes de usarlo.</p>
+<h2 id="audio">1. Elija el audio</h2>
+<p>Arrastre un archivo al formulario o grabe con un micrófono. Escuche la vista previa. Si el instrumento se oye mejor en un lado de un archivo estéreo de hasta 3 minutos, elija el canal izquierdo o derecho. Esto no separa los instrumentos que siguen presentes en ese canal.</p>
+<h2 id="instrument">2. Elija la notación</h2>
+<p>La elección del instrumento nombra el pentagrama, pero no reconoce ni aísla la fuente. Para Voz, elija un límite grave para reducir notas de acompañamiento; pueden quedar sonidos en el mismo registro. Flauta omite notas bajo si3. Piano de dos pentagramas distribuye notas sin identificar las manos.</p>
+<h2 id="cues">3. Añada pistas si las conoce</h2>
+<p>El BPM y la tonalidad son opcionales. Si se dejan vacíos, Maravi analiza los primeros 20 segundos y muestra hipótesis para confirmar antes de transcribir. El metrónomo ayuda a escuchar, pero solo cambia el BPM de transcripción tras « Usar pulso escuchado ». El 4/4 inicial es una hipótesis. Un BPM fijo puede perjudicar la escritura con rubato.</p>
+<h2 id="process">4. Transcriba</h2>
+<p>Pulse « Transcribir » y espere sin recargar la página. El procesamiento es local; aún no hay porcentaje real ni cancelación. « Solo ligado » y « Escritura por frases » son sugerencias editoriales que debe comprobar escuchando. No se aplican al piano de dos pentagramas.</p>
+<h2 id="score">PDF o imagen de partitura</h2>
+<p>En la página PDF / imagen, elija una partitura impresa en PDF, PNG, JPG o TIFF. Audiveris lee los símbolos y MuseScore exporta MusicXML y MIDI; ambos deben estar instalados en este ordenador. Límites actuales: 20 MB, 8 páginas y 16 megapíxeles por imagen. Los manuscritos y la notación no convencional quedan fuera de esta etapa. Revise cada página, especialmente alteraciones, silencios, ligaduras y tresillos.</p>
+<h2 id="review">Descargue y revise</h2>
+<p>Abra el MusicXML en un editor de partituras, compárelo con el audio o la imagen original y escuche el MIDI. Corrija alturas, ritmo, compás y fraseo. La vista previa del navegador solo muestra algunos compases y no representa el piano de dos pentagramas. Cada proceso queda en una carpeta temporal indicada en la página de resultados. Para guardar MusicXML y MIDI, escriba la ruta de una carpeta local existente y use el botón de guardar ambos; Maravi crea una subcarpeta sin sobrescribir. Las descargas siguen disponibles.</p>
+<h2 id="privacy">Límites y privacidad</h2>
+<p>Maravi no envía sus archivos a un servicio remoto. Los trabajos locales aún no caducan automáticamente; téngalo en cuenta en un ordenador compartido. La notación automática es un borrador, no una prueba de autoría ni de exactitud. Algunos detalles técnicos de errores y avisos OMR todavía pueden estar en portugués.</p>
+</main>
+
+<footer class="site-footer"><span>RASGO / MARAVI</span><span>Maravi · investigación en escritura musical · <a href="https://github.com/lucioaraujo/maravi">GitHub</a> · <a href="https://github.com/lucioaraujo/maravi/blob/main/LICENSE">Licencia AGPLv3</a> · <a href="https://rasgoinstruments.arquiviagem.net/es.html">Portal RASGO</a></span></footer>
+<dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-title">
+  <button class="dialog-close" type="button" data-contact-close aria-label="Cerrar ventana de contacto">×</button>
+  <h2 id="contact-title">CONTACTO</h2>
+  <p>Copie la dirección de correo:</p>
+  <code data-contact-address></code>
+  <button class="button button-primary" type="button" data-contact-copy>Copiar correo</button>
+  <p class="contact-feedback" data-contact-feedback data-copied="Correo copiado." data-fallback="Seleccione y copie la dirección de arriba." aria-live="polite"></p>
+</dialog>
+<script src="assets/contact.js" defer></script>
+</body>
+</html>

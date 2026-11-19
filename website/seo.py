@@ -35,6 +35,12 @@ GRUPOS = [
         {"arquivo": "instalacao-fr.html", "url": "instalacao-fr.html", "lang": "fr"},
         {"arquivo": "instalacao-es.html", "url": "instalacao-es.html", "lang": "es"},
     ],
+    [
+        {"arquivo": "aprender.html", "url": "aprender.html", "lang": "pt-BR"},
+        {"arquivo": "aprender-en.html", "url": "aprender-en.html", "lang": "en"},
+        {"arquivo": "aprender-fr.html", "url": "aprender-fr.html", "lang": "fr"},
+        {"arquivo": "aprender-es.html", "url": "aprender-es.html", "lang": "es"},
+    ],
 ]
 
 
