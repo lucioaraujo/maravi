@@ -1,8 +1,13 @@
 # Site do Maravi
 
-**Estado (2026-10-27):** publicado com a v0.1.0 em
-<https://lucioaraujo.github.io/maravi/> (GitHub Pages do repositório próprio;
-`.github/workflows/deploy-site.yml`, que só roda quando o site muda).
+**Estado (2026-11-26):** o site público aponta para a v0.1.1 em
+<https://lucioaraujo.github.io/maravi/>. O candidato 0.1.2 está no branch
+remoto `codex/maravi-0.1.2-review`; o workflow manual
+[`45867337606`](https://github.com/lucioaraujo/maravi/actions/runs/45867337606)
+gerou `.deb`, AppImage e `.tar.gz`, passou os checksums e abriu os três
+formatos em Debian 12, Ubuntu 22.04, Ubuntu 24.04, Fedora e Arch. O job de
+release foi ignorado: ainda não há tag nem página 0.1.2 publicada. As páginas
+do candidato não foram enviadas a `main` nem implantadas.
 
 ## Publicação da versão 0.1.2
 
