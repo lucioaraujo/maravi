@@ -12,16 +12,23 @@ name: Maravi — build, test & package
 on:
   push:
     tags: ['v*']
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      package_run_id:
+        description: Existing run ID for a launch check without rebuilding packages
+        type: string
+        required: false
 
 permissions:
   contents: read
+  actions: read
 
 env:
   MARAVI_NO_BROWSER: '1'
 
 jobs:
   package:
+    if: ${{ inputs.package_run_id == '' }}
     runs-on: ubuntu-22.04
     timeout-minutes: 40
     steps:
@@ -87,6 +94,7 @@ jobs:
   # FFmpeg): the local page answers and the score page reports what is missing
   launch:
     needs: package
+    if: ${{ !cancelled() && (needs.package.result == 'success' || (github.event_name == 'workflow_dispatch' && inputs.package_run_id != '')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     strategy:
@@ -99,20 +107,27 @@ jobs:
         with:
           name: maravi-linux
           path: pkgs
+          github-token: ${{ inputs.package_run_id != '' && github.token || '' }}
+          run-id: ${{ inputs.package_run_id || github.run_id }}
 
       - name: Tools of the test (curl, tar, xz)
         run: |
           if command -v apt-get >/dev/null; then apt-get update && apt-get install -y --no-install-recommends curl ca-certificates tar xz-utils dpkg ffmpeg
           elif command -v dnf >/dev/null; then dnf install -y curl tar xz ffmpeg-free
-          elif command -v pacman >/dev/null; then pacman -Sy --noconfirm curl tar xz ffmpeg
+          elif command -v pacman >/dev/null; then pacman -Syu --noconfirm curl tar xz ffmpeg
           fi
 
       - name: Install the Debian package where supported
         run: |
           if command -v apt-get >/dev/null; then apt-get install -y ./pkgs/maravi-*-linux-x86_64.deb; fi
 
+      - name: Checkout the startup check
+        uses: actions/checkout@v4
+        with:
+          path: source
+
       - name: Start each Linux package and check the local page
-        run: bash packaging/linux/testar-pacotes.sh pkgs
+        run: bash source/packaging/linux/testar-pacotes.sh pkgs
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
@@ -135,7 +150,7 @@ jobs:
             --title "Maravi ${GITHUB_REF_NAME#v}" \
             --notes "Recorded melodies into readable scores, on your own computer. **Linux x86_64** (glibc ${glibc} or newer: Ubuntu 22.04+, Mint 21+, Debian 12+, Fedora, Arch). Requires FFmpeg; Audiveris, MuseScore, Poppler and ImageMagick only to read printed scores.
 
-          **Install:** step by step in four languages in [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md). Debian/Ubuntu: install the `.deb`; other distributions: use the AppImage or the user-local-installable `.tar.gz`. FFmpeg is required for audio transcription.
+          **Install:** step by step in four languages in [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md). Debian or Ubuntu: install the Debian package. Other distributions: use the AppImage or the user-local tar.gz. FFmpeg is required for audio transcription.
 
           **Stated limitations:** no separation of instruments in a mix; every result needs human review in a score editor; Windows and macOS untested. Launch-tested in clean Debian 12, Ubuntu 22.04 and 24.04, Fedora and Arch containers.
 
