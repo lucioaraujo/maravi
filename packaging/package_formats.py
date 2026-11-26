@@ -156,18 +156,24 @@ def write_appimage(tree: Path, output: Path, version: str, folder: str,
     # PyInstaller's onedir executable is named after the onedir folder.
     if not binary.is_file():
         raise SystemExit("PyInstaller executable not found: " + str(binary))
+    (appdir / "maravi.desktop").symlink_to("usr/share/applications/maravi.desktop")
+    (appdir / "maravi.png").symlink_to("usr/share/icons/hicolor/180x180/apps/maravi.png")
+    (appdir / ".DirIcon").symlink_to("maravi.png")
     destination = output / f"maravi-{version}-linux-x86_64.AppImage"
     env = dict(os.environ, APPIMAGE_EXTRACT_AND_RUN="1", ARCH="x86_64",
                LDAI_OUTPUT=str(destination), LDAI_RUNTIME_FILE=str(runtime.resolve()))
-    subprocess.run([str(linuxdeploy.resolve()), "--appdir", str(appdir),
-                    "--executable", str(binary),
-                    "--desktop-file", str(appdir / "usr/share/applications/maravi.desktop"),
-                    "--icon-file", str(appdir / "usr/share/icons/hicolor/180x180/apps/maravi.png"),
-                    "--custom-apprun", str(app_run), "--output", "appimage"],
-                   cwd=output, env=env, check=True, timeout=420)
+    # PyInstaller already collects the payload's libraries and resolves its
+    # internal aliases at runtime. Run the pinned AppImage plugin directly
+    # to avoid a second dependency scan on the frozen Python tree.
+    with tempfile.TemporaryDirectory(prefix="linuxdeploy-", dir=output) as tooling:
+        subprocess.run([str(linuxdeploy.resolve()), "--appimage-extract"],
+                       cwd=tooling, stdout=subprocess.DEVNULL, check=True, timeout=60)
+        plugin = Path(tooling) / "squashfs-root/usr/bin/linuxdeploy-plugin-appimage"
+        subprocess.run([str(plugin.resolve(strict=True)), "--appdir", str(appdir)],
+                       cwd=output, env=env, check=True, timeout=420)
     appimage = output / destination.name
     if not appimage.is_file():
-        raise SystemExit("linuxdeploy did not create " + str(appimage))
+        raise SystemExit("AppImage plugin did not create " + str(appimage))
     appimage.chmod(0o755)
     shutil.rmtree(appdir)
     return appimage
