@@ -54,6 +54,7 @@ jobs:
 
       - name: The frozen binary transcribes end to end
         run: |
+          mkdir -p pkgs
           app=$(find .local-build -maxdepth 3 -type d -name 'Maravi-*-linux-x86_64' -path '*/dist/*' | head -1)
           timeout 600 python -B tools/smoke_frozen_server.py "$app/$(basename "$app")"
           cp "$app/THIRD_PARTY_NOTICES/ABI_REPORT.json" pkgs/
