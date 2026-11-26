@@ -49,8 +49,8 @@ jobs:
           python -B -m unittest discover -s tests -p 'test_*.py'
           for t in tests/*.cjs; do node "$t"; done
 
-      - name: Package
-        run: python -B packaging/build_linux.py --archive pkgs
+      - name: Build the frozen Linux application
+        run: python -B packaging/build_linux.py
 
       - name: The frozen binary transcribes end to end
         run: |
@@ -58,6 +58,22 @@ jobs:
           timeout 600 python -B tools/smoke_frozen_server.py "$app/$(basename "$app")"
           cp "$app/THIRD_PARTY_NOTICES/ABI_REPORT.json" pkgs/
           echo "glibc required: $(python -c 'import json;print(json.load(open("pkgs/ABI_REPORT.json"))["highest_glibc_symbol"])')"
+
+      - name: Build .deb, AppImage and installable .tar.gz
+        run: |
+          set -euo pipefail
+          app=$(find .local-build -maxdepth 3 -type d -name 'Maravi-*-linux-x86_64' -path '*/dist/*' | head -1)
+          mkdir -p .local-build/tooling pkgs
+          curl --fail --location --connect-timeout 15 --max-time 90 --max-filesize 33554432 \
+            -o .local-build/tooling/linuxdeploy-x86_64.AppImage \
+            https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-x86_64.AppImage
+          echo 'c20cd71e3a4e3b80c3483cef793cda3f4e990aca14014d23c544ca3ce1270b4d  .local-build/tooling/linuxdeploy-x86_64.AppImage' | sha256sum -c -
+          (cd packaging/linux/appimage/runtime && sha256sum -c SHA256SUMS)
+          timeout 900 python -B packaging/package_formats.py \
+            --source "$app" --output pkgs \
+            --linuxdeploy .local-build/tooling/linuxdeploy-x86_64.AppImage \
+            --runtime packaging/linux/appimage/runtime/runtime-x86_64
+          (cd pkgs && sha256sum -c SHA256SUMS)
 
       - uses: actions/upload-artifact@v4
         with:
@@ -84,22 +100,17 @@ jobs:
 
       - name: Tools of the test (curl, tar, xz)
         run: |
-          if command -v apt-get >/dev/null; then apt-get update && apt-get install -y --no-install-recommends curl ca-certificates tar xz-utils
-          elif command -v dnf >/dev/null; then dnf install -y curl tar xz
-          elif command -v pacman >/dev/null; then pacman -Sy --noconfirm curl tar xz
+          if command -v apt-get >/dev/null; then apt-get update && apt-get install -y --no-install-recommends curl ca-certificates tar xz-utils dpkg ffmpeg
+          elif command -v dnf >/dev/null; then dnf install -y curl tar xz ffmpeg-free
+          elif command -v pacman >/dev/null; then pacman -Sy --noconfirm curl tar xz ffmpeg
           fi
 
-      - name: Unpack, start, answer
+      - name: Install the Debian package where supported
         run: |
-          cd pkgs && sha256sum -c *.tar.xz.sha256 && tar -xf *.tar.xz
-          dir=$(find . -maxdepth 1 -type d -name 'maravi-*-linux-x86_64' | head -1)
-          "$dir/maravi" --version
-          MARAVI_PORT=5077 "$dir/maravi" > server.log 2>&1 & pid=$!
-          for i in $(seq 1 60); do curl -fsS http://127.0.0.1:5077/ > /dev/null && break; sleep 1; done
-          curl -fsS http://127.0.0.1:5077/ | grep -q Maravi
-          curl -fsS http://127.0.0.1:5077/partitura > /dev/null
-          kill "$pid" || true
-          cat server.log
+          if command -v apt-get >/dev/null; then apt-get install -y ./pkgs/maravi-*-linux-x86_64.deb; fi
+
+      - name: Start each Linux package and check the local page
+        run: bash packaging/linux/testar-pacotes.sh pkgs
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
@@ -122,11 +133,11 @@ jobs:
             --title "Maravi ${GITHUB_REF_NAME#v}" \
             --notes "Recorded melodies into readable scores, on your own computer. **Linux x86_64** (glibc ${glibc} or newer: Ubuntu 22.04+, Mint 21+, Debian 12+, Fedora, Arch). Requires FFmpeg; Audiveris, MuseScore, Poppler and ImageMagick only to read printed scores.
 
-          **Install:** step by step in four languages in [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md). Unpack, run \`./maravi\`, the browser opens at http://127.0.0.1:5001/.
+          **Install:** step by step in four languages in [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md). Debian/Ubuntu: install the `.deb`; other distributions: use the AppImage or the user-local-installable `.tar.gz`. FFmpeg is required for audio transcription.
 
           **Stated limitations:** no separation of instruments in a mix; every result needs human review in a score editor; Windows and macOS untested. Launch-tested in clean Debian 12, Ubuntu 22.04 and 24.04, Fedora and Arch containers.
 
           ---
 
           Gravações de melodias em partituras legíveis, no seu computador. **Linux x86_64**; requer FFmpeg. Passo a passo em português no [INSTALL.md](https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/INSTALL.md#português)." \
-            pkgs/*.tar.xz pkgs/*.tar.xz.sha256
+            pkgs/*.deb pkgs/*.AppImage pkgs/*.tar.gz pkgs/SHA256SUMS
