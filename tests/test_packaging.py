@@ -13,8 +13,33 @@ assert SPEC is not None and SPEC.loader is not None
 build_linux = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(build_linux)
 
+FORMATS_SCRIPT = Path(__file__).resolve().parents[1] / "packaging" / "package_formats.py"
+FORMATS_SPEC = importlib.util.spec_from_file_location("maravi_package_formats", FORMATS_SCRIPT)
+assert FORMATS_SPEC is not None and FORMATS_SPEC.loader is not None
+package_formats = importlib.util.module_from_spec(FORMATS_SPEC)
+FORMATS_SPEC.loader.exec_module(package_formats)
+
 
 class PackagingTests(unittest.TestCase):
+    def test_frozen_relative_symlink_is_confined_to_payload(self):
+        with tempfile.TemporaryDirectory(prefix="maravi-symlink-") as folder:
+            root = Path(folder) / "payload"
+            libraries = root / "numpy.libs"
+            libraries.mkdir(parents=True)
+            (libraries / "libopenblas.so").write_bytes(b"elf")
+            (root / "libopenblas.so").symlink_to("numpy.libs/libopenblas.so")
+            package_formats.validate_frozen_symlinks(root)
+
+    def test_frozen_external_symlink_is_rejected(self):
+        with tempfile.TemporaryDirectory(prefix="maravi-symlink-") as folder:
+            base = Path(folder)
+            root = base / "payload"
+            root.mkdir()
+            (base / "outside.so").write_bytes(b"elf")
+            (root / "outside.so").symlink_to("../outside.so")
+            with self.assertRaises(SystemExit):
+                package_formats.validate_frozen_symlinks(root)
+
     def test_manifest_includes_application_and_bootloader(self):
         names = build_linux.package_names()
         self.assertIn("basic-pitch", names)

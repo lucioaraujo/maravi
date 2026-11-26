@@ -27,6 +27,20 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def validate_frozen_symlinks(source: Path) -> None:
+    """Allow PyInstaller's relative aliases only when their target stays in the payload."""
+    root = source.resolve(strict=True)
+    for path in source.rglob("*"):
+        if not path.is_symlink():
+            continue
+        try:
+            target = path.resolve(strict=True)
+        except OSError as error:
+            raise SystemExit(f"Broken frozen-payload symlink: {path}") from error
+        if not target.is_relative_to(root) or not target.is_file():
+            raise SystemExit(f"Symlink target is outside the frozen payload: {path}")
+
+
 def write_wrapper(path: Path, version: str, folder: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -42,8 +56,9 @@ def write_tree(source: Path, version: str, stage: Path) -> tuple[Path, str]:
     tree = stage / "usr"
     appdir = tree / "lib/maravi" / version / folder
     appdir.parent.mkdir(parents=True, exist_ok=True)
-    if source.is_symlink() or any(p.is_symlink() for p in source.rglob("*")):
-        raise SystemExit("Symlinks in the frozen payload need explicit packaging review.")
+    if source.is_symlink():
+        raise SystemExit("Frozen payload root cannot be a symlink.")
+    validate_frozen_symlinks(source)
     total = sum(p.stat().st_size for p in source.rglob("*") if p.is_file())
     if total > LIMIT_BYTES:
         raise SystemExit("Frozen payload exceeds the 1 GiB packaging limit.")
