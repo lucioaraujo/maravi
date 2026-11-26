@@ -90,8 +90,8 @@ jobs:
           path: pkgs/
           retention-days: 14
 
-  # the package must start on a clean system of each family (no Python, no
-  # FFmpeg): the local page answers and the score page reports what is missing
+  # The frozen app starts on a clean system of each family. Python 3 runs
+  # the portable installer and FFmpeg supplies the documented audio dependency.
   launch:
     needs: package
     if: ${{ !cancelled() && (needs.package.result == 'success' || (github.event_name == 'workflow_dispatch' && inputs.package_run_id != '')) }}
@@ -110,11 +110,11 @@ jobs:
           github-token: ${{ inputs.package_run_id != '' && github.token || '' }}
           run-id: ${{ inputs.package_run_id || github.run_id }}
 
-      - name: Tools of the test (curl, tar, xz)
+      - name: Install test tools and the portable installer's Python runtime
         run: |
-          if command -v apt-get >/dev/null; then apt-get update && apt-get install -y --no-install-recommends curl ca-certificates tar xz-utils dpkg ffmpeg
-          elif command -v dnf >/dev/null; then dnf install -y curl tar xz ffmpeg-free
-          elif command -v pacman >/dev/null; then pacman -Syu --noconfirm curl tar xz ffmpeg
+          if command -v apt-get >/dev/null; then apt-get update && apt-get install -y --no-install-recommends curl ca-certificates tar xz-utils dpkg ffmpeg python3
+          elif command -v dnf >/dev/null; then dnf install -y curl tar xz ffmpeg-free python3
+          elif command -v pacman >/dev/null; then pacman -Syu --noconfirm curl tar xz ffmpeg python
           fi
 
       - name: Install the Debian package where supported
