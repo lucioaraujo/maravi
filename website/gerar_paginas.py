@@ -29,22 +29,26 @@ import sys
 AQUI = pathlib.Path(__file__).parent
 sys.path.insert(0, str(AQUI.parent / "webapp"))
 import i18n  # noqa: E402  (os textos do aplicativo)
+from version import VERSION  # noqa: E402
 
 REPO = "https://github.com/lucioaraujo/maravi"
-RELEASE = REPO + "/releases/latest"
+RELEASE = f"{REPO}/releases/tag/v{VERSION}"
+DOWNLOAD = f"{REPO}/releases/download/v{VERSION}"
+PACKAGE = f"maravi-{VERSION}-linux-x86_64"
+FORMATS = (("deb", ".deb"), ("AppImage", "AppImage"), ("tar.gz", ".tar.gz"))
 LINGUAS = [("pt", "pt-BR", "index.html", "PT"), ("en", "en", "en.html", "EN"),
            ("fr", "fr", "fr.html", "FR"), ("es", "es", "es.html", "ES")]
 INSTALACAO = {"pt": "instalacao.html", "en": "instalacao-en.html",
               "fr": "instalacao-fr.html", "es": "instalacao-es.html"}
 # o que só o site diz (o resto vem do app ou do textos.json)
 SITE = {
-    "pt": {"badge": "Versão 0.1.1 · Linux", "dl_index": "Baixar · 01 / 02",
+    "pt": {"badge": f"Versão {VERSION} · Linux", "dl_index": "Baixar · 01 / 02",
            "dl_title": "Baixar e instalar"},
-    "en": {"badge": "Version 0.1.1 · Linux", "dl_index": "Download · 01 / 02",
+    "en": {"badge": f"Version {VERSION} · Linux", "dl_index": "Download · 01 / 02",
            "dl_title": "Download and install"},
-    "fr": {"badge": "Version 0.1.1 · Linux", "dl_index": "Télécharger · 01 / 02",
+    "fr": {"badge": f"Version {VERSION} · Linux", "dl_index": "Télécharger · 01 / 02",
            "dl_title": "Télécharger et installer"},
-    "es": {"badge": "Versión 0.1.1 · Linux", "dl_index": "Descargar · 01 / 02",
+    "es": {"badge": f"Versión {VERSION} · Linux", "dl_index": "Descargar · 01 / 02",
            "dl_title": "Descargar e instalar"},
 }
 
@@ -149,6 +153,10 @@ def pagina(lang, codigo, arquivo):
       <div class="actions">
         <a class="button button-primary" href="{RELEASE}">{t["buttons"][0]}</a>
         <a class="button" href="{INSTALACAO[lang]}">{t["buttons"][1]}</a>
+      </div>
+      <div class="actions">
+        {chr(10).join(f'<a class="button" href="{DOWNLOAD}/{PACKAGE}.{suffix}">{label}</a>' for suffix, label in FORMATS)}
+        <a class="button" href="{DOWNLOAD}/SHA256SUMS">SHA256SUMS</a>
       </div>
     </div>
     <div class="form-cards">

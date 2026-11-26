@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.2
+
+- Linux x86_64 packages now include a Debian package, an AppImage and a
+  `.tar.gz` with a user-local installer. The installation guide covers all
+  three formats in English, Portuguese, French and Spanish.
+- The score display places staccato and accents below upward stems,
+  leaving the staccato dot inside the slur.
+
 ## 0.1.1 — a smaller package, 2026-10-27
 
 - **The download goes from 157 to 112 MiB.** The package is now

@@ -12,7 +12,7 @@ SITE = Path(__file__).resolve().parents[1] / "website"
 PAGES = {"index.html": "pt-BR", "en.html": "en", "fr.html": "fr", "es.html": "es"}
 INSTALL_PAGES = {"instalacao.html": "pt-BR", "instalacao-en.html": "en",
                  "instalacao-fr.html": "fr", "instalacao-es.html": "es"}
-RELEASES = "https://github.com/lucioaraujo/maravi/releases/latest"
+RELEASES = "https://github.com/lucioaraujo/maravi/releases/tag/v0.1.2"
 ABOUT_IDS = {"index.html": "sobre", "en.html": "about", "fr.html": "apropos", "es.html": "acerca"}
 CONTACT_IDS = {"index.html": "contato", "en.html": "contact", "fr.html": "contact", "es.html": "contacto"}
 
@@ -88,7 +88,9 @@ class WebsiteTests(unittest.TestCase):
         for filename in INSTALL_PAGES:
             with self.subTest(filename=filename):
                 raw = (SITE / filename).read_text(encoding="utf-8")
-                self.assertIn("maravi-0.1.1-linux-x86_64.tar.xz", raw)
+                for suffix in ("deb", "AppImage", "tar.gz"):
+                    self.assertIn(f"maravi-0.1.2-linux-x86_64.{suffix}", raw)
+                self.assertIn("./install.sh --remove", raw)
                 self.assertIn("ffmpeg", raw)
         result = subprocess.run([sys.executable, "-B", str(SITE / "gerar_instalacao.py")],
                                 capture_output=True, text=True, timeout=30, cwd=SITE)

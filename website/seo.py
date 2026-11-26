@@ -20,7 +20,7 @@ SITE = {
     "raiz_do_dominio": False,
 }
 
-VERSAO = "0.1.1"
+VERSAO = "0.1.2"
 
 GRUPOS = [
     [
@@ -57,7 +57,7 @@ def dados_estruturados(pagina, descricao):
         "applicationCategory": "MultimediaApplication",
         "applicationSubCategory": "Music transcription: audio and printed scores to MusicXML and MIDI",
         "operatingSystem": "Linux",
-        "downloadUrl": repo + "/releases",
+        "downloadUrl": f"{repo}/releases/tag/v{VERSAO}",
         "softwareVersion": VERSAO,
         "license": "https://www.gnu.org/licenses/agpl-3.0.html",
         "isAccessibleForFree": True,

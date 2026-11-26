@@ -4,6 +4,14 @@
 <https://lucioaraujo.github.io/maravi/> (GitHub Pages do repositório próprio;
 `.github/workflows/deploy-site.yml`, que só roda quando o site muda).
 
+## Publicação da versão 0.1.2
+
+A página apresenta os três pacotes Linux x86_64 e aponta para
+`v0.1.2`. O guia usa `INSTALL.md` como fonte, nas quatro línguas.
+Antes de publicar este site em `main`, gere os pacotes da tag aprovada,
+confira `SHA256SUMS` e valide a abertura da release. O GitHub Pages
+acompanha a branch `main`, que deve apontar apenas para pacotes já públicos.
+
 ## Páginas e como gerar
 
 **Layout do aplicativo** (o autor, 2026-10-27: "cria o site com o mesmo
